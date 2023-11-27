@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './KeyBoardStylee.css'
 
-
+let isCapslock = false;
 function KeyBoard(props) {
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-    const [state, setState] = useState("letters");
     let lettersArr;
     const hebrewArr = [
         "/", "'", "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ",
@@ -19,11 +18,11 @@ function KeyBoard(props) {
     ];
 
     const englishArr = [
-         'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
         'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '.',
-        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',','.'
+        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
     ];
-
+    const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
         case "hebrew":
             lettersArr = [...numbersArr, ...hebrewArr];
@@ -37,10 +36,15 @@ function KeyBoard(props) {
         default:
             lettersArr = [];
     }
+    const [keyboardArr, setKeyboardArr] = useState(lettersArr);
+    function toggleCapsLock() {
+        isCapslock = !isCapslock;
+        setKeyboardArr(isCapslock ? capslockArr : lettersArr);
+    }
     return (
         <div id="keyBoardK">
             <div id="letters-row" className="letters-row">
-                {lettersArr.map((char, index) => (
+                {keyboardArr.map((char, index) => (
                     <div className='k_b' key={index}>
                         <button onClick={() => props.handleButtonClick(char)}>
                             {char}
@@ -58,12 +62,12 @@ function KeyBoard(props) {
                 <button onClick={() => props.handleEvent('backspace')} className="backspace">
                     backspace
                 </button>
-                <button className='capslock'>caps lock</button>
+                <button onClick={toggleCapsLock} className={`capslock ${isCapslock ? 'active' : ''}`}>
+                    caps lock
+                </button>
             </div>
         </div>
     );
-
-
 }
 
 export default KeyBoard;
