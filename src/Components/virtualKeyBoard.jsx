@@ -161,9 +161,7 @@ function VirtualKeyBoard() {
                 <Screen text={stack[stack.length - 1] || placeholder} />
                 <SpecialButtons handleEvent={handleEvent} isUndo={isUndo} isRedo={isRedo} />
             </div>
-            <div className="style-selector-container">
-                <StyleSelector changeAllTextStyle={changeAllTextStyle} onSelectStyle={handleSelectStyle} currentStyle={currentStyle} upperAll={upperAll} lowerAll={lowerAll} />
-            </div>
+            
             <div className="keyboard-container">
                 {isEmojiActive ? (
                     <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
@@ -171,7 +169,9 @@ function VirtualKeyBoard() {
                     <KeyBoard isCapslock={isCapslock} setIsCapslock={setIsCapslock} language={language} handleButtonClick={handleInputButtonClick} handleEvent={handleEvent} />
                 )}
             </div>
-
+            <div className="style-selector-container">
+                <StyleSelector changeAllTextStyle={changeAllTextStyle} onSelectStyle={handleSelectStyle} currentStyle={currentStyle} upperAll={upperAll} lowerAll={lowerAll} />
+            </div>
         </div>
     );
 }

@@ -6,21 +6,21 @@ import './KeyBoardStylee.css';
 function StyleSelector(props) {
     const [changeAllStyle, setChangeAllStyle] = useState(false);
     const {  changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
+
     const handleColorChange = (newColor) => {
         onSelectStyle({
             ...currentStyle,
             color: newColor,
         });
-        if (changeAllStyle)
-        changeAllTextStyle();
+        if (changeAllStyle) changeAllTextStyle();
     };
+
     const handleFontSizeChange = (newFontSize) => {
         onSelectStyle({
             ...currentStyle,
             fontSize: newFontSize,
         });
-        if (changeAllStyle)
-        changeAllTextStyle();
+        if (changeAllStyle) changeAllTextStyle();
     };
 
     const handleFontFamilyChange = (newFontFamily) => {
@@ -28,8 +28,7 @@ function StyleSelector(props) {
             ...currentStyle,
             fontFamily: newFontFamily,
         });
-        if (changeAllStyle)
-        changeAllTextStyle();
+        if (changeAllStyle) changeAllTextStyle();
     };
 
     const handleTextDecorationChange = () => {
@@ -37,10 +36,8 @@ function StyleSelector(props) {
             ...currentStyle,
             textDecoration: currentStyle.textDecoration === 'none' ? 'underline' : 'none'
         });
-        if (changeAllStyle)
-        changeAllTextStyle();
+        if (changeAllStyle) changeAllTextStyle();
     };
-
 
     const FontOption = styled.option`
         font-family: ${(props) => props.fontFamily};
@@ -48,10 +45,16 @@ function StyleSelector(props) {
 
     return (
         <div className="style-selector-container">
+            <button id='lower-all' onClick={lowerAll}>LOWER ALL</button>
+            <button id='upper-all' onClick={upperAll}>UPPER ALL</button>
+
             <div>
-                <label>Color:</label>
-                <input type="color" id="colorInput" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} />
+                <button id="underline" onClick={handleTextDecorationChange} className={`${currentStyle.textDecoration==='underline' ? 'active' : ''}`} >
+                    <FaUnderline />
+                </button>
             </div>
+            <button id=" changStyleAll"  onClick={() => setChangeAllStyle(!changeAllStyle)} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
+
             <div>
                 <label>Font Size:</label>
                 <input type="input" value={currentStyle.fontSize} onChange={(e) => handleFontSizeChange(e.target.value)} />
@@ -72,16 +75,11 @@ function StyleSelector(props) {
                 </select>
             </div>
             <div>
-                <button id="underline" onClick={handleTextDecorationChange} className={`${currentStyle.textDecoration==='underline' ? 'active' : ''}`} >
-                    <FaUnderline />
-                </button>
-            </div>
-            <button id='upper-all' onClick={upperAll}>UPPER ALL</button>
-            <button id='lower-all' onClick={lowerAll}>LOWER ALL</button>
-            <div>
-            <button onClick={() => setChangeAllStyle(!changeAllStyle)} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
+                <label>Color:</label>
+                <input type="color" id="colorInput" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} />
             </div>
         </div>
     );
 }
+
 export default StyleSelector;

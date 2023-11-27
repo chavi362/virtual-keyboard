@@ -108,16 +108,24 @@ select {
   color: rgb(255, 255, 255);
 }
 
-.emojies,
-.keyboardIcon {
-  padding: 6px 9px 6px 12px;
-
+.language-and-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  white-space: nowrap;
 }
 
-.emojies img {
-  width: 50%;
+.icon {
+  padding: 0px 9px 6px 12px;
 }
 
+.icon img {
+  width: 50%; 
+}
+#keyboard-icon {
+  height: 50%; 
+  margin-left: 6px; 
+}
 
 #letters-row {
   display: grid;
@@ -205,17 +213,21 @@ select {
 .style-selector-container button {
   margin-top: 5px;
   grid-column: span 1;
+
 }
 
 /* Additional styling for the second row of buttons */
 .style-selector-container button#upper-all,
-.style-selector-container button#lower-all,
-.style-selector-container button#change-all-text-style {
-  grid-row: 2;
-}
-.style-selector-container button#change-all-text-style
+.style-selector-container button#lower-all
 {
+height: 60%;
+
+}
+
+#changStyleAll{
   grid-column: span 3 ;
+  width: 70%;
+
 }
 
 .active {

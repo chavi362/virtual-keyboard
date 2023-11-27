@@ -28,16 +28,16 @@ function KeyBoardLanguage(props) {
     }
   };
   return (
-    <div>
+    <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
         <option value="hebrew">עברית</option>
         <option value="english">English</option>
         <option value="arabic">عربيه</option>
       </select>
       {props.isEmojiActive ? (    
-        <FaKeyboard className="keyboardIcon" onClick={props.changeState} />
+        <FaKeyboard className="icon" id="kyboard-icon" onClick={props.changeState} />
       ) : (
-        <button className='emojies' onClick={props.changeState}>
+        <button className='icon' onClick={props.changeState}>
           <img src="\src\images\emoji_button_tiny.webp" alt="Emoji Keyboard" />
         </button>
       )}
