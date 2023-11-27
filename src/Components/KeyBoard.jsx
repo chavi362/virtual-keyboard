@@ -1,45 +1,42 @@
 import React, { useState } from 'react';
 import './KeyBoardStylee.css'
 
-let isCapslock = false;
 function KeyBoard(props) {
+    let isCapslock = props.isCapslock;
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-    let lettersArr;
     const hebrewArr = [
         "/", "'", "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ",
         "ש", "ד", "ג", "כ", "ע", "י", "ח", "ל", "ך", "ף", ".",
         "ז", "ס", "ב", "ה", "נ", "מ", "צ", "ת", ","
     ];
-
     const arabicArr = [
         'ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح',
         'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م',
         'ك', 'ط', 'ئ', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و'
     ];
-
     const englishArr = [
         'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
         'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '.',
         'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
     ];
+    let keyboardArr;
     const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
         case "hebrew":
-            lettersArr = [...numbersArr, ...hebrewArr];
+            keyboardArr = [...numbersArr, ...hebrewArr];
             break;
         case "english":
-            lettersArr = [...numbersArr, ...englishArr];
+            keyboardArr = [...numbersArr, ...englishArr];
             break;
         case "arabic":
-            lettersArr = [...numbersArr, ...arabicArr];
+            keyboardArr = [...numbersArr, ...arabicArr];
             break;
         default:
-            lettersArr = [];
+            keyboardArr = [];
     }
-    const [keyboardArr, setKeyboardArr] = useState(lettersArr);
+    keyboardArr = (isCapslock ? capslockArr : keyboardArr);
     function toggleCapsLock() {
-        isCapslock = !isCapslock;
-        setKeyboardArr(isCapslock ? capslockArr : lettersArr);
+        props.setIsCapslock(!isCapslock);
     }
     return (
         <div id="keyBoardK">
@@ -69,5 +66,4 @@ function KeyBoard(props) {
         </div>
     );
 }
-
 export default KeyBoard;

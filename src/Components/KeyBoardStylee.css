@@ -1,22 +1,5 @@
-/* .keyboard {
-  
-} */
-
-#numbers-row,
-#letters-row {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  margin-left: 130px;
-}
-
 #numbers-row {
   margin-left: 310px;
-}
-
-#keyBoardK {
-  margin-top: 50px;
-  margin-left: 250px;
 }
 
 #keyboard-row {
@@ -27,9 +10,8 @@
 }
 
 button {
-  border-color: #ffffff;
   border-radius: 7px;
-  padding: 6px;
+  padding: 4px;
   margin: 2px;
   font-size: 16px;
   background-color: #ffffff;
@@ -60,17 +42,10 @@ select {
   padding: 5px;
 }
 
-#letters-row {
-  max-width: 700px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+
 
 #letters-row button {
-  margin: 5px;
   width: 50px;
-  height: 40px;
 
 }
 
@@ -90,26 +65,17 @@ select {
   margin-left: 80px;
 }
 
-.screenDiv {
-  height: 100%;
-  position: relative;
-  margin-top: 80px;
-  margin-left: 200px;
-  color: rgb(1, 67, 124);
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
 
-.virtual_keyBoard {
-  max-width: 750px;
-  width: 750px;
+
+.screenDiv {
+  position: relative;
+
 }
 
 #spacial_buttons {
   white-space: nowrap;
   justify-content: center;
-  left: 89%;
+  left: 86%;
   right: auto;
   bottom: 5px;
   display: flex;
@@ -127,7 +93,6 @@ select {
   width: 720px;
   margin: auto;
   margin-left: 80px;
-  margin-top: 90px;
 }
 
 .chooseLanguage {
@@ -140,88 +105,70 @@ select {
   color: rgb(255, 255, 255);
 }
 
-.emojies ,.keyboardIcon{
+.emojies,
+.keyboardIcon {
   padding: 6px 9px 6px 12px;
-  
+
 }
 
 .emojies img {
   width: 50%;
 }
 
-#root {
-  padding: 0px;
-  height: 100px;
-  margin: auto;
-}
 
-#keyBoardK {
-  margin-top: 50px;
-  margin-left: 250px;
-  max-width: 720px;
-  /* Set the maximum width */
-}
-
-.numbers-row,
-.letters-row,
-.keyboard-row {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  margin-left: 0;
-  /* Adjusted margin */
-}
-
-.MainDiv {
-  margin-top: 30px;
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  outline: none;
-  cursor: text;
-  margin-left: 80px;
-  border: black ;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-self: center;
-
-}
 #letters-row {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 columns */
-  gap: 5px; 
-}
-.emoji-keyboard{
+  grid-template-columns: repeat(10, 1fr);
+    max-width: 700px;
+    justify-content: center;
+  }
+
+
+.emoji-keyboard {
   display: grid;
-  grid-template-columns: repeat(20, 1fr); /* 10 columns */
-  gap: 2px; 
-}
-.k_b {
-  text-align: center; /* Center the button within its container */
+  grid-template-columns: repeat(20, 1fr);
+  /* 10 columns */
+  gap: 2px;
 }
 
 #additional-buttons {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 3 columns for the additional buttons grid */
+  grid-template-columns: repeat(7, 1fr);
+  /* 3 columns for the additional buttons grid */
   gap: 5px;
-  margin-top: 10px; /* Adjust margin as needed */
+  margin-top: 10px;
+  /* Adjust margin as needed */
 }
 
 .space {
-  grid-column: span 4; /* span 2 columns for the space button */
+  grid-column: span 5;
+  /* span 2 columns for the space button */
 }
 
-.enter, .capslock,.backspace {
-  grid-column: span 1; /* span 1 column for the enter button */
-  
+.enter {
+  grid-column: span 1;
+  /* span 1 column for the enter button */
+
+}
+
+.backspace {
+  grid-column: span 1;
+  /* span 1 column for the backspace button */
 }
 
 .virtual_keyBoard {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  align-items: center;
+  text-align: center;
+  margin-top: 100px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
+
 .keyboard-container {
-  align-self: center;
+  margin-left: 60px; /* Adjust margin as needed */
 }
+
+

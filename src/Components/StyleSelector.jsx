@@ -5,7 +5,7 @@ import './KeyBoardStylee.css'
 
 
 function StyleSelector(props) {
-    const { currentStyle, onSelectStyle } = props;
+    const { currentStyle, onSelectStyle,upperAll,lowerAll } = props;
 
     const handleColorChange = (newColor) => {
         onSelectStyle({
@@ -41,6 +41,7 @@ function StyleSelector(props) {
 
     return (
         <div>
+            <button onClick={props.changeAllStyle}>change all text's style</button>
             <div>
                 <label>Color:</label>
                 <input type="color" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} />
@@ -70,8 +71,8 @@ function StyleSelector(props) {
                     <FaUnderline />
                 </button>
             </div>
-            <button id='upper-all'>UPPER ALL</button>
-            <button id='lower-all'>LOWER ALL</button>
+            <button id='upper-all' onClick={upperAll}>UPPER ALL</button>
+            <button id='lower-all' onClick={lowerAll}>LOWER ALL</button>
         </div>
     );
 }

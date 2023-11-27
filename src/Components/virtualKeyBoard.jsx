@@ -18,9 +18,11 @@ function VirtualKeyBoard() {
     const [stack, setStack] = useState([[]]);
     const [isUndo, setIsUndo] = useState(stack.length === 0);
     const [isRedo, setIsRedo] = useState(stack.length === 0);
+    const [isCapslock, setIsCapslock] = useState(false);
+    const [changeAllStyle, setChangeAllStyle] = useState(false);
     const changeState = () => {
         setIsEmojiActive(!isEmojiActive);
-      };
+    };
     function changeLanguage(language) {
         setLanguage(language);
         switch (language) {
@@ -50,6 +52,28 @@ function VirtualKeyBoard() {
             return newStack;
         });
     }
+    function changeAllText(itemFunction) {
+        setStack((prevStack) => {
+            if (prevStack.length > 0) {
+                const lastItem = prevStack[prevStack.length - 1];
+                const modifiedLastItem = lastItem.map((item) => ({
+                    ...itemFunction(item), // Use spread operator here
+                }));
+                return [...prevStack, modifiedLastItem];
+            }
+            return prevStack;
+        });
+    }
+    const upperChar = (item) => ({
+        char: item.char.toUpperCase(),
+        style: { ...item.style },
+    });
+    const lowerChar = (item) => ({
+        char: item.char.toLowerCase(),
+        style: { ...item.style },
+    });
+    const upperAll = () => changeAllText(upperChar);
+    const lowerAll = () => changeAllText(lowerChar);
     function handleInputButtonClick(char) {
         setStack((prevStack) => {
             let newStack = [...prevStack];
@@ -126,21 +150,26 @@ function VirtualKeyBoard() {
     };
     return (
         <div className='MainDiv'>
-        <div className='virtual_keyBoard'>
-            <div className='screenDiv'>
-                <div className='change_layout'> <KeyBoardLanguage setLanguage={changeLanguage} changeState={changeState} isEmojiActive={isEmojiActive}/></div>
-                <Screen text={stack[stack.length - 1] || placeholder} />
-                <SpecialButtons handleEvent={handleEvent} isUndo={isUndo} isRedo={isRedo} />
+            <div className='virtual_keyBoard'>
+                <div className='screenDiv'>
+                    <div className='change_layout'>
+                        <KeyBoardLanguage setLanguage={changeLanguage} changeState={changeState} isEmojiActive={isEmojiActive} />
+                    </div>
+                    <Screen text={stack[stack.length - 1] || placeholder} />
+                    <SpecialButtons handleEvent={handleEvent} isUndo={isUndo} isRedo={isRedo} />
+                </div>
+                <div className="keyboard-container">
+                    <div className='keyboard-with-style-selector'>
+                        <StyleSelector onSelectStyle={handleSelectStyle} currentStyle={currentStyle} upperAll={upperAll} lowerAll={lowerAll} />
+                        {isEmojiActive ? (
+                            <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
+                        ) : (
+                            <KeyBoard isCapslock={isCapslock} setIsCapslock={setIsCapslock} language={language} handleButtonClick={handleInputButtonClick} handleEvent={handleEvent} />
+                        )}
+                    </div>
+                </div>
             </div>
-            <div className="keyboard-container">
-                {isEmojiActive ? (
-                    <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
-                ) : (
-                    <KeyBoard language={language} handleButtonClick={handleInputButtonClick} handleEvent={handleEvent} />
-                )}
-            </div>
-            <StyleSelector onSelectStyle={handleSelectStyle} currentStyle={currentStyle} />
-        </div>
+
         </div>
     );
 }
