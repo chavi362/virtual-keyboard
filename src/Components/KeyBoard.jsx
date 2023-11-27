@@ -58,6 +58,7 @@ function KeyBoard(props) {
                 <button onClick={() => props.handleEvent('backspace')} className="backspace">
                     backspace
                 </button>
+                <button className='capslock'>caps lock</button>
             </div>
         </div>
     );

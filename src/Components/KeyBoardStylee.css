@@ -90,8 +90,6 @@ select {
   margin-left: 80px;
 }
 
-
-
 .screenDiv {
   height: 100%;
   position: relative;
@@ -210,17 +208,14 @@ select {
 }
 
 .space {
-  grid-column: span 5; /* span 2 columns for the space button */
+  grid-column: span 4; /* span 2 columns for the space button */
 }
 
-.enter {
+.enter, .capslock,.backspace {
   grid-column: span 1; /* span 1 column for the enter button */
   
 }
 
-.backspace {
-  grid-column: span 1; /* span 1 column for the backspace button */
-}
 .virtual_keyBoard {
   display: flex;
   flex-direction: column;
