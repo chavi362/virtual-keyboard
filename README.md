@@ -1,8 +1,34 @@
-# React + Vite
+# Virtual Keyboard App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based virtual keyboard app with support for multiple languages and emoji input.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Customization](#customization)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- Virtual keyboard with support for Hebrew, English, and Arabic languages.
+- Emoji keyboard for expressive input.
+- Stylish and customizable interface.
+- Undo and redo functionality.
+- ...
+
+## Demo
+
+Include a GIF or screenshot of your application in action.
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/virtual-keyboard-app.git
