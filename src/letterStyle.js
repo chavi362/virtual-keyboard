@@ -1,5 +1,5 @@
 class LetterStyle {
-  constructor(color = 'black', fontSize = '16px', fontFamily = 'Arial', textDecoration = false) {
+  constructor(color = 'black', fontSize = '16px', fontFamily = 'Arial', textDecoration = 'none') {
     this.color = color;
     this.fontSize = fontSize;
     this.fontFamily = fontFamily;

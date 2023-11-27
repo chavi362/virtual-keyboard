@@ -2,12 +2,15 @@
   margin-left: 310px;
 }
 
+
+
 #keyboard-row {
   display: flex;
   margin-left: 300px;
   padding-left: 0px;
   margin-right: 0px;
 }
+
 
 button {
   border-radius: 7px;
@@ -119,9 +122,9 @@ select {
 #letters-row {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-    max-width: 700px;
-    justify-content: center;
-  }
+  max-width: 700px;
+  justify-content: center;
+}
 
 
 .emoji-keyboard {
@@ -141,7 +144,7 @@ select {
 }
 
 .space {
-  grid-column: span 5;
+  grid-column: span 4;
   /* span 2 columns for the space button */
 }
 
@@ -161,14 +164,69 @@ select {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
-
 .keyboard-container {
-  margin-left: 60px; /* Adjust margin as needed */
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* Align items to the top */
+  margin-left: 100px;
+  /* Adjust margin as needed */
+  margin-left: 100px;
+  /* Adjust margin as needed */
+
 }
 
+.style-selector-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  /* Two rows: one for inputs and one for buttons */
+  gap: 5px;
+  margin-top: 10px;
+  margin-left:30%;
+}
 
+.style-selector-container>div {
+  margin: 5px;
+  grid-column: span 1;
+}
+
+.style-selector-container label {
+  margin-right: 5px;
+  grid-column: span 1;
+}
+
+.style-selector-container button {
+  margin-top: 5px;
+  grid-column: span 1;
+}
+
+/* Additional styling for the second row of buttons */
+.style-selector-container button#upper-all,
+.style-selector-container button#lower-all,
+.style-selector-container button#change-all-text-style {
+  grid-row: 2;
+}
+.style-selector-container button#change-all-text-style
+{
+  grid-column: span 3 ;
+}
+
+.active {
+  background-color: rgb(20, 122, 139) !important;
+}
+
+#colorInput {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  height: 70%;
+  width: 100%;
+
+}
