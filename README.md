@@ -32,4 +32,4 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone [(https://github.com/chavi362/virtual-keyboard.git)https://github.com/chavi362/virtual-keyboard.git]
+   git clone [https://github.com/chavi362/virtual-keyboard.git]
