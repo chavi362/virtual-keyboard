@@ -46,7 +46,6 @@ function VirtualKeyBoard() {
                 let lastState = [...newStack[newStack.length - 1]];
                 lastState.pop();;
                 newStack.push(lastState);
-                setIsUndo(stack.length);
             }
             return newStack;
         });
@@ -74,7 +73,6 @@ function VirtualKeyBoard() {
 
     const upperAll = () => changeAllText(upperChar);
     const lowerAll = () => changeAllText(lowerChar);
-
     function changeAllTextStyle(styleToChange) {
         const setOneStyle = (item) => ({
             char: item.char,
@@ -93,12 +91,9 @@ function VirtualKeyBoard() {
             } else {
                 newStack.push([{ char: char, style: { ...currentStyle } }]);
             }
-            setIsUndo(stack.length);
+            setIsUndo(true);
             return newStack;
         });
-    }
-    function handleSelectStyle(newStyle) {
-        setCurrentStyle(newStyle);
     }
     function undoPrev() {
         setStack((prevStack) => {
@@ -117,6 +112,7 @@ function VirtualKeyBoard() {
             let lastItem = redoStack.pop();
             setIsRedo(redoStack.length != 0)
             newStack.push(lastItem);
+            setIsUndo(true);
             return newStack;
         });
     }
@@ -161,7 +157,7 @@ function VirtualKeyBoard() {
                 <div className='change_layout'>
                     <KeyBoardLanguage setLanguage={changeLanguage} changeState={changeState} isEmojiActive={isEmojiActive} />
                 </div>
-                <Screen text={stack[stack.length - 1] || placeholder} />
+                <Screen text={(stack.length && stack[stack.length - 1].length) ? stack[stack.length - 1] : placeholder} />
                 <SpecialButtons handleEvent={handleEvent} isUndo={isUndo} isRedo={isRedo} />
             </div>
 
@@ -173,7 +169,7 @@ function VirtualKeyBoard() {
                 )}
             </div>
             <div className="style-selector-container">
-                <StyleSelector changeAllTextStyle={changeAllTextStyle} onSelectStyle={handleSelectStyle} currentStyle={currentStyle} upperAll={upperAll} lowerAll={lowerAll} />
+                <StyleSelector changeAllTextStyle={changeAllTextStyle} onSelectStyle={setCurrentStyle} currentStyle={currentStyle} upperAll={upperAll} lowerAll={lowerAll} />
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import './KeyBoardStylee.css';
 
 function StyleSelector(props) {
     const [changeAllStyle, setChangeAllStyle] = useState(false);
-    const {  changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
+    const { changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
 
     const handleColorChange = (newColor) => {
         if (changeAllStyle)

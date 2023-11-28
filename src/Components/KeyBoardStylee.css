@@ -60,8 +60,6 @@ select {
   padding: 10px 10px 50px;
   line-height: 1.15;
   background: rgb(255, 255, 255);
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   z-index: 3;
   outline: none;
   cursor: text;
@@ -173,8 +171,7 @@ select {
   align-items: center;
   text-align: center;
   margin-top: 50px;
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+ 
 }
 
 .keyboard-container {
@@ -198,8 +195,6 @@ select {
   gap: 5px;
   margin-top: 20px;
   margin-left:27%;
-  box-shadow: rgba(201, 30, 30, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-radius: 2px;
 
 
 }
