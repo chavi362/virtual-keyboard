@@ -22,7 +22,8 @@ This is a React-based virtual keyboard app with support for multiple languages a
 
 ## Demo
 
-Include a GIF or screenshot of your application in action.
+![image](https://github.com/chavi362/virtual-keyboard/assets/140444217/1826a4d9-f853-43a3-a7fd-53f36ad57e1d)
+
 
 ## Installation
 
