@@ -56,7 +56,7 @@ function VirtualKeyBoard() {
             if (prevStack.length > 0) {
                 const lastItem = prevStack[prevStack.length - 1];
                 const modifiedLastItem = lastItem.map((item) => ({
-                    ...itemFunction(item), 
+                    ...itemFunction(item),
                 }));
                 return [...prevStack, modifiedLastItem];
             }
@@ -71,14 +71,17 @@ function VirtualKeyBoard() {
         char: item.char.toLowerCase(),
         style: { ...item.style },
     });
-    const setOneStyle = (item) => ({
-        char: item.char,
-        style: { ...currentStyle },
-    });
+
     const upperAll = () => changeAllText(upperChar);
     const lowerAll = () => changeAllText(lowerChar);
 
-    const changeAllTextStyle=()=>changeAllText(setOneStyle);
+    function changeAllTextStyle(styleToChange) {
+        const setOneStyle = (item) => ({
+            char: item.char,
+            style: { ...styleToChange },
+        });
+        changeAllText(setOneStyle);
+    }
 
     function handleInputButtonClick(char) {
         setStack((prevStack) => {
@@ -161,7 +164,7 @@ function VirtualKeyBoard() {
                 <Screen text={stack[stack.length - 1] || placeholder} />
                 <SpecialButtons handleEvent={handleEvent} isUndo={isUndo} isRedo={isRedo} />
             </div>
-            
+
             <div className="keyboard-container">
                 {isEmojiActive ? (
                     <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />

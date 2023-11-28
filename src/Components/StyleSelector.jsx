@@ -8,35 +8,71 @@ function StyleSelector(props) {
     const {  changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
 
     const handleColorChange = (newColor) => {
-        onSelectStyle({
-            ...currentStyle,
-            color: newColor,
-        });
-        if (changeAllStyle) changeAllTextStyle();
+        if (changeAllStyle)
+        {
+            let styleToChange={
+                ...currentStyle,
+                color: newColor,
+            }
+            changeAllTextStyle(styleToChange);
+        } 
+        else{
+            onSelectStyle({
+                ...currentStyle,
+                color: newColor,
+            });
+        }
     };
 
     const handleFontSizeChange = (newFontSize) => {
-        onSelectStyle({
-            ...currentStyle,
-            fontSize: newFontSize,
-        });
-        if (changeAllStyle) changeAllTextStyle();
+        if (changeAllStyle)
+        {
+            let styleToChange={
+                ...currentStyle,
+                fontSize: newFontSize,
+            }
+            changeAllTextStyle(styleToChange);
+        }
+        else{
+            onSelectStyle({
+                ...currentStyle,
+                fontSize: newFontSize,
+            });
+        } 
     };
 
     const handleFontFamilyChange = (newFontFamily) => {
-        onSelectStyle({
-            ...currentStyle,
-            fontFamily: newFontFamily,
-        });
-        if (changeAllStyle) changeAllTextStyle();
+        if (changeAllStyle)
+        {
+            let styleToChange={
+                ...currentStyle,
+                fontFamily: newFontFamily,
+            }
+            changeAllTextStyle(styleToChange);
+        }
+        else{
+            onSelectStyle({
+                ...currentStyle,
+                fontFamily: newFontFamily,
+            });
+        } 
     };
 
     const handleTextDecorationChange = () => {
-        onSelectStyle({
-            ...currentStyle,
-            textDecoration: currentStyle.textDecoration === 'none' ? 'underline' : 'none'
-        });
-        if (changeAllStyle) changeAllTextStyle();
+        if (changeAllStyle)
+        {
+            let styleToChange={
+                ...currentStyle,
+                textDecoration: currentStyle.textDecoration === 'none' ? 'underline' : 'none'
+            }
+            changeAllTextStyle(styleToChange);
+        }
+        else{
+            onSelectStyle({
+                ...currentStyle,
+                textDecoration: currentStyle.textDecoration === 'none' ? 'underline' : 'none'
+            });
+        } 
     };
 
     const FontOption = styled.option`
