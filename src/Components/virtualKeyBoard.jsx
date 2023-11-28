@@ -56,7 +56,7 @@ function VirtualKeyBoard() {
             if (prevStack.length > 0) {
                 const lastItem = prevStack[prevStack.length - 1];
                 const modifiedLastItem = lastItem.map((item) => ({
-                    ...itemFunction(item), // Use spread operator here
+                    ...itemFunction(item), 
                 }));
                 return [...prevStack, modifiedLastItem];
             }

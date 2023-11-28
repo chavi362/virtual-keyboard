@@ -44,16 +44,17 @@ function StyleSelector(props) {
     `;
 
     return (
+        <>
         <div className="style-selector-container">
-            <button id='lower-all' onClick={lowerAll}>LOWER ALL</button>
-            <button id='upper-all' onClick={upperAll}>UPPER ALL</button>
+            <button  onClick={lowerAll}>LOWER ALL</button>
+            <button onClick={upperAll}>UPPER ALL</button>
 
             <div>
-                <button id="underline" onClick={handleTextDecorationChange} className={`${currentStyle.textDecoration==='underline' ? 'active' : ''}`} >
+                <button  onClick={handleTextDecorationChange} className={`${currentStyle.textDecoration==='underline' ? 'active' : ''}`} >
                     <FaUnderline />
                 </button>
             </div>
-            <button id=" changStyleAll"  onClick={() => setChangeAllStyle(!changeAllStyle)} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
+           
 
             <div>
                 <label>Font Size:</label>
@@ -78,7 +79,10 @@ function StyleSelector(props) {
                 <label>Color:</label>
                 <input type="color" id="colorInput" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} />
             </div>
+            
         </div>
+        <button onClick={() => setChangeAllStyle(!changeAllStyle)} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
+       </>
     );
 }
 
