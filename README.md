@@ -73,6 +73,11 @@ virtual-keyboard/
 ├── ...                     # Other configuration files
 
 
+
+
+
+
+
 ## Contributing
 
 We welcome contributions from the community to help improve the Icy Tower Game. If you would like to contribute, please follow these steps:
