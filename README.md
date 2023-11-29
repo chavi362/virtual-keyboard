@@ -50,8 +50,12 @@ virtual-keyboard/
 ├── src/                    # Source code directory
 │   ├── assets/             # Static assets like images, icons, etc.
 │   ├── components/         # React components
-│   │   ├── VirtualKeyboard.js     # Main virtual keyboard component
-│   │   ├── SpecialButtons.js          # Component for special buttons such as:redo, undo and clear all the text
+│   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
+│   │   ├── SpecialButtons.jsx  # Component for special buttons such as:redo, undo and clear all the text
+|   |   ├── Screen.jsx        # the text thev user typed
+|   |   ├──        
+|   |   ├──
+|   |   ├──    
 │   │   └── ...             # Other keyboard-related components
 │   ├── styles/             # CSS or styling files
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
@@ -70,7 +74,7 @@ virtual-keyboard/
 ├── .gitignore              # Git ignore file
 ├── package.json            # Node.js project configuration
 ├── README.md               # Project documentation
-├── ...                     # Other configuration files
+ ...                     # Other configuration files
 
 
 
