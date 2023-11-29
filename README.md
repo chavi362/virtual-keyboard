@@ -33,3 +33,14 @@ To run this project locally, follow these steps:
 
    ```bash
    git clone https://github.com/chavi362/virtual-keyboard.git
+   
+2. open the project in terminal and then run:
+```bash
+npm install
+
+
+3. then run
+```bash npm run dev
+
+4.
+then you will have in alink in your terminal, follow it in your explorer
