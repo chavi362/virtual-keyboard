@@ -40,7 +40,7 @@ npm install
 
 
 
-3. then run
+3.then run
  ```bash
  npm run dev
 
