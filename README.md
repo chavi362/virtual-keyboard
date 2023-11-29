@@ -38,6 +38,39 @@ To run this project locally, follow these steps:
 
    npm install
 
+# Project Structure
+
+The project follows a specific structure to organize its files and directories. Below is an overview of the main components:
+
+## Directory Structure
+
+```plaintext
+virtual-keyboard/
+│
+├── src/                    # Source code directory
+│   ├── assets/             # Static assets like images, icons, etc.
+│   ├── components/         # React components
+│   │   ├── VirtualKeyboard.js     # Main virtual keyboard component
+│   │   ├── SpecialButtons.js          # Component for special buttons such as:redo, undo and clear all the text
+│   │   └── ...             # Other keyboard-related components
+│   ├── styles/             # CSS or styling files
+│   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
+│   │   └── ...             # Other styling files
+│   ├── utils/              # Utility functions
+│   │   ├── keyMappings.js  # Key mappings and configurations
+│   │   └── ...             # Other utility functions
+│   ├── App.js              # Main application component
+│   ├── index.js            # Entry point of the application
+│
+├── public/                 # Public directory for static files
+│   ├── index.html          # HTML template
+│   ├── favicon.ico         # Favicon icon
+│   └── ...
+│
+├── .gitignore              # Git ignore file
+├── package.json            # Node.js project configuration
+├── README.md               # Project documentation
+├── ...                     # Other configuration files
 
 
 ## Contributing
