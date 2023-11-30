@@ -7,11 +7,18 @@ function Screen(props) {
   if (Array.isArray(text)) {
     return (
       <div className="DivTextArea" aria-label="Text Area" id="textbox1_freetext" role="textbox" tabIndex="0">
-        {text.map((item, index) => (
-          <span key={index} style={item.style}>
-            {item.char}
-          </span>
-        ))}
+        {text.map((item, index) => {
+          switch (item.char) {
+            case "\n":
+              return (<br key={index}/>);
+            default :
+              return (
+                <span key={index} style={item.style}>
+                  {item.char}
+                </span>
+              );
+          }
+        })}
       </div>
     );
   } else {
