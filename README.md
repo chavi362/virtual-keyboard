@@ -52,7 +52,7 @@ virtual-keyboard/
 │   ├── components/         # React components
 │   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
 │   │   ├── SpecialButtons.jsx  # Component for special buttons such as:redo, undo and clear all the text
-|   |   ├── Screen.jsx        # the text thev user typed
+|   |   ├── Screen.jsx        # the text the user typed
 |   |   ├──        
 |   |   ├──
 |   |   ├──    
