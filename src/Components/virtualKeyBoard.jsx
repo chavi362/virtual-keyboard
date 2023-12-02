@@ -11,9 +11,9 @@ import EmojiKeyBoard from './EmojiKeyBoard';
 let redoStack = [];
 function VirtualKeyBoard() {
     const [isEmojiActive, setIsEmojiActive] = useState(false);
-    const placeholders = ['הקלד כאן..', 'type here', 'أكتب هنا', 'Друкуйте тут', "Тип здесь"];
-    const [placeholder, setPlaceHolder] = useState('הקלד כאן..');
-    const [language, setLanguage] = useState("hebrew");
+    const placeholders = ['הקלד כאן', 'type here', 'أكتب هنا', 'Друкуйте тут', "Тип здесь"];
+    const [placeholder, setPlaceHolder] = useState('type here');
+    const [language, setLanguage] = useState("english");
     const [currentStyle, setCurrentStyle] = useState(new LetterStyle());
     const [stack, setStack] = useState([[]]);
     const [isUndo, setIsUndo] = useState(stack.length === 0);
