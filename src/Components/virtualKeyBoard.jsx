@@ -11,7 +11,7 @@ import EmojiKeyBoard from './EmojiKeyBoard';
 let redoStack = [];
 function VirtualKeyBoard() {
     const [isEmojiActive, setIsEmojiActive] = useState(false);
-    const placeholders = ['הקלד כאן..', 'type here', 'أكتب هنا'];
+    const placeholders = ['הקלד כאן..', 'type here', 'أكتب هنا', 'Друкуйте тут', "Тип здесь"];
     const [placeholder, setPlaceHolder] = useState('הקלד כאן..');
     const [language, setLanguage] = useState("hebrew");
     const [currentStyle, setCurrentStyle] = useState(new LetterStyle());
@@ -33,6 +33,12 @@ function VirtualKeyBoard() {
                 break;
             case "arabic":
                 setPlaceHolder(placeholders[2]);
+                break;
+            case "ukranian":
+                setPlaceHolder(placeholders[3]);
+                break;
+            case "russian":
+                setPlaceHolder(placeholders[4]);
                 break;
             default:
                 setPlaceHolder(placeholders[0]);
