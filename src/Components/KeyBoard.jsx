@@ -29,6 +29,9 @@ function KeyBoard(props) {
         'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э',
         'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'
     ];
+    const koreanArr = [
+        // TODO: Add Korean Letters
+    ];
     let keyboardArr;
     const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
