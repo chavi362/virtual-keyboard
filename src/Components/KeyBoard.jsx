@@ -19,6 +19,7 @@ function KeyBoard(props) {
         'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '.',
         'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
     ];
+
     const ukranianArr = [
         'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ї',
         'ф', 'і', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'є',
@@ -29,6 +30,13 @@ function KeyBoard(props) {
         'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э',
         'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'
     ];
+
+    const portugueseArr = [
+        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ç', ';',
+        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
+    ];
+
     let keyboardArr;
     const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
@@ -46,6 +54,9 @@ function KeyBoard(props) {
             break;
         case "russian":
             keyboardArr = [...numbersArr, ...russianArr];
+            break;
+        case "portuguese":
+            keyboardArr = [...numbersArr, ...portugueseArr];
             break;
         default:
             keyboardArr = [];
