@@ -76,8 +76,7 @@ select {
 #spacial_buttons {
   white-space: nowrap;
   justify-content: center;
-  left: 86%;
-  right: auto;
+  right: 5px;
   bottom: 5px;
   display: flex;
   overflow: auto;

@@ -144,6 +144,26 @@ function VirtualKeyBoard() {
       return newStack;
     });
   }
+
+  function copy() {
+    const text = stack[stack.length - 1].map((item) => item.char).join("");
+    console.log(text)
+    navigator.clipboard.writeText(text).then(() => alert("copied!"));
+  }
+
+  function paste() {
+    navigator.clipboard.readText().then((text) => {
+      if(!text) return false;
+      setStack((prevStack) => {
+        const newStack = [...prevStack];
+        const lastState = [...newStack[newStack.length - 1]];
+        text.split("").forEach((item) => lastState.push({ char: item, style: { ...currentStyle } }));
+        newStack.push(lastState);
+        return newStack;
+      })
+    });
+  }
+
   const handleEvent = (event) => {
     switch (event) {
       case "deleteAll":
@@ -158,10 +178,17 @@ function VirtualKeyBoard() {
       case "backspace":
         deleteLastChar();
         break;
+      case "copy":
+        copy();
+        break;
+      case "paste":
+        paste();
+        break;
       default:
         break;
     }
   };
+
   return (
     <div className="virtual_keyBoard">
       <div className="screenDiv">
