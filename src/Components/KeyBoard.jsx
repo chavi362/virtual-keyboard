@@ -37,6 +37,12 @@ function KeyBoard(props) {
         'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
     ];
 
+    const spanishArr = [
+        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', ',', 'ç',
+        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
+    ];
+
     let keyboardArr;
     const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
@@ -57,6 +63,9 @@ function KeyBoard(props) {
             break;
         case "portuguese":
             keyboardArr = [...numbersArr, ...portugueseArr];
+            break;
+        case "spanish":
+            keyboardArr = [...numbersArr, ...spanishArr];
             break;
         default:
             keyboardArr = [];
