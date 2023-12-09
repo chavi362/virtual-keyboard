@@ -20,10 +20,10 @@ button {
   background-color: #ffffff;
 }
 
-button:hover {
+/* button:hover {
   background-color: #7cdfd1;
   font-weight: bold;
-}
+} */
 
 .special-buttons {
   display: flex;
@@ -214,8 +214,6 @@ select {
 
 }
 
-
-
 .active {
   background-color: rgb(20, 122, 139) !important;
 }
@@ -227,4 +225,9 @@ select {
   height: 70%;
   width: 100%;
 
+}
+
+.highlighted {
+  background-color: red; /* Puedes ajustar este estilo según tus preferencias */
+  color: white; /* Puedes ajustar el color del texto si es necesario */
 }

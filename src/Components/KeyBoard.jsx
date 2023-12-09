@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './KeyBoardStylee.css'
 
 function KeyBoard(props) {
+
     let isCapslock = props.isCapslock;
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     const hebrewArr = [
@@ -70,16 +71,43 @@ function KeyBoard(props) {
         default:
             keyboardArr = [];
     }
+
     keyboardArr = (isCapslock ? capslockArr : keyboardArr);
     function toggleCapsLock() {
         props.setIsCapslock(!isCapslock);
     }
+
+    const [buttonColors, setButtonColors] = useState(Array(keyboardArr.length).fill(''));
+
+    function toggleCapsLock() {
+        props.setIsCapslock(!isCapslock);
+    }
+
+    function handleButtonClick(char, index) {
+        // Aquí puedes personalizar la lógica para cambiar el color según el carácter
+        const newButtonColors = [...buttonColors];
+
+        newButtonColors[index] = 'highlighted';
+        setButtonColors(newButtonColors);
+
+        // Llama a la función proporcionada para manejar el clic del botón
+
+    
+        props.handleButtonClick(char);
+
+        setTimeout(() => {
+            newButtonColors[index] = '';
+            setButtonColors('');
+        }, 200);
+
+    }
+
     return (
         <div id="keyBoardK">
             <div id="letters-row" className="letters-row">
                 {keyboardArr.map((char, index) => (
-                    <div className='k_b' key={index}>
-                        <button onClick={() => props.handleButtonClick(char)}>
+                    <div className={`k_b`} key={index}>
+                        <button className={`${buttonColors[index]}`} onClick={() => handleButtonClick(char, index)}>
                             {char}
                         </button>
                     </div>

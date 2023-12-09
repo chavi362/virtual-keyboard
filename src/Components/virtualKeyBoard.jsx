@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
@@ -195,6 +195,31 @@ function VirtualKeyBoard() {
                 break;
         }
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            // Verifica si el evento corresponde a una tecla alfabética o numérica
+            const isAlphanumeric =
+                (event.keyCode >= 48 && event.keyCode <= 90) ||
+                (event.keyCode >= 96 && event.keyCode <= 105);
+
+            if (isAlphanumeric) {
+                // Obtiene el carácter de la tecla presionada
+                const char = String.fromCharCode(event.keyCode).toLowerCase();
+
+                // Maneja el clic de la tecla física y llama a la función correspondiente
+                handleInputButtonClick(char);
+            }
+        };
+
+        // Agrega el event listener al montar el componente
+        window.addEventListener("keydown", handleKeyDown);
+
+        // Elimina el event listener al desmontar el componente
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
     return (
         <div className="virtual_keyBoard">
