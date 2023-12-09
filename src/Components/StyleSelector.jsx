@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { FaUnderline } from 'react-icons/fa';
 import './KeyBoardStylee.css';
 
 function StyleSelector(props) {
-    const [changeAllStyle, setChangeAllStyle] = useState(false);
+    const changeAllStyleRef = useRef(false)
     const { changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
 
+    const handleToggleChangeAllStyle = () => {
+        changeAllStyleRef.current = !changeAllStyleRef.current;
+    }
+
     const handleColorChange = (newColor) => {
-        if (changeAllStyle)
+        if (changeAllStyleRef.current)
         {
             let styleToChange={
                 ...currentStyle,
@@ -25,7 +29,7 @@ function StyleSelector(props) {
     };
 
     const handleFontSizeChange = (newFontSize) => {
-        if (changeAllStyle)
+        if (changeAllStyleRef.current)
         {
             let styleToChange={
                 ...currentStyle,
@@ -42,7 +46,7 @@ function StyleSelector(props) {
     };
 
     const handleFontFamilyChange = (newFontFamily) => {
-        if (changeAllStyle)
+        if (changeAllStyleRef.current)
         {
             let styleToChange={
                 ...currentStyle,
@@ -59,7 +63,7 @@ function StyleSelector(props) {
     };
 
     const handleTextDecorationChange = () => {
-        if (changeAllStyle)
+        if (changeAllStyleRef.current)
         {
             let styleToChange={
                 ...currentStyle,
@@ -117,7 +121,7 @@ function StyleSelector(props) {
             </div>
             
         </div>
-        <button onClick={() => setChangeAllStyle(!changeAllStyle)} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
+        <button onClick={handleToggleChangeAllStyle} className={`${changeAllStyle ? 'active' : ''}`}>change all text's style</button>
        </>
     );
 }

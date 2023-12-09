@@ -8,9 +8,10 @@ import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
 
-let redoStack = [];
 function VirtualKeyBoard() {
     const [isEmojiActive, setIsEmojiActive] = useState(false);
+    const [redoStack, setRedoStack] = useState([]);
+
     const placeholders = [
         "הקלד כאן",
         "type here",
@@ -114,26 +115,31 @@ function VirtualKeyBoard() {
             return newStack;
         });
     }
+
     function undoPrev() {
-        setStack((prevStack) => {
-            const newStack = [...prevStack];
-            redoStack.push(newStack.pop());
-            setIsRedo(true);
-            if (stack.length <= 2) setIsUndo(false);
-            return newStack;
+        setRedoStack(prevRedoStack => {
+            const newRedoStack = [...prevRedoStack];
+            const newStack = [...stack];
+            newRedoStack.push(newStack.pop());
+            setIsRedo(newRedoStack.length !== 0);
+            if (newStack.length <= 1) setIsUndo(false);
+            setStack(newStack);
+            return newRedoStack;
         });
     }
+
     function redo() {
-        console.log(redoStack);
-        setStack((prevStack) => {
+        setStack(prevStack => {
             const newStack = [...prevStack];
-            let lastItem = redoStack.pop();
-            setIsRedo(redoStack.length != 0);
+            const lastItem = redoStack.pop();
             newStack.push(lastItem);
             setIsUndo(true);
+            setRedoStack([...redoStack]);
+            setIsRedo(redoStack.length !== 0);
             return newStack;
         });
     }
+
     function deleteAllClicked() {
         let text = "Press a button!\nEither OK or Cancel.";
         if (window.confirm(text) === true) {

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import KeyBoard from './KeyBoard';
+import React from 'react';
 import { FaKeyboard } from 'react-icons/fa';
 import './KeyBoardStylee.css';
 
