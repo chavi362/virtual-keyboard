@@ -75,7 +75,7 @@ virtual-keyboard/
 ## Contributing
 
 We welcome contributions from the community to help improve the Virtual Keyboard App. If you would like to contribute, please follow these steps:
-
+First of all, please give the repository a star 🌟 
 1. Fork the project.
 2. Create your feature branch:
 ```bash
