@@ -10,6 +10,8 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 let redoStack = [];
 function VirtualKeyBoard() {
+    const [currentText, setCurrentText] = useState("");
+
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
         "הקלד כאן",
@@ -111,9 +113,14 @@ function VirtualKeyBoard() {
                 newStack.push([{ char: char, style: { ...currentStyle } }]);
             }
             setIsUndo(true);
+
+            // Actualiza el estado currentText
+            setCurrentText(newStack[newStack.length - 1].map(item => item.char).join(""));
+
             return newStack;
         });
     }
+
     function undoPrev() {
         setStack((prevStack) => {
             const newStack = [...prevStack];
@@ -196,6 +203,20 @@ function VirtualKeyBoard() {
         }
     };
 
+    const highlightRelatedButtons = (char) => {
+        const buttons = document.querySelectorAll('.k_b button');
+        buttons.forEach((button, index) => {
+            if (button.textContent.toLowerCase() === char) {
+                // Agrega la lógica para cambiar el color del botón
+                button.classList.add('highlighted');
+                setTimeout(() => {
+                    button.classList.remove('highlighted');
+                }, 200);
+            }
+        });
+    };
+
+
     useEffect(() => {
         const handleKeyDown = (event) => {
             // Verifica si el evento corresponde a una tecla alfabética o numérica
@@ -209,6 +230,7 @@ function VirtualKeyBoard() {
 
                 // Maneja el clic de la tecla física y llama a la función correspondiente
                 handleInputButtonClick(char);
+                highlightRelatedButtons(char)
             }
         };
 
@@ -238,6 +260,7 @@ function VirtualKeyBoard() {
                             : placeholder
                     }
                 />
+
                 <SpecialButtons
                     handleEvent={handleEvent}
                     isUndo={isUndo}

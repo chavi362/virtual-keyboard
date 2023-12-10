@@ -87,24 +87,25 @@ function KeyBoard(props) {
         props.setIsCapslock(!isCapslock);
     }
 
-    function handleButtonClick(char, index) {
-        // Aquí puedes personalizar la lógica para cambiar el color según el carácter
-        const newButtonColors = [...buttonColors];
+    // function handleInputButtonClick(char) {
+    //     setStack((prevStack) => {
+    //         let newStack = [...prevStack];
+    //         if (newStack.length !== 0) {
+    //             let lastState = [...newStack[newStack.length - 1]];
+    //             lastState.push({ char: char, style: { ...currentStyle } });
+    //             newStack.push(lastState);
+    //         } else {
+    //             newStack.push([{ char: char, style: { ...currentStyle } }]);
+    //         }
 
-        newButtonColors[index] = 'highlighted';
-        dispatch(addButtonColor(newButtonColors));
+    //         // Actualiza el estado currentText
+    //         setCurrentText(newStack.flat().map(item => item.char).join(""));
 
-        // Llama a la función proporcionada para manejar el clic del botón
+    //         setIsUndo(true);
+    //         return newStack;
+    //     });
+    // }
 
-
-        props.handleButtonClick(char);
-
-        setTimeout(() => {
-            newButtonColors[index] = '';
-            dispatch(addButtonColor(''));
-        }, 200);
-
-    }
 
     useEffect(() => {
         dispatch(addButtonColor(Array(keyboardArr.length).fill('')));
@@ -115,7 +116,7 @@ function KeyBoard(props) {
             <div id="letters-row" className="letters-row">
                 {keyboardArr.map((char, index) => (
                     <div className={`k_b`} key={index}>
-                        <button className={`${buttonColors[index]}`} onClick={() => handleButtonClick(char, index)}>
+                        <button className={`${buttonColors[index]}`} onClick={() => props.handleButtonClick(char, index)}>
                             {char}
                         </button>
                     </div>
