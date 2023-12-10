@@ -2,15 +2,12 @@
   margin-left: 310px;
 }
 
-
-
 #keyboard-row {
   display: flex;
   margin-left: 300px;
   padding-left: 0px;
   margin-right: 0px;
 }
-
 
 button {
   border-radius: 7px;
@@ -45,13 +42,10 @@ select {
   padding: 5px;
 }
 
-
-
 #letters-row button {
   width: 50px;
 
 }
-
 
 .DivTextArea {
   user-select: text;
@@ -213,8 +207,6 @@ select {
   grid-column: span 1;
 
 }
-
-
 
 .active {
   background-color: rgb(20, 122, 139) !important;
