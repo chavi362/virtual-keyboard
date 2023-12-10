@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
@@ -10,8 +10,6 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 function VirtualKeyBoard() {
     const [isEmojiActive, setIsEmojiActive] = useState(false);
-    const [redoStack, setRedoStack] = useState([]);
-
     const placeholders = [
         "הקלד כאן",
         "type here",
@@ -27,6 +25,9 @@ function VirtualKeyBoard() {
     const [isUndo, setIsUndo] = useState(stack.length === 0);
     const [isRedo, setIsRedo] = useState(stack.length === 0);
     const [isCapslock, setIsCapslock] = useState(false);
+    const redoStackRef = useRef([]);
+    const redoStack = redoStackRef.current;
+
     const changeState = () => {
         setIsEmojiActive(!isEmojiActive);
     };
@@ -115,31 +116,26 @@ function VirtualKeyBoard() {
             return newStack;
         });
     }
-
     function undoPrev() {
-        setRedoStack(prevRedoStack => {
-            const newRedoStack = [...prevRedoStack];
-            const newStack = [...stack];
-            newRedoStack.push(newStack.pop());
-            setIsRedo(newRedoStack.length !== 0);
-            if (newStack.length <= 1) setIsUndo(false);
-            setStack(newStack);
-            return newRedoStack;
-        });
-    }
-
-    function redo() {
-        setStack(prevStack => {
+        setStack((prevStack) => {
             const newStack = [...prevStack];
-            const lastItem = redoStack.pop();
-            newStack.push(lastItem);
-            setIsUndo(true);
-            setRedoStack([...redoStack]);
-            setIsRedo(redoStack.length !== 0);
+            redoStack.push(newStack.pop());
+            setIsRedo(true);
+            if (stack.length <= 2) setIsUndo(false);
             return newStack;
         });
     }
-
+    function redo() {
+        console.log(redoStack);
+        setStack((prevStack) => {
+            const newStack = [...prevStack];
+            let lastItem = redoStack.pop();
+            setIsRedo(redoStack.length !== 0);
+            newStack.push(lastItem);
+            setIsUndo(true);
+            return newStack;
+        });
+    }
     function deleteAllClicked() {
         let text = "Press a button!\nEither OK or Cancel.";
         if (window.confirm(text) === true) {
