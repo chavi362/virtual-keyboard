@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import './KeyBoardStylee.css'
+import React, { useEffect, useState } from 'react';
+import './KeyBoardStylee.css';
+import { addButtonColor } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function KeyBoard(props) {
+    const dispatch = useDispatch();
+    const buttonColors = useSelector(state => state.buttonColors);
 
     let isCapslock = props.isCapslock;
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
@@ -77,7 +81,7 @@ function KeyBoard(props) {
         props.setIsCapslock(!isCapslock);
     }
 
-    const [buttonColors, setButtonColors] = useState(Array(keyboardArr.length).fill(''));
+    // const [buttonColors, setButtonColors] = useState(Array(keyboardArr.length).fill(''));
 
     function toggleCapsLock() {
         props.setIsCapslock(!isCapslock);
@@ -88,19 +92,23 @@ function KeyBoard(props) {
         const newButtonColors = [...buttonColors];
 
         newButtonColors[index] = 'highlighted';
-        setButtonColors(newButtonColors);
+        dispatch(addButtonColor(newButtonColors));
 
         // Llama a la función proporcionada para manejar el clic del botón
 
-    
+
         props.handleButtonClick(char);
 
         setTimeout(() => {
             newButtonColors[index] = '';
-            setButtonColors('');
+            dispatch(addButtonColor(''));
         }, 200);
 
     }
+
+    useEffect(() => {
+        dispatch(addButtonColor(Array(keyboardArr.length).fill('')));
+    }, []);
 
     return (
         <div id="keyBoardK">
