@@ -20,10 +20,10 @@ button {
   background-color: #ffffff;
 }
 
-/* button:hover {
+button:hover {
   background-color: #7cdfd1;
   font-weight: bold;
-} */
+}
 
 .special-buttons {
   display: flex;
@@ -117,11 +117,12 @@ select {
 }
 
 .icon img {
-  width: 50%; 
+  width: 50%;
 }
+
 #keyboard-icon {
-  height: 50%; 
-  margin-left: 6px; 
+  height: 50%;
+  margin-left: 6px;
 }
 
 #letters-row {
@@ -170,7 +171,7 @@ select {
   align-items: center;
   text-align: center;
   margin-top: 50px;
- 
+
 }
 
 .keyboard-container {
@@ -193,7 +194,7 @@ select {
   /* Two rows: one for inputs and one for buttons */
   gap: 5px;
   margin-top: 20px;
-  margin-left:27%;
+  margin-left: 27%;
 
 
 }
@@ -228,6 +229,6 @@ select {
 }
 
 .highlighted {
-  background-color: red; /* Puedes ajustar este estilo según tus preferencias */
-  color: white; /* Puedes ajustar el color del texto si es necesario */
+  background-color: #7cdfd1;
+  color: white;
 }
