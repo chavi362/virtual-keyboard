@@ -81,31 +81,9 @@ function KeyBoard(props) {
         props.setIsCapslock(!isCapslock);
     }
 
-    // const [buttonColors, setButtonColors] = useState(Array(keyboardArr.length).fill(''));
-
     function toggleCapsLock() {
         props.setIsCapslock(!isCapslock);
     }
-
-    // function handleInputButtonClick(char) {
-    //     setStack((prevStack) => {
-    //         let newStack = [...prevStack];
-    //         if (newStack.length !== 0) {
-    //             let lastState = [...newStack[newStack.length - 1]];
-    //             lastState.push({ char: char, style: { ...currentStyle } });
-    //             newStack.push(lastState);
-    //         } else {
-    //             newStack.push([{ char: char, style: { ...currentStyle } }]);
-    //         }
-
-    //         // Actualiza el estado currentText
-    //         setCurrentText(newStack.flat().map(item => item.char).join(""));
-
-    //         setIsUndo(true);
-    //         return newStack;
-    //     });
-    // }
-
 
     useEffect(() => {
         dispatch(addButtonColor(Array(keyboardArr.length).fill('')));
@@ -116,7 +94,9 @@ function KeyBoard(props) {
             <div id="letters-row" className="letters-row">
                 {keyboardArr.map((char, index) => (
                     <div className={`k_b`} key={index}>
-                        <button className={`${buttonColors[index]}`} onClick={() => props.handleButtonClick(char, index)}>
+                        <button
+                            className={`${buttonColors[index]}`}
+                            onClick={() => props.handleButtonClick(char, index)}>
                             {char}
                         </button>
                     </div>
@@ -126,7 +106,7 @@ function KeyBoard(props) {
                 <button onClick={() => props.handleButtonClick('\n')} className="enter">
                     enter
                 </button>
-                <button onClick={() => props.handleButtonClick('\xa0')} className="space">
+                <button onClick={() => props.handleButtonClick()} className="space">
                     space
                 </button>
                 <button onClick={() => props.handleEvent('backspace')} className="backspace">

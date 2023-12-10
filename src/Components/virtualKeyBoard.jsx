@@ -117,9 +117,13 @@ function VirtualKeyBoard() {
             // Actualiza el estado currentText
             setCurrentText(newStack[newStack.length - 1].map(item => item.char).join(""));
 
+            // Llama a la función para resaltar la tecla
+            highlightRelatedButtons(char);
+
             return newStack;
         });
     }
+
 
     function undoPrev() {
         setStack((prevStack) => {
@@ -203,11 +207,11 @@ function VirtualKeyBoard() {
         }
     };
 
+
     const highlightRelatedButtons = (char) => {
         const buttons = document.querySelectorAll('.k_b button');
         buttons.forEach((button, index) => {
             if (button.textContent.toLowerCase() === char) {
-                // Agrega la lógica para cambiar el color del botón
                 button.classList.add('highlighted');
                 setTimeout(() => {
                     button.classList.remove('highlighted');
@@ -219,20 +223,25 @@ function VirtualKeyBoard() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            // Verifica si el evento corresponde a una tecla alfabética o numérica
             const isAlphanumeric =
                 (event.keyCode >= 48 && event.keyCode <= 90) ||
-                (event.keyCode >= 96 && event.keyCode <= 105);
+                (event.keyCode >= 96 && event.keyCode <= 105) ||
+                event.keyCode === 32;
 
             if (isAlphanumeric) {
-                // Obtiene el carácter de la tecla presionada
-                const char = String.fromCharCode(event.keyCode).toLowerCase();
+                let char;
+                if (event.keyCode === 32) {
+                    char = '\xa0';
+                } else {
+                    char = String.fromCharCode(event.keyCode).toLowerCase();
+                }
 
-                // Maneja el clic de la tecla física y llama a la función correspondiente
                 handleInputButtonClick(char);
-                highlightRelatedButtons(char)
+                highlightRelatedButtons(char);
             }
         };
+
+
 
         // Agrega el event listener al montar el componente
         window.addEventListener("keydown", handleKeyDown);
