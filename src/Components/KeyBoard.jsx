@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import './KeyBoardStylee.css'
-=======
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './KeyBoardStylee.css';
 import { addButtonColor } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
->>>>>>> physical-keyboard2
 
 function KeyBoard(props) {
     const dispatch = useDispatch();
