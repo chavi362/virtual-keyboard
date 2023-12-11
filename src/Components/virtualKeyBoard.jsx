@@ -10,7 +10,7 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 let redoStack = [];
 function VirtualKeyBoard() {
-    const [currentText, setCurrentText] = useState("");
+    // const [currentText, setCurrentText] = useState("");
 
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
@@ -114,16 +114,13 @@ function VirtualKeyBoard() {
             }
             setIsUndo(true);
 
-            // Actualiza el estado currentText
-            setCurrentText(newStack[newStack.length - 1].map(item => item.char).join(""));
+            // setCurrentText(newStack[newStack.length - 1].map(item => item.char).join(""));
 
-            // Llama a la función para resaltar la tecla
             highlightRelatedButtons(char);
 
             return newStack;
         });
     }
-
 
     function undoPrev() {
         setStack((prevStack) => {
@@ -207,7 +204,6 @@ function VirtualKeyBoard() {
         }
     };
 
-
     const highlightRelatedButtons = (char) => {
         const buttons = document.querySelectorAll('.k_b button');
         buttons.forEach((button, index) => {
@@ -215,7 +211,7 @@ function VirtualKeyBoard() {
                 button.classList.add('highlighted');
                 setTimeout(() => {
                     button.classList.remove('highlighted');
-                }, 200);
+                }, 300);
             }
         });
     };
@@ -232,6 +228,15 @@ function VirtualKeyBoard() {
                 let char;
                 if (event.keyCode === 32) {
                     char = '\xa0';
+
+                    const spaces = document.querySelectorAll('.space');
+
+                    spaces.forEach((space) => {
+                        space.classList.add('highlighted');
+                        setTimeout(() => {
+                            space.classList.remove('highlighted');
+                        }, 300);
+                    });
                 } else {
                     char = String.fromCharCode(event.keyCode).toLowerCase();
                 }
@@ -241,16 +246,13 @@ function VirtualKeyBoard() {
             }
         };
 
-
-
-        // Agrega el event listener al montar el componente
         window.addEventListener("keydown", handleKeyDown);
 
-        // Elimina el event listener al desmontar el componente
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, []);
+
 
     return (
         <div className="virtual_keyBoard">

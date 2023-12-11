@@ -2,7 +2,6 @@ import React from 'react';
 import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from 'react-icons/fa';
 import './KeyBoardStylee.css'
 
-
 function SpecialButtons({ handleEvent, isUndo,isRedo}) {
     return (
         <div id="spacial_buttons"className='spacial_buttons'>
