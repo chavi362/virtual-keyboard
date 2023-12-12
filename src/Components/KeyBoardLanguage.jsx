@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaKeyboard } from 'react-icons/fa';
 import './KeyBoardStylee.css';
 
