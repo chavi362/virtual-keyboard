@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import { useRef } from 'react';
 import { FaUnderline } from 'react-icons/fa';
 import './KeyBoardStylee.css';
+import { useRef } from 'react';
 
 function StyleSelector(props) {
     const changeAllStyleRef = useRef(false)
