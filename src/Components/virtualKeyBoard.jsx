@@ -18,6 +18,8 @@ function VirtualKeyBoard() {
         "друкуйте тут",
         "напечатайте здесь",
         "digite aqui",
+        "escriba aquí",
+        "пишувајте овде"
     ];
     const [placeholder, setPlaceHolder] = useState("type here");
     const [language, setLanguage] = useState("english");
@@ -52,6 +54,9 @@ function VirtualKeyBoard() {
                 break;
             case "spanish":
                 setPlaceHolder(placeholders[6]);
+                break;
+            case "macedonian":
+                setPlaceHolder(placeholders[7]);
                 break;
             default:
                 setPlaceHolder(placeholders[0]);
