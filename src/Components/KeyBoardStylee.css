@@ -111,11 +111,12 @@ select {
 }
 
 .icon img {
-  width: 50%; 
+  width: 50%;
 }
+
 #keyboard-icon {
-  height: 50%; 
-  margin-left: 6px; 
+  height: 50%;
+  margin-left: 6px;
 }
 
 #letters-row {
@@ -164,7 +165,7 @@ select {
   align-items: center;
   text-align: center;
   margin-top: 50px;
- 
+
 }
 
 .keyboard-container {
@@ -187,7 +188,7 @@ select {
   /* Two rows: one for inputs and one for buttons */
   gap: 5px;
   margin-top: 20px;
-  margin-left:27%;
+  margin-left: 27%;
 
 
 }
@@ -219,4 +220,9 @@ select {
   height: 70%;
   width: 100%;
 
+}
+
+.highlighted {
+  background-color: #7cdfd1;
+  color: white;
 }

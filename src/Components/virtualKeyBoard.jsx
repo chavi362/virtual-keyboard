@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
@@ -10,6 +10,7 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 let redoStack = [];
 function VirtualKeyBoard() {
+
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
         "הקלד כאן",
@@ -65,13 +66,16 @@ function VirtualKeyBoard() {
     }
     function deleteLastChar() {
         setStack((prevStack) => {
-            let newStack = [...prevStack];
-            if (newStack.length !== 0) {
-                let lastState = [...newStack[newStack.length - 1]];
+            if (prevStack.length !== 0) {
+                let newStack = [...prevStack];
+                let lastState = newStack[newStack.length - 1];
                 lastState.pop();
-                newStack.push(lastState);
+                setIsUndo(true);
+                return newStack;
+            } else {
+
+                return prevStack;
             }
-            return newStack;
         });
     }
     function changeAllText(itemFunction) {
@@ -116,9 +120,13 @@ function VirtualKeyBoard() {
                 newStack.push([{ char: char, style: { ...currentStyle } }]);
             }
             setIsUndo(true);
+
+            highlightRelatedButtons(char);
+
             return newStack;
         });
     }
+
     function undoPrev() {
         setStack((prevStack) => {
             const newStack = [...prevStack];
@@ -201,6 +209,87 @@ function VirtualKeyBoard() {
         }
     };
 
+    const highlightRelatedButtons = (char) => {
+        const buttons = document.querySelectorAll('.k_b button');
+        buttons.forEach((button, index) => {
+            if (button.textContent.toLowerCase() === char) {
+                button.classList.add('highlighted');
+                setTimeout(() => {
+                    button.classList.remove('highlighted');
+                }, 300);
+            }
+        });
+    };
+
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+
+            const isAlphanumeric =
+                (event.keyCode >= 48 && event.keyCode <= 90) ||
+                (event.keyCode >= 96 && event.keyCode <= 105) ||
+                event.keyCode === 32 || // space
+                event.keyCode === 13 ||// enter
+                event.keyCode === 8; // backspace
+
+            if (isAlphanumeric) {
+                let char;
+                if (event.keyCode === 32) {
+                    char = '\xa0';
+
+                    const spaces = document.querySelectorAll('.space');
+
+                    spaces.forEach((space) => {
+                        space.classList.add('highlighted');
+                        setTimeout(() => {
+                            space.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+                } else if (event.keyCode === 8) {
+                    handleEvent('backspace');
+
+                    const backspaces = document.querySelectorAll('.backspace');
+
+                    backspaces.forEach((backspace) => {
+
+                        backspace.classList.add('highlighted');
+                        setTimeout(() => {
+                            backspace.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+
+                } else if (event.keyCode === 13) {
+                    char = '\n'; // enter
+
+                    const enters = document.querySelectorAll('.enter');
+
+                    enters.forEach((enter) => {
+                        enter.classList.add('highlighted');
+                        setTimeout(() => {
+                            enter.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+                } else {
+                    char = String.fromCharCode(event.keyCode).toLowerCase();
+                }
+
+                handleInputButtonClick(char);
+                highlightRelatedButtons(char);
+            }
+
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [handleEvent]);
+
+
     return (
         <div className="virtual_keyBoard">
             <div className="screenDiv">
@@ -218,6 +307,7 @@ function VirtualKeyBoard() {
                             : placeholder
                     }
                 />
+
                 <SpecialButtons
                     handleEvent={handleEvent}
                     isUndo={isUndo}
