@@ -1,6 +1,12 @@
-import './KeyBoardStylee.css'
+import { useEffect } from 'react';
+import './KeyBoardStylee.css';
+import { addButtonColor } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function KeyBoard(props) {
+    const dispatch = useDispatch();
+    const buttonColors = useSelector(state => state.buttonColors);
+
     let isCapslock = props.isCapslock;
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     const hebrewArr = [
@@ -42,6 +48,12 @@ function KeyBoard(props) {
         'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
     ];
 
+    const macedonianArr = [
+        'љ','њ','е','р','т','ѕ','у','и','о','п','ш','ѓ',
+        'а','с','д','ф','г','х','ј','к','л','ч','ќ','ж',
+        'з','џ','ц','в','б','н','м',',','.',
+    ];
+
     let keyboardArr;
     const capslockArr = [...numbersArr, ...englishArr.map(char => char.toUpperCase())];
     switch (props.language) {
@@ -66,19 +78,34 @@ function KeyBoard(props) {
         case "spanish":
             keyboardArr = [...numbersArr, ...spanishArr];
             break;
+        case "macedonian":
+            keyboardArr = [...numbersArr, ...macedonianArr];
+            break;
         default:
             keyboardArr = [];
     }
+
     keyboardArr = (isCapslock ? capslockArr : keyboardArr);
     function toggleCapsLock() {
         props.setIsCapslock(!isCapslock);
     }
+
+    function toggleCapsLock() {
+        props.setIsCapslock(!isCapslock);
+    }
+
+    useEffect(() => {
+        dispatch(addButtonColor(Array(keyboardArr.length).fill('')));
+    }, []);
+
     return (
         <div id="keyBoardK">
             <div id="letters-row" className="letters-row">
                 {keyboardArr.map((char, index) => (
-                    <div className='k_b' key={index}>
-                        <button onClick={() => props.handleButtonClick(char)}>
+                    <div className={`k_b`} key={index}>
+                        <button
+                            className={`${buttonColors[index]}`}
+                            onClick={() => props.handleButtonClick(char, index)}>
                             {char}
                         </button>
                     </div>

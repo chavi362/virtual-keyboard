@@ -2,15 +2,12 @@
   margin-left: 310px;
 }
 
-
-
 #keyboard-row {
   display: flex;
   margin-left: 300px;
   padding-left: 0px;
   margin-right: 0px;
 }
-
 
 button {
   border-radius: 7px;
@@ -45,13 +42,10 @@ select {
   padding: 5px;
 }
 
-
-
 #letters-row button {
   width: 50px;
 
 }
-
 
 .DivTextArea {
   user-select: text;
@@ -117,11 +111,12 @@ select {
 }
 
 .icon img {
-  width: 50%; 
+  width: 50%;
 }
+
 #keyboard-icon {
-  height: 50%; 
-  margin-left: 6px; 
+  height: 50%;
+  margin-left: 6px;
 }
 
 #letters-row {
@@ -170,7 +165,7 @@ select {
   align-items: center;
   text-align: center;
   margin-top: 50px;
- 
+
 }
 
 .keyboard-container {
@@ -193,7 +188,7 @@ select {
   /* Two rows: one for inputs and one for buttons */
   gap: 5px;
   margin-top: 20px;
-  margin-left:27%;
+  margin-left: 27%;
 
 
 }
@@ -214,8 +209,6 @@ select {
 
 }
 
-
-
 .active {
   background-color: rgb(20, 122, 139) !important;
 }
@@ -227,4 +220,9 @@ select {
   height: 70%;
   width: 100%;
 
+}
+
+.highlighted {
+  background-color: #7cdfd1;
+  color: white;
 }

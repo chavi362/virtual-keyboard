@@ -6,18 +6,18 @@ This is a React-based virtual keyboard app with support for multiple languages a
 
 ## Table of Contents
 
-- [Features](#features)
-- [Demo](#demo)
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license)
+-   [Features](#features)
+-   [Demo](#demo)
+-   [Installation](#installation)
+-   [Contributing](#contributing)
+-   [License](#license)
 
 ## Features
 
-- Virtual keyboard with support for Hebrew, English, Arabic, Ukranian, Russian, Portuguese and Spanish languages.
-- Emoji keyboard for expressive input.
-- Stylish and customizable interface.
-- Undo and redo functionality.
+-   Virtual keyboard with support for Hebrew, English, Arabic, Ukranian, Russian, Portuguese, Spanish and Macedonian languages.
+-   Emoji keyboard for expressive input.
+-   Stylish and customizable interface.
+-   Undo and redo functionality.
 
 ## Demo
 
@@ -32,8 +32,9 @@ To run this project locally, follow these steps:
 ```bash
 git clone https://github.com/chavi362/virtual-keyboard.git
 ```
-   
+
 2. open the project in terminal and then run:
+
 ```bash
 npm install
 npm run dev
@@ -52,10 +53,10 @@ virtual-keyboard/
 │   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
 │   │   ├── SpecialButtons.jsx      # Component for special buttons such as:redo, undo and clear all the text
 |   |   ├── Screen.jsx      # the text the user typed
-|   |   ├── EmojiKeyBoard.jsx             
+|   |   ├── EmojiKeyBoard.jsx
 |   |   ├── KeyBoard.jsx
 |   |   ├── KeyBoardLanguage.tsx
-|   |   ├── KeyBoardStylee.css  
+|   |   ├── KeyBoardStylee.css
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
 │   │   └── ...             # Other files
 │   ├── App.js              # Main application component
@@ -75,30 +76,39 @@ virtual-keyboard/
 ## Contributing
 
 We welcome contributions from the community to help improve the Virtual Keyboard App. If you would like to contribute, please follow these steps:
+<br>
+
+### First of all, please give the repository a star 🌟
 
 1. Fork the project.
 2. Create your feature branch:
+
 ```bash
 git checkout -b feature/NewFeature.
 ```
+
 4. Commit your changes:
+
 ```bash
 git commit -m 'Add a new feature'.
 ```
+
 6. Push to the branch:
+
 ```bash
 git push origin feature/NewFeature.
 ```
 
 7. Open a pull request on the main repository, describing your changes and explaining why they are valuable.
-Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
-For example, if your pull request fixes issue #10, then please add the following to its description:
+   Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
+   For example, if your pull request fixes issue #10, then please add the following to its description:
+
 ```
 Fixes #10
 ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details. 
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
 
 Please ensure that your contributions adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). If you find this project helpful or interesting, please give it a ⭐️.

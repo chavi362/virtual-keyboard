@@ -4,6 +4,10 @@ import { FaUnderline } from 'react-icons/fa';
 import './KeyBoardStylee.css';
 import { useRef } from 'react';
 
+const FontOption = styled.option`
+        font-family: ${(props) => props.fontFamily};
+    `;
+
 function StyleSelector(props) {
     const changeAllStyleRef = useRef(false)
     const { changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
@@ -80,9 +84,7 @@ function StyleSelector(props) {
         } 
     };
 
-    const FontOption = styled.option`
-        font-family: ${(props) => props.fontFamily};
-    `;
+    
 
     return (
         <>
@@ -118,7 +120,9 @@ function StyleSelector(props) {
             </div>
             <div>
                 <label>Color:</label>
-                <input type="color" id="colorInput" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} />
+                {/* <input type="color" id="colorInput" value={currentStyle.color} onChange={(e) => handleColorChange(e.target.value)} /> */}
+                <input type="color" id="colorInput" value="#000000" onChange={(e) => handleColorChange(e.target.value)} />
+
             </div>
             
         </div>
