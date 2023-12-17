@@ -33,6 +33,9 @@ function KeyBoardLanguage(props) {
             case "spanish":
                 setLanguage("spanish");
                 break;
+            case "macedonian":
+                setLanguage("macedonian");
+                break;
             default:
                 setLanguage([]);
         }
@@ -47,6 +50,7 @@ function KeyBoardLanguage(props) {
                 <option value="russian">русский</option>
                 <option value="portuguese">Português</option>
                 <option value="spanish">Español</option>
+                <option value="macedonian">Македонски</option>
             </select>
             {props.isEmojiActive ? (
                 <FaKeyboard className="icon" id="kyboard-icon" onClick={props.changeState} />
