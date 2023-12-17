@@ -115,7 +115,7 @@ function KeyBoard(props) {
                 <button onClick={() => props.handleButtonClick('\n')} className="enter">
                     enter
                 </button>
-                <button onClick={() => props.handleButtonClick()} className="space">
+                <button onClick={() => props.handleButtonClick('\xa0')} className="space">
                     space
                 </button>
                 <button onClick={() => props.handleEvent('backspace')} className="backspace">

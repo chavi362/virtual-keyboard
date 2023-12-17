@@ -112,8 +112,8 @@ function VirtualKeyBoard() {
             let newStack = [...prevStack];
             if (newStack.length !== 0) {
                 let lastState = [...newStack[newStack.length - 1]];
-                lastState.push({ char: char, style: { ...currentStyle } });
-                newStack.push(lastState);
+                                    lastState.push({ char: char, style: { ...currentStyle } });
+                                newStack.push(lastState);
             } else {
                 newStack.push([{ char: char, style: { ...currentStyle } }]);
             }
@@ -126,7 +126,7 @@ function VirtualKeyBoard() {
             return newStack;
         });
     }
-
+    
     function undoPrev() {
         setStack((prevStack) => {
             const newStack = [...prevStack];
@@ -227,7 +227,9 @@ function VirtualKeyBoard() {
             const isAlphanumeric =
                 (event.keyCode >= 48 && event.keyCode <= 90) ||
                 (event.keyCode >= 96 && event.keyCode <= 105) ||
-                event.keyCode === 32;
+                event.keyCode === 32 || // space
+                event.keyCode === 13 ||// enter
+                event.keyCode === 8; // backspace
 
             if (isAlphanumeric) {
                 let char;
@@ -242,6 +244,32 @@ function VirtualKeyBoard() {
                             space.classList.remove('highlighted');
                         }, 300);
                     });
+
+                } else if (event.keyCode === 8) {
+                    handleInputButtonClick();
+
+                    const backspaces = document.querySelectorAll('.backspace');
+
+                    backspaces.forEach((backspace) => {
+                        backspace.classList.add('highlighted');
+                        setTimeout(() => {
+                            backspace.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+
+                } else if (event.keyCode === 13) {
+                    char = '\n'; // enter
+
+                    const enters = document.querySelectorAll('.enter');
+
+                    enters.forEach((enter) => {
+                        enter.classList.add('highlighted');
+                        setTimeout(() => {
+                            enter.classList.remove('highlighted');
+                        }, 300);
+                    });
+
                 } else {
                     char = String.fromCharCode(event.keyCode).toLowerCase();
                 }
@@ -249,6 +277,7 @@ function VirtualKeyBoard() {
                 handleInputButtonClick(char);
                 highlightRelatedButtons(char);
             }
+            
         };
 
         window.addEventListener("keydown", handleKeyDown);
