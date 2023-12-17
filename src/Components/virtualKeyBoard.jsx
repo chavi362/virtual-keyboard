@@ -10,7 +10,6 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 let redoStack = [];
 function VirtualKeyBoard() {
-    // const [currentText, setCurrentText] = useState("");
 
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
@@ -67,13 +66,16 @@ function VirtualKeyBoard() {
     }
     function deleteLastChar() {
         setStack((prevStack) => {
-            let newStack = [...prevStack];
-            if (newStack.length !== 0) {
-                let lastState = [...newStack[newStack.length - 1]];
+            if (prevStack.length !== 0) {
+                let newStack = [...prevStack];
+                let lastState = newStack[newStack.length - 1];
                 lastState.pop();
-                newStack.push(lastState);
+                setIsUndo(true);
+                return newStack;
+            } else {
+
+                return prevStack;
             }
-            return newStack;
         });
     }
     function changeAllText(itemFunction) {
@@ -112,21 +114,19 @@ function VirtualKeyBoard() {
             let newStack = [...prevStack];
             if (newStack.length !== 0) {
                 let lastState = [...newStack[newStack.length - 1]];
-                                    lastState.push({ char: char, style: { ...currentStyle } });
-                                newStack.push(lastState);
+                lastState.push({ char: char, style: { ...currentStyle } });
+                newStack.push(lastState);
             } else {
                 newStack.push([{ char: char, style: { ...currentStyle } }]);
             }
             setIsUndo(true);
-
-            // setCurrentText(newStack[newStack.length - 1].map(item => item.char).join(""));
 
             highlightRelatedButtons(char);
 
             return newStack;
         });
     }
-    
+
     function undoPrev() {
         setStack((prevStack) => {
             const newStack = [...prevStack];
@@ -224,6 +224,7 @@ function VirtualKeyBoard() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
+
             const isAlphanumeric =
                 (event.keyCode >= 48 && event.keyCode <= 90) ||
                 (event.keyCode >= 96 && event.keyCode <= 105) ||
@@ -246,11 +247,12 @@ function VirtualKeyBoard() {
                     });
 
                 } else if (event.keyCode === 8) {
-                    handleInputButtonClick();
+                    handleEvent('backspace');
 
                     const backspaces = document.querySelectorAll('.backspace');
 
                     backspaces.forEach((backspace) => {
+
                         backspace.classList.add('highlighted');
                         setTimeout(() => {
                             backspace.classList.remove('highlighted');
@@ -277,7 +279,7 @@ function VirtualKeyBoard() {
                 handleInputButtonClick(char);
                 highlightRelatedButtons(char);
             }
-            
+
         };
 
         window.addEventListener("keydown", handleKeyDown);
@@ -285,7 +287,7 @@ function VirtualKeyBoard() {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, []);
+    }, [handleEvent]);
 
 
     return (
