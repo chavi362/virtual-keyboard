@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
@@ -8,7 +8,6 @@ import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
 
-let redoStack = [];
 function VirtualKeyBoard() {
 
     const [isEmojiActive, setIsEmojiActive] = useState(false);
@@ -29,6 +28,9 @@ function VirtualKeyBoard() {
     const [isUndo, setIsUndo] = useState(stack.length === 0);
     const [isRedo, setIsRedo] = useState(stack.length === 0);
     const [isCapslock, setIsCapslock] = useState(false);
+    const redoStackRef = useRef([]);
+    const redoStack = redoStackRef.current;
+
     const changeState = () => {
         setIsEmojiActive(!isEmojiActive);
     };
@@ -141,7 +143,7 @@ function VirtualKeyBoard() {
         setStack((prevStack) => {
             const newStack = [...prevStack];
             let lastItem = redoStack.pop();
-            setIsRedo(redoStack.length != 0);
+            setIsRedo(redoStack.length !== 0);
             newStack.push(lastItem);
             setIsUndo(true);
             return newStack;
