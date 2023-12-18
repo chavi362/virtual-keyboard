@@ -9,7 +9,6 @@ import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
 
 function VirtualKeyBoard() {
-
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
         "הקלד כאן",
@@ -19,7 +18,7 @@ function VirtualKeyBoard() {
         "напечатайте здесь",
         "digite aqui",
         "escriba aquí",
-        "пишувајте овде"
+        "пишувајте овде",
     ];
     const [placeholder, setPlaceHolder] = useState("type here");
     const [language, setLanguage] = useState("english");
@@ -75,7 +74,6 @@ function VirtualKeyBoard() {
                 setIsUndo(true);
                 return newStack;
             } else {
-
                 return prevStack;
             }
         });
@@ -113,19 +111,22 @@ function VirtualKeyBoard() {
 
     function handleInputButtonClick(char) {
         setStack((prevStack) => {
-            let newStack = [...prevStack];
-            if (newStack.length !== 0) {
-                let lastState = [...newStack[newStack.length - 1]];
-                lastState.push({ char: char, style: { ...currentStyle } });
-                newStack.push(lastState);
-            } else {
-                newStack.push([{ char: char, style: { ...currentStyle } }]);
-            }
-            setIsUndo(true);
+            const styledChar = { char: char, style: { ...currentStyle } };
+            const updatedStack = prevStack.map((stackItem, index) => {
+                if (index === prevStack.length - 1) {
+                    return [...stackItem, styledChar];
+                } else {
+                    return stackItem.map((item) => ({
+                        ...item,
+                        style: { ...currentStyle },
+                    }));
+                }
+            });
 
+            setIsUndo(true);
             highlightRelatedButtons(char);
 
-            return newStack;
+            return updatedStack;
         });
     }
 
@@ -169,7 +170,7 @@ function VirtualKeyBoard() {
 
     function copy() {
         const text = stack[stack.length - 1].map((item) => item.char).join("");
-        console.log(text)
+        console.log(text);
         navigator.clipboard.writeText(text).then(() => alert("copied!"));
     }
 
@@ -179,10 +180,12 @@ function VirtualKeyBoard() {
             setStack((prevStack) => {
                 const newStack = [...prevStack];
                 const lastState = [...newStack[newStack.length - 1]];
-                text.split("").forEach((item) => lastState.push({ char: item, style: { ...currentStyle } }));
+                text.split("").forEach((item) =>
+                    lastState.push({ char: item, style: { ...currentStyle } })
+                );
                 newStack.push(lastState);
                 return newStack;
-            })
+            });
         });
     }
 
@@ -212,68 +215,61 @@ function VirtualKeyBoard() {
     };
 
     const highlightRelatedButtons = (char) => {
-        const buttons = document.querySelectorAll('.k_b button');
+        const buttons = document.querySelectorAll(".k_b button");
         buttons.forEach((button, index) => {
             if (button.textContent.toLowerCase() === char) {
-                button.classList.add('highlighted');
+                button.classList.add("highlighted");
                 setTimeout(() => {
-                    button.classList.remove('highlighted');
+                    button.classList.remove("highlighted");
                 }, 300);
             }
         });
     };
 
-
     useEffect(() => {
         const handleKeyDown = (event) => {
-
             const isAlphanumeric =
                 (event.keyCode >= 48 && event.keyCode <= 90) ||
                 (event.keyCode >= 96 && event.keyCode <= 105) ||
                 event.keyCode === 32 || // space
-                event.keyCode === 13 ||// enter
+                event.keyCode === 13 || // enter
                 event.keyCode === 8; // backspace
 
             if (isAlphanumeric) {
                 let char;
                 if (event.keyCode === 32) {
-                    char = '\xa0';
+                    char = "\xa0";
 
-                    const spaces = document.querySelectorAll('.space');
+                    const spaces = document.querySelectorAll(".space");
 
                     spaces.forEach((space) => {
-                        space.classList.add('highlighted');
+                        space.classList.add("highlighted");
                         setTimeout(() => {
-                            space.classList.remove('highlighted');
+                            space.classList.remove("highlighted");
                         }, 300);
                     });
-
                 } else if (event.keyCode === 8) {
-                    handleEvent('backspace');
+                    handleEvent("backspace");
 
-                    const backspaces = document.querySelectorAll('.backspace');
+                    const backspaces = document.querySelectorAll(".backspace");
 
                     backspaces.forEach((backspace) => {
-
-                        backspace.classList.add('highlighted');
+                        backspace.classList.add("highlighted");
                         setTimeout(() => {
-                            backspace.classList.remove('highlighted');
+                            backspace.classList.remove("highlighted");
                         }, 300);
                     });
-
-
                 } else if (event.keyCode === 13) {
-                    char = '\n'; // enter
+                    char = "\n"; // enter
 
-                    const enters = document.querySelectorAll('.enter');
+                    const enters = document.querySelectorAll(".enter");
 
                     enters.forEach((enter) => {
-                        enter.classList.add('highlighted');
+                        enter.classList.add("highlighted");
                         setTimeout(() => {
-                            enter.classList.remove('highlighted');
+                            enter.classList.remove("highlighted");
                         }, 300);
                     });
-
                 } else {
                     char = String.fromCharCode(event.keyCode).toLowerCase();
                 }
@@ -281,7 +277,6 @@ function VirtualKeyBoard() {
                 handleInputButtonClick(char);
                 highlightRelatedButtons(char);
             }
-
         };
 
         window.addEventListener("keydown", handleKeyDown);
@@ -290,7 +285,6 @@ function VirtualKeyBoard() {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handleEvent]);
-
 
     return (
         <div className="virtual_keyBoard">
@@ -319,7 +313,9 @@ function VirtualKeyBoard() {
 
             <div className="keyboard-container">
                 {isEmojiActive ? (
-                    <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
+                    <EmojiKeyBoard
+                        handleInputButtonClick={handleInputButtonClick}
+                    />
                 ) : (
                     <KeyBoard
                         isCapslock={isCapslock}
