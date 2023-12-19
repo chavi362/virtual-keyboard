@@ -40,7 +40,6 @@ function KeyBoardLanguage(props) {
         setLanguage([]);
     }
   };
-//   const iconSize = window.innerWidth > 768 ? "35px" : "20px";
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
@@ -58,11 +57,6 @@ function KeyBoardLanguage(props) {
           className="icon"
           id="keyboard-icon"
           onClick={props.changeState}
-        //   style={{
-        //     fontSize: iconSize,
-        //     cursor: "pointer",
-        //     marginLeft: '8px'
-        //   }}
         />
       ) : (
         <button className="icon" onClick={props.changeState}>

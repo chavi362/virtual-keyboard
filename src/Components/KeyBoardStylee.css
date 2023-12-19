@@ -102,20 +102,14 @@ select {
 .language-and-icons {
   display: flex;
   align-items: center;
-  /* justify-content: space-evenly; */
   justify-content: center;
   white-space: nowrap;
 }
 
-/* Commenting out the Old icon CSS as it seemed misaligned in button */
-/* .icon {
-  padding: 0px 9px 6px 12px;
-} */
-
 .icon img {
   width: 50%;
 }
-/* Updating the keyboard Icon CSS with appropriate media query */
+
 #keyboard-icon {
   font-size: 50px; 
   cursor: pointer;
