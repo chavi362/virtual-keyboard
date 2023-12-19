@@ -226,3 +226,48 @@ select {
   background-color: #7cdfd1;
   color: white;
 }
+
+
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  background-color: rgb(101, 216, 201);
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 22px;
+  text-align: center;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+.popup-content {
+  padding: 0 !important;
+}
+
+.modal > .actions button,
+.modal > .actions input[type="button"] {
+  width: 120px; 
+  height: 40px; 
+}
