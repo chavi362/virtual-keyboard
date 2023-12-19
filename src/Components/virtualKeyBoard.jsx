@@ -150,10 +150,7 @@ function VirtualKeyBoard() {
         });
     }
     function deleteAllClicked() {
-        let text = "Press a button!\nEither OK or Cancel.";
-        if (window.confirm(text) === true) {
-            deleteAll();
-        }
+        deleteAll();
     }
     function deleteAll() {
         setStack((prevStack) => {
