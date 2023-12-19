@@ -102,12 +102,8 @@ select {
 .language-and-icons {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   white-space: nowrap;
-}
-
-.icon {
-  padding: 0px 9px 6px 12px;
 }
 
 .icon img {
@@ -115,8 +111,9 @@ select {
 }
 
 #keyboard-icon {
-  height: 50%;
-  margin-left: 6px;
+  font-size: 50px; 
+  cursor: pointer;
+  margin-left: 8px;
 }
 
 #letters-row {
