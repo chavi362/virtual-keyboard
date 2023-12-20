@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { charExistsInLanguage } from "../helpers";
+import { useSelector, useDispatch } from "react-redux";
+import { setLanguage } from "../redux/actions";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
@@ -8,8 +11,11 @@ import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
 
+
 let redoStack = [];
 function VirtualKeyBoard() {
+
+    const dispatch = useDispatch();
 
     const [isEmojiActive, setIsEmojiActive] = useState(false);
     const placeholders = [
@@ -23,7 +29,10 @@ function VirtualKeyBoard() {
         "пишувајте овде"
     ];
     const [placeholder, setPlaceHolder] = useState("type here");
-    const [language, setLanguage] = useState("english");
+    // const [language, setLanguage] = useState("english");
+    const language = useSelector(state => state.language);
+
+    console.log("HOLA", language);
     const [currentStyle, setCurrentStyle] = useState(new LetterStyle());
     const [stack, setStack] = useState([[]]);
     const [isUndo, setIsUndo] = useState(stack.length === 0);
@@ -33,7 +42,7 @@ function VirtualKeyBoard() {
         setIsEmojiActive(!isEmojiActive);
     };
     function changeLanguage(language) {
-        setLanguage(language);
+        dispatch(setLanguage(language));
         switch (language) {
             case "hebrew":
                 setPlaceHolder(placeholders[0]);
@@ -224,17 +233,17 @@ function VirtualKeyBoard() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-
             const isAlphanumeric =
-                (event.keyCode >= 48 && event.keyCode <= 90) ||
-                (event.keyCode >= 96 && event.keyCode <= 105) ||
-                event.keyCode === 32 || // space
-                event.keyCode === 13 ||// enter
-                event.keyCode === 8; // backspace
+                (event.key.length === 1 && event.key.match(/[a-zA-Z0-9]/)) ||
+                event.key === ' ' ||
+                event.key === 'Enter' ||
+                event.key === 'Backspace' ||
+                event.key === 'ç' ||
+                event.key === 'ñ';
 
             if (isAlphanumeric) {
                 let char;
-                if (event.keyCode === 32) {
+                if (event.key === ' ') {
                     char = '\xa0';
 
                     const spaces = document.querySelectorAll('.space');
@@ -246,7 +255,7 @@ function VirtualKeyBoard() {
                         }, 300);
                     });
 
-                } else if (event.keyCode === 8) {
+                } else if (event.key === 'Backspace') {
                     handleEvent('backspace');
 
                     const backspaces = document.querySelectorAll('.backspace');
@@ -259,8 +268,7 @@ function VirtualKeyBoard() {
                         }, 300);
                     });
 
-
-                } else if (event.keyCode === 13) {
+                } else if (event.key === 'Enter') {
                     char = '\n'; // enter
 
                     const enters = document.querySelectorAll('.enter');
@@ -273,13 +281,20 @@ function VirtualKeyBoard() {
                     });
 
                 } else {
-                    char = String.fromCharCode(event.keyCode).toLowerCase();
+                    char = event.key.toLowerCase();
                 }
 
-                handleInputButtonClick(char);
-                highlightRelatedButtons(char);
-            }
 
+                console.log(char);
+
+                if (charExistsInLanguage(char, language)) {
+                    console.log("ok");
+                    handleInputButtonClick(char);
+                    highlightRelatedButtons(char);
+                }
+
+
+            }
         };
 
         window.addEventListener("keydown", handleKeyDown);
@@ -287,7 +302,8 @@ function VirtualKeyBoard() {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, [handleEvent]);
+    }, [handleEvent]); //handleInputButtonClick, highlightRelatedButtons
+
 
 
     return (

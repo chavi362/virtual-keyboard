@@ -4,3 +4,10 @@ export const addButtonColor = (color) => {
         payload: color
     }
 }
+
+export const setLanguage = (language) => {
+    return {
+        type: "LANGUAGE",
+        payload: language
+    }
+}

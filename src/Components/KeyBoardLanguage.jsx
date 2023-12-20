@@ -1,43 +1,46 @@
 import { FaKeyboard } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { setLanguage } from '../redux/actions';
 import './KeyBoardStylee.css';
 
 function KeyBoardLanguage(props) {
-    const setLanguage = props.setLanguage;
+    const dispatch = useDispatch();
+    // const setLanguage = props.setLanguage;
     const handleChange = (event) => {
         const selectedLanguage = event.target.value;
         switch (selectedLanguage) {
             case "hebrew":
-                setLanguage("hebrew");
+                dispatch(setLanguage("hebrew"));
                 break;
             case "arabic":
                 let text = "אשר שאתה שונא בדם ליבך את חמאס!!!";
                 if (window.confirm(text) === true) {
-                    setLanguage("arabic");
+                    dispatch(setLanguage("arabic"));
                 } else {
                     alert("!אין לך זכות להשתמש במקלדת");
-                    setLanguage("hebrew");
+                    dispatch(setLanguage("hebrew"));
                 }
                 break;
             case "english":
-                setLanguage("english");
+                dispatch(setLanguage("english"));
                 break;
             case "russian":
-                setLanguage("russian");
+                dispatch(setLanguage("russian"));
                 break;
             case "ukranian":
-                setLanguage("ukranian");
+                dispatch(setLanguage("ukranian"));
                 break;
             case "portuguese":
-                setLanguage("portuguese");
+                dispatch(setLanguage("portuguese"));
                 break;
             case "spanish":
-                setLanguage("spanish");
+                dispatch(setLanguage("spanish"));
                 break;
             case "macedonian":
-                setLanguage("macedonian");
+                dispatch(setLanguage("macedonian"));
                 break;
             default:
-                setLanguage([]);
+                dispatch(setLanguage([]));
         }
     };
     return (

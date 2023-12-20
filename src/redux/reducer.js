@@ -1,6 +1,7 @@
 
 const initialState = {
-    buttonColors: ''
+    buttonColors: '',
+    language: 'english'
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -9,6 +10,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 buttonColors: payload
+            }
+        case "LANGUAGE":
+            return {
+                ...state,
+                language: payload
             }
 
         default:
