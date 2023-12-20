@@ -36,9 +36,6 @@ function KeyBoardLanguage(props) {
       case "macedonian":
         setLanguage("macedonian");
         break;
-      case "turkısh":
-        setLanguage("turkısh");
-        break;
       default:
         setLanguage([]);
     }
@@ -54,7 +51,6 @@ function KeyBoardLanguage(props) {
         <option value="portuguese">Português</option>
         <option value="spanish">Español</option>
         <option value="macedonian">Македонски</option>
-        <option value="turkısh">Türkçe</option>
       </select>
       {props.isEmojiActive ? (
         <FaKeyboard
