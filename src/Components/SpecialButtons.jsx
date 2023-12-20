@@ -6,10 +6,10 @@ import "./KeyBoardStylee.css";
 
 function SpecialButtons({ handleEvent, isUndo, isRedo }) {
   return (
-    <div id="spacial_buttons" className="spacial_buttons" >
+    <div id="spacial_buttons" className="spacial_buttons">
       <Popup
         trigger={
-          <button className="button" >
+          <button className="button">
             {" "}
             <FaTrashAlt />{" "}
           </button>
@@ -18,7 +18,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
         nested
       >
         {(close) => (
-          <div className="modal" >
+          <div className="modal">
             <button className="close" onClick={close}>
               &times;
             </button>
@@ -26,7 +26,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
               {" "}
               Are you sure you want to delete all text?{" "}
             </div>
-            <div className="actions" >
+            <div className="actions">
               <button
                 className="button"
                 onClick={() => {
@@ -67,11 +67,41 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           <FaRedo />
         </button>
       </span>
-      <span className="MuiIconButton-label">
-        <button id="copy" onClick={() => handleEvent("copy")}>
-          <FaCopy />
-        </button>
-      </span>
+
+      <Popup
+        trigger={
+          <button className="button">
+            {" "}
+            <FaCopy />{" "}
+          </button>
+        }
+        modal
+        nested
+      >
+        {(close) => (
+          <div className="modal">
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+            <div className="header"> 
+            {" "}
+            Your text has been copied to clipboard!{" "} 
+            </div>
+            <div className="actions">
+              <button
+                className="button"
+                onClick={() => {
+                    handleEvent("copy");
+                  close();
+                }}
+              >
+                Close{" "}
+              </button>
+            </div>
+          </div>
+        )}
+      </Popup>
+
       <span className="MuiIconButton-label">
         <button id="paste" onClick={() => handleEvent("paste")}>
           <FaPaste />
