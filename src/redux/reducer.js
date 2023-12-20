@@ -1,11 +1,12 @@
+import { ADD_BTN_COLOR } from "./action-types";
 
 const initialState = {
-    buttonColors: ''
+    buttonColors: '',
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case "ADD_BTN_COLOR":
+        case ADD_BTN_COLOR:
             return {
                 ...state,
                 buttonColors: payload
