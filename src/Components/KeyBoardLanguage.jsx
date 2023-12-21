@@ -10,13 +10,7 @@ function KeyBoardLanguage(props) {
         setLanguage("hebrew");
         break;
       case "arabic":
-        let text = "אשר שאתה שונא בדם ליבך את חמאס!!!";
-        if (window.confirm(text) === true) {
-          setLanguage("arabic");
-        } else {
-          alert("!אין לך זכות להשתמש במקלדת");
-          setLanguage("hebrew");
-        }
+        setLanguage("arabic");
         break;
       case "english":
         setLanguage("english");
