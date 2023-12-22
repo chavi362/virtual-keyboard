@@ -3,8 +3,15 @@ import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from "react-icons/fa";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import "./KeyBoardStylee.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SpecialButtons({ handleEvent, isUndo, isRedo }) {
+  const notify = () => {
+    toast("Text is copied to clipboard!");
+    handleEvent("copy");
+  };
+
   return (
     <div id="spacial_buttons" className="spacial_buttons">
       <Popup
@@ -58,6 +65,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           <FaUndo />
         </button>
       </span>
+
       <span className="MuiIconButton-label">
         <button
           id="redo"
@@ -68,39 +76,12 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
         </button>
       </span>
 
-      <Popup
-        trigger={
-          <button className="button">
-            {" "}
-            <FaCopy />{" "}
-          </button>
-        }
-        modal
-        nested
-      >
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header"> 
-            {" "}
-            Your text has been copied to clipboard!{" "} 
-            </div>
-            <div className="actions">
-              <button
-                className="button"
-                onClick={() => {
-                    handleEvent("copy");
-                  close();
-                }}
-              >
-                Close{" "}
-              </button>
-            </div>
-          </div>
-        )}
-      </Popup>
+      <div>
+        <button onClick={notify}>
+          <FaCopy />
+        </button>
+        <ToastContainer />
+      </div>
 
       <span className="MuiIconButton-label">
         <button id="paste" onClick={() => handleEvent("paste")}>
