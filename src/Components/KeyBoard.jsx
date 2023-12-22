@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './KeyBoardStylee.css';
-import { addButtonColor } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { addBtnColor } from '../redux/reducer';
 
 function KeyBoard(props) {
     const dispatch = useDispatch();
@@ -95,7 +95,7 @@ function KeyBoard(props) {
     }
 
     useEffect(() => {
-        dispatch(addButtonColor(Array(keyboardArr.length).fill('')));
+        dispatch(addBtnColor(Array(keyboardArr.length).fill('')));
     }, []);
 
     return (
