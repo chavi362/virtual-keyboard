@@ -62,14 +62,11 @@ virtual-keyboard/
 │   │   └── ...             # Other files
 │   ├── images/             # Image files
 │   ├── redux/              # 
-│   │   ├── action-types.js # Action types, i.e. 'ADD_BTN_COLOR'
-│   │   ├── actions.js      # Actions, i.e. 'addButtonColor'
 |   |   ├── reducer.js      # 
-|   |   └── store.js        #
+|   |   └── store.js        # 
 │   ├── App.css             # Root css
-│   ├── App.jsx             # 
+│   ├── App.jsx             # App function for calling main VirtualKeyboard component
 │   ├── index.css           # Body css
-│   ├── index.js            # Entry point of the application
 │   ├── letterStyle.js      # Font class
 │   ├── main.jsx            # Main application component
 │
