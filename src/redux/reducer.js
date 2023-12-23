@@ -1,23 +1,18 @@
-import { ADD_BTN_COLOR } from "./action-types";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    buttonColors: '',
-}
+  buttonColors: '',
+};
 
-const rootReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-        case ADD_BTN_COLOR:
-            return {
-                ...state,
-                buttonColors: payload
-            }
+const colorSlice = createSlice({
+  name: 'color',
+  initialState,
+  reducers: {
+    addBtnColor: (state, action) => {
+      state.buttonColors = action.payload;
+    },
+  },
+});
 
-        default:
-            return {
-                ...state
-            };
-    }
-
-}
-
-export default rootReducer;
+export const { addBtnColor } = colorSlice.actions;
+export default colorSlice.reducer;

@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "@rooks/use-stack-state": "^4.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
-    "react-redux": "^9.0.2",
+    "react-redux": "^9.0.4",
     "reactjs-popup": "^2.0.6",
     "redux": "^5.0.0",
     "styled-components": "^6.1.1"

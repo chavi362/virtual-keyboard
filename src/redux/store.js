@@ -1,13 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducer";
 
-const composeEnhancers =
-    (typeof window !== 'undefined' &&
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-const store = createStore(
-    rootReducer,
-    composeEnhancers()
-);
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 export default store;
