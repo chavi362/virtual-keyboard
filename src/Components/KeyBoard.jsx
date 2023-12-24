@@ -90,9 +90,6 @@ function KeyBoard(props) {
         props.setIsCapslock(!isCapslock);
     }
 
-    function toggleCapsLock() {
-        props.setIsCapslock(!isCapslock);
-    }
 
     useEffect(() => {
         dispatch(addBtnColor(Array(keyboardArr.length).fill('')));
