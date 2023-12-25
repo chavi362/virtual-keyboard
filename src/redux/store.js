@@ -1,15 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducer";
 
-// Configuración de Redux DevTools Extension
-const composeEnhancers =
-  (typeof window !== 'undefined' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-
-// Creación de la tienda sin Redux Thunk
-const store = createStore(
-  rootReducer,
-  composeEnhancers(/* Aquí puedes agregar más middlewares si es necesario */)
-);
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 export default store;
