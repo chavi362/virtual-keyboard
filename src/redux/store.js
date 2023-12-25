@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducer";
+import buttonColor from "./keyboardButtonsClor";
+
 
 const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== "production",
+  reducer:
+  {
+    color: buttonColor,
+  } 
 });
 
 export default store;

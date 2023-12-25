@@ -4,7 +4,7 @@ const initialState = {
   buttonColors: '',
 };
 
-const colorSlice = createSlice({
+const keyboardButtonsClor = createSlice({
   name: 'color',
   initialState,
   reducers: {
@@ -14,5 +14,5 @@ const colorSlice = createSlice({
   },
 });
 
-export const { addBtnColor } = colorSlice.actions;
-export default colorSlice.reducer;
+export const { addBtnColor } = keyboardButtonsClor.actions;
+export default keyboardButtonsClor.reducer;
