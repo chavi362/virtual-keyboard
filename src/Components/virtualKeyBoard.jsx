@@ -167,7 +167,9 @@ function VirtualKeyBoard() {
     function copy() {
         const text = stack[stack.length - 1].map((item) => item.char).join("");
         console.log(text)
-        navigator.clipboard.writeText(text).then(() => alert("copied!"));
+        navigator.clipboard.writeText(text).then(() => {
+            
+        });
     }
 
     function paste() {

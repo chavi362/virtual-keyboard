@@ -3,13 +3,20 @@ import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from "react-icons/fa";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import "./KeyBoardStylee.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SpecialButtons({ handleEvent, isUndo, isRedo }) {
+  const notify = () => {
+    toast("Text is copied to clipboard!");
+    handleEvent("copy");
+  };
+
   return (
-    <div id="spacial_buttons" className="spacial_buttons" >
+    <div id="spacial_buttons" className="spacial_buttons">
       <Popup
         trigger={
-          <button className="button" >
+          <button className="button">
             {" "}
             <FaTrashAlt />{" "}
           </button>
@@ -18,7 +25,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
         nested
       >
         {(close) => (
-          <div className="modal" >
+          <div className="modal">
             <button className="close" onClick={close}>
               &times;
             </button>
@@ -26,7 +33,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
               {" "}
               Are you sure you want to delete all text?{" "}
             </div>
-            <div className="actions" >
+            <div className="actions">
               <button
                 className="button"
                 onClick={() => {
@@ -58,6 +65,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           <FaUndo />
         </button>
       </span>
+
       <span className="MuiIconButton-label">
         <button
           id="redo"
@@ -67,11 +75,14 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           <FaRedo />
         </button>
       </span>
-      <span className="MuiIconButton-label">
-        <button id="copy" onClick={() => handleEvent("copy")}>
+
+      <div>
+        <button onClick={notify}>
           <FaCopy />
         </button>
-      </span>
+        <ToastContainer />
+      </div>
+
       <span className="MuiIconButton-label">
         <button id="paste" onClick={() => handleEvent("paste")}>
           <FaPaste />

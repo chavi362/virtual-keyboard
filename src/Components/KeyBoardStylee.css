@@ -237,6 +237,7 @@ select {
 }
 .modal > .content {
   width: 100%;
+  font-size: 18px;
   padding: 10px 5px;
 }
 .modal > .actions {
