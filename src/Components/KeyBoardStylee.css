@@ -262,6 +262,7 @@ select {
 
 .popup-content {
   padding: 0 !important;
+  max-width: 450px;
 }
 
 .modal > .actions button,
