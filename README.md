@@ -108,6 +108,7 @@ git push origin feature/NewFeature.
 ```
 
 7. Open a pull request on the main repository, describing your changes and explaining why they are valuable.
+
    Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
    For example, if your pull request fixes issue #10, then please add the following to its description:
 
