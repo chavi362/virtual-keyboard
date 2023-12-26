@@ -1,10 +1,11 @@
 import { FaKeyboard } from "react-icons/fa";
 import "./KeyBoardStylee.css";
-
+import languagesData from "../LanguegesData";
 function KeyBoardLanguage(props) {
   const setLanguage = props.setLanguage;
   const handleChange = (event) => {
     const selectedLanguage = event.target.value;
+    console.Consolelog(languegesData)
     switch (selectedLanguage) {
       case "hebrew":
         setLanguage("hebrew");
@@ -37,14 +38,11 @@ function KeyBoardLanguage(props) {
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
-        <option value="english">English</option>
-        <option value="hebrew">עברית</option>
-        <option value="arabic">عربيه</option>
-        <option value="ukranian">українська</option>
-        <option value="russian">русский</option>
-        <option value="portuguese">Português</option>
-        <option value="spanish">Español</option>
-        <option value="macedonian">Македонски</option>
+        {
+          languagesData.map((languege)=>
+          <option value={languege.languageName}>{languege.translatedName}</option>
+          )
+        }
       </select>
       {props.isEmojiActive ? (
         <FaKeyboard

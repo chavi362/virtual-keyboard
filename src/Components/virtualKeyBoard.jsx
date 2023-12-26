@@ -4,6 +4,7 @@ import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
 import KeyBoard from "./KeyBoard";
 import LetterStyle from "../letterStyle";
+import languagesData from "../LanguegesData";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
