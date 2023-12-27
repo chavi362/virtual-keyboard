@@ -16,7 +16,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
     <div id="spacial_buttons" className="spacial_buttons">
       <Popup
         trigger={
-          <button className="button">
+          <button className="button" title="Delete all">
             {" "}
             <FaTrashAlt />{" "}
           </button>
@@ -61,6 +61,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           id="undo"
           onClick={() => handleEvent("undo")}
           disabled={!isUndo}
+          title="Undo"
         >
           <FaUndo />
         </button>
@@ -71,20 +72,25 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           id="redo"
           onClick={() => handleEvent("redo")}
           disabled={!isRedo}
-        >
+          title="Redo">
           <FaRedo />
         </button>
       </span>
 
       <div>
-        <button onClick={notify}>
+        <button
+          onClick={notify}
+          title="Copy">
           <FaCopy />
         </button>
         <ToastContainer />
       </div>
 
       <span className="MuiIconButton-label">
-        <button id="paste" onClick={() => handleEvent("paste")}>
+        <button
+          id="paste"
+          onClick={() => handleEvent("paste")}
+          title="Paste">
           <FaPaste />
         </button>
       </span>
