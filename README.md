@@ -49,7 +49,9 @@ virtual-keyboard/
 │
 ├── src/                    # Source code directory
 │   ├── assets/             # Static assets like images, icons, etc.
-│   │   └── react.svg       # React icon
+│   │   ├── images/         # Image files
+│   │   │   ├── emojiButton.webp       # Image of emoji
+│   │   │   └── backgroundImage.jpg    # Image of background
 │   ├── components/         # React components
 │   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
 │   │   ├── SpecialButtons.jsx      # Component for special buttons such as:redo, undo and clear all the text
@@ -60,7 +62,6 @@ virtual-keyboard/
 |   |   ├── KeyBoardStylee.css
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
 │   │   └── ...             # Other files
-│   ├── images/             # Image files
 │   ├── redux/              # 
 |   |   ├── reducer.js      # 
 |   |   └── store.js        # 
