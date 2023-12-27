@@ -1,29 +1,59 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useReducer } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
 import KeyBoard from "./KeyBoard";
 import LetterStyle from "../letterStyle";
-import languagesData from "../LanguegesData";
+import  { getLanguage } from  "../LanguegesData";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
+const intialLanguage = getLanguage("english");
+// Define the initial state
+const initialState = {
+    languageName: intialLanguage.languageName,
+    translatedName: "English",
+    characters: [
+        'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '.',
+        'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'
+    ],
+    shiftCharacters: [
+        ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
+    ],
+    placeholder: "type here",
+    currentStyle: new LetterStyle(),
+    stack: [[]],
+    isUndo: false,
+    isRedo: false,
+    isCapslock: false,
+    redoStack: [],
+};
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "changeLanguage":
+            // Retrieve the language data based on the selected language
+            const newLanguage = getLanguage(action.language);
+            // Update the state with the new language data
+            return {
+                ...state,
+                languageName: newLanguage.languageName,
+                translatedName: newLanguage.translatedName,
+                characters: newLanguage.characters,
+                shiftCharacters: newLanguage.shiftCharacters,
+                placeholder: newLanguage.placeholder,
+            };
+
+
+        default:
+            return state;
+    }
+};
 
 function VirtualKeyBoard() {
 
     const [isEmojiActive, setIsEmojiActive] = useState(false);
-    const placeholders = [
-        "הקלד כאן",
-        "type here",
-        "أكتب هنا",
-        "друкуйте тут",
-        "напечатайте здесь",
-        "digite aqui",
-        "escriba aquí",
-        "пишувајте овде"
-    ];
-    const [placeholder, setPlaceHolder] = useState("type here");
-    const [language, setLanguage] = useState("english");
+    const [state, dispatch] = useReducer(reducer, initialState);
     const [currentStyle, setCurrentStyle] = useState(new LetterStyle());
     const [stack, setStack] = useState([[]]);
     const [isUndo, setIsUndo] = useState(stack.length === 0);
@@ -35,64 +65,53 @@ function VirtualKeyBoard() {
     const changeState = () => {
         setIsEmojiActive(!isEmojiActive);
     };
-    function changeLanguage(language) {
-        setLanguage(language);
-        switch (language) {
-            case "hebrew":
-                setPlaceHolder(placeholders[0]);
-                break;
-            case "english":
-                setPlaceHolder(placeholders[1]);
-                break;
-            case "arabic":
-                setPlaceHolder(placeholders[2]);
-                break;
-            case "ukranian":
-                setPlaceHolder(placeholders[3]);
-                break;
-            case "russian":
-                setPlaceHolder(placeholders[4]);
-                break;
-            case "portuguese":
-                setPlaceHolder(placeholders[5]);
-                break;
-            case "spanish":
-                setPlaceHolder(placeholders[6]);
-                break;
-            case "macedonian":
-                setPlaceHolder(placeholders[7]);
-                break;
-            default:
-                setPlaceHolder(placeholders[0]);
-                break;
-        }
-    }
-    function deleteLastChar() {
-        setStack((prevStack) => {
-            if (prevStack.length !== 0) {
-                let newStack = [...prevStack];
-                let lastState = newStack[newStack.length - 1];
-                lastState.pop();
-                setIsUndo(true);
-                return newStack;
-            } else {
+  
 
-                return prevStack;
-            }
-        });
+    function deleteLastChar() {
+        dispatch({ type: "deleteLastChar" });
     }
+
     function changeAllText(itemFunction) {
-        setStack((prevStack) => {
-            if (prevStack.length > 0) {
-                const lastItem = prevStack[prevStack.length - 1];
-                const modifiedLastItem = lastItem.map((item) => ({
-                    ...itemFunction(item),
-                }));
-                return [...prevStack, modifiedLastItem];
-            }
-            return prevStack;
+        dispatch({
+            type: "changeAllText",
+            itemFunction: itemFunction,
         });
     }
+
+    function changeLanguage(language) {
+       dispatch(
+        {
+            type:"changeLanguage",
+            language:language
+        }
+       )
+    }
+    // function deleteLastChar() {
+    //     setStack((prevStack) => {
+    //         if (prevStack.length !== 0) {
+    //             let newStack = [...prevStack];
+    //             let lastState = newStack[newStack.length - 1];
+    //             lastState.pop();
+    //             setIsUndo(true);
+    //             return newStack;
+    //         } else {
+
+    //             return prevStack;
+    //         }
+    //     });
+    // }
+    // function changeAllText(itemFunction) {
+    //     setStack((prevStack) => {
+    //         if (prevStack.length > 0) {
+    //             const lastItem = prevStack[prevStack.length - 1];
+    //             const modifiedLastItem = lastItem.map((item) => ({
+    //                 ...itemFunction(item),
+    //             }));
+    //             return [...prevStack, modifiedLastItem];
+    //         }
+    //         return prevStack;
+    //     });
+    // }
     const upperChar = (item) => ({
         char: item.char.toUpperCase(),
         style: { ...item.style },
@@ -169,7 +188,7 @@ function VirtualKeyBoard() {
         const text = stack[stack.length - 1].map((item) => item.char).join("");
         console.log(text)
         navigator.clipboard.writeText(text).then(() => {
-            
+
         });
     }
 
@@ -250,11 +269,8 @@ function VirtualKeyBoard() {
 
                 } else if (event.keyCode === 8) {
                     handleEvent('backspace');
-
                     const backspaces = document.querySelectorAll('.backspace');
-
                     backspaces.forEach((backspace) => {
-
                         backspace.classList.add('highlighted');
                         setTimeout(() => {
                             backspace.classList.remove('highlighted');
@@ -290,8 +306,6 @@ function VirtualKeyBoard() {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handleEvent]);
-
-
     return (
         <div className="virtual_keyBoard">
             <div className="screenDiv">

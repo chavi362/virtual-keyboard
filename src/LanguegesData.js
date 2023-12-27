@@ -153,4 +153,8 @@ const languagesData =   [
 ];
 
 export default languagesData;
+const getLanguage = (languageName) => {
+  return languagesData.find((language) => language.languageName === languageName);
+}
 
+export { getLanguage };
