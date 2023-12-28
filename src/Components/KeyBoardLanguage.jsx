@@ -1,11 +1,16 @@
 import { FaKeyboard } from "react-icons/fa";
 import "./KeyBoardStylee.css";
 import emojiButton from "../assets/images/emojiButton.webp";
+import { useTranslation } from "react-i18next";
 
 function KeyBoardLanguage(props) {
+  const { i18n } = useTranslation();
   const setLanguage = props.setLanguage;
+
   const handleChange = (event) => {
     const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+
     switch (selectedLanguage) {
       case "hebrew":
         setLanguage("hebrew");

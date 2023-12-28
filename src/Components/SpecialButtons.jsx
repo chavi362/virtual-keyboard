@@ -1,12 +1,13 @@
-import React from "react";
 import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from "react-icons/fa";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import "./KeyBoardStylee.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 function SpecialButtons({ handleEvent, isUndo, isRedo }) {
+  const { t } = useTranslation();
   const notify = () => {
     toast("Text is copied to clipboard!");
     handleEvent("copy");
@@ -16,7 +17,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
     <div id="spacial_buttons" className="spacial_buttons">
       <Popup
         trigger={
-          <button className="button" title="Delete all">
+          <button className="button" title={t("deleteAll")}>
             {" "}
             <FaTrashAlt />{" "}
           </button>
@@ -46,7 +47,6 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
               <button
                 className="button"
                 onClick={() => {
-                  console.log("modal closed ");
                   close();
                 }}
               >
@@ -61,7 +61,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           id="undo"
           onClick={() => handleEvent("undo")}
           disabled={!isUndo}
-          title="Undo"
+          title={t("undo")}
         >
           <FaUndo />
         </button>
@@ -72,7 +72,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           id="redo"
           onClick={() => handleEvent("redo")}
           disabled={!isRedo}
-          title="Redo">
+          title={t("redo")}>
           <FaRedo />
         </button>
       </span>
@@ -80,7 +80,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
       <div>
         <button
           onClick={notify}
-          title="Copy">
+          title={t("copy")}>
           <FaCopy />
         </button>
         <ToastContainer />
@@ -90,7 +90,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
         <button
           id="paste"
           onClick={() => handleEvent("paste")}
-          title="Paste">
+          title={t("paste")}>
           <FaPaste />
         </button>
       </span>
