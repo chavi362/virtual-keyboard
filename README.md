@@ -54,7 +54,7 @@ virtual-keyboard/
 │   │   │   └── backgroundImage.jpg    # Image of background
 │   ├── components/         # React components
 │   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
-│   │   ├── SpecialButtons.jsx      # Component for special buttons such as:redo, undo and clear all the text
+│   │   ├── SpecialButtons.jsx      # component for special buttons such as:redo, undo and clear all the text
 |   |   ├── Screen.jsx      # the text the user typed
 |   |   ├── EmojiKeyBoard.jsx
 |   |   ├── KeyBoard.jsx
@@ -62,11 +62,17 @@ virtual-keyboard/
 |   |   ├── KeyBoardStylee.css
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
 │   │   └── ...             # Other files
+│   ├── locales             # Store translation files
+│   │   └── arabic.json 
+│   │   └── english.json
+│   │   └── hebrew.json
+│   │   └── ...             # Other translation files
 │   ├── redux/              # 
 |   |   ├── reducer.js      # 
 |   |   └── store.js        # 
 │   ├── App.css             # Root css
 │   ├── App.jsx             # App function for calling main VirtualKeyboard component
+│   ├── i18n.js             # i18n configuration file
 │   ├── index.css           # Body css
 │   ├── letterStyle.js      # Font class
 │   ├── main.jsx            # Main application component

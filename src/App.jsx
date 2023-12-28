@@ -1,5 +1,5 @@
 import './App.css'
-import VirtualKeyBoard from './Components/virtualKeyBoard'
+import VirtualKeyBoard from './components/virtualKeyBoard'
 
 function App() {
   return (
