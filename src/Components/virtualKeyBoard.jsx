@@ -20,15 +20,24 @@ const initialState = {
     emojiActive: false,
     isUndo: false,
     isRedo: false,
-    // isShift: false,
     redoStack: [],
+};
+const highlightClickedButtons = (char) => {
+    const buttons = document.querySelectorAll('.k_b button');
+    buttons.forEach((button) => {
+        if (button.textContent.toLowerCase() === char) {
+            button.classList.add('highlighted');
+            setTimeout(() => {
+                button.classList.remove('highlighted');
+            }, 250);
+        }
+    });
 };
 const reducer = (state, action) => {
     let newStack = [...state.stack];
     switch (action.type) {
         case "changeLanguage":
-            const newLanguage = getLanguage(action.language);
-            // Update the state with the new language data
+            const newLanguage = getLanguage(action.language)||intialLanguage;
             return {
                 ...state,
                 languageName: newLanguage.languageName,
@@ -77,11 +86,11 @@ const reducer = (state, action) => {
         case "toggleEmojiActive":
             return {
                 ...state,
-                emojiActive: !emojiActive
+                emojiActive: !state.emojiActive
             }
 
         case "undoPrev":
-            redoStack.push(newStack.pop());
+            state.redoStack.push(newStack.pop());
             return {
                 ...state,
                 stack: newStack,
@@ -91,8 +100,11 @@ const reducer = (state, action) => {
         case "paste":
             navigator.clipboard.readText().then((text) => {
                 if (text) {
+                    console.log(text);
                     const lastState = [...newStack[newStack.length - 1]];
-                    text.split("").forEach((item) => lastState.push({ char: item, style: { ...currentStyle } }));
+                    console.log(lastState);
+                    text.split("").forEach((item) => lastState.push({ char: item, style: { ...state.currentStyle } }));
+                    console.log(lastState);
                     newStack.push(lastState);
                     return {
                         ...state,
@@ -104,7 +116,7 @@ const reducer = (state, action) => {
             return state;
         case "deleteAll":
             if (newStack.length) {
-                let lastState = [{ char: "", style: { ...currentStyle } }];
+                let lastState = [{ char: "", style: { ...state.currentStyle } }];
                 newStack.push(lastState);
             }
             return {
@@ -112,12 +124,14 @@ const reducer = (state, action) => {
                 stack: newStack
             }
         case "redo":
-            let lastItem = redoStack.pop();
+            let lastItem = state.redoStack.pop();
             newStack.push(lastItem);
             return {
                 ...state,
-                isRedo: redoStack.length !== 0,
-                stack: stack
+                isRedo: state.redoStack.length !== 0,
+                stack: newStack,
+                redoStack:state.redoStack
+                
             }
         case "updateCurrentStyle":
             return {
@@ -130,9 +144,8 @@ const reducer = (state, action) => {
     }
 };
 function VirtualKeyBoard() {
-    const [isEmojiActive, setIsEmojiActive] = useState(false);
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { language,characters, shiftCharacters,placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
+    const { language, characters, shiftCharacters, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
     const [isShift, setisShift] = useState(false);
     const setCurrentStyle = (newStyle) => {
         dispatch({
@@ -156,210 +169,205 @@ function VirtualKeyBoard() {
     const deleteLastChar = () => {
         dispatch({ type: "deleteLastChar" });
     };
-    const handleCopy = () =>
-        dispatch({ type: "copy" });
     const changeAllText = (itemFunction) => {
         dispatch({
             type: "changeAllText",
             itemFunction: itemFunction,
         });
     };
-function undoPrev() {
-    dispatch(
-        {
-            type: "undoPrev"
-        }
-    )
-}
-function changeLanguage(language) {
-    dispatch(
-        {
-            type: "changeLanguage",
-            language: language
-        }
-    )
-}
-function handleInputButtonClick(char) {
-    dispatch(
-        {
-            type: "inputButtonClick",
-            char: char
-        }
-    )
-}
-const upperChar = (item) => ({
-    char: item.char.toUpperCase(),
-    style: { ...item.style },
-});
-const lowerChar = (item) => ({
-    char: item.char.toLowerCase(),
-    style: { ...item.style },
-});
-const upperAll = () => changeAllText(upperChar);
-const lowerAll = () => changeAllText(lowerChar);
-function changeAllTextStyle(styleToChange) {
-    const setOneStyle = (item) => ({
-        char: item.char,
-        style: { ...styleToChange },
-    });
-    changeAllText(setOneStyle);
-}
-
-function copy() {
-    const text = stack[stack.length - 1].map((item) => item.char).join("");
-    console.log(text)
-    navigator.clipboard.writeText(text).then(() => {
-    });
-}
-const handleEvent = (event) => {
-    switch (event) {
-        case "deleteAll":
-            deleteAll();
-            break;
-        case "undo":
-            undoPrev();
-            break;
-        case "redo":
-            redo();
-            break;
-        case "backspace":
-            deleteLastChar();
-            break;
-        case "copy":
-            handleCopy();
-            break;
-        case "paste":
-            paste();
-            break;
-        default:
-            break;
+    function undoPrev() {
+        dispatch(
+            {
+                type: "undoPrev"
+            }
+        )
     }
-};
-
-const highlightClickedButtons = (char) => {
-    const buttons = document.querySelectorAll('.k_b button');
-    buttons.forEach((button) => {
-        if (button.textContent.toLowerCase() === char) {
-            button.classList.add('highlighted');
-            setTimeout(() => {
-                button.classList.remove('highlighted');
-            }, 250);
-        }
+    function redo() {
+        dispatch(
+            {
+                type: "redo"
+            }
+        )
+    }
+    function changeLanguage(language) {
+        dispatch(
+            {
+                type: "changeLanguage",
+                language: language
+            }
+        )
+    }
+    function handleInputButtonClick(char) {
+        dispatch(
+            {
+                type: "inputButtonClick",
+                char: char
+            }
+        )
+    }
+    const upperChar = (item) => ({
+        char: item.char.toUpperCase(),
+        style: { ...item.style },
     });
-};
+    const lowerChar = (item) => ({
+        char: item.char.toLowerCase(),
+        style: { ...item.style },
+    });
+    const upperAll = () => changeAllText(upperChar);
+    const lowerAll = () => changeAllText(lowerChar);
+    function changeAllTextStyle(styleToChange) {
+        const setOneStyle = (item) => ({
+            char: item.char,
+            style: { ...styleToChange },
+        });
+        changeAllText(setOneStyle);
+    }
 
-useEffect(() => {
-    const handleKeyDown = (event) => {
-
-        const isAlphanumeric =
-            (event.keyCode >= 48 && event.keyCode <= 90) ||
-            (event.keyCode >= 96 && event.keyCode <= 105) ||
-            event.keyCode === 32 || // space
-            event.keyCode === 13 ||// enter
-            event.keyCode === 8; // backspace
-
-        if (isAlphanumeric) {
-            let char;
-            if (event.keyCode === 32) {
-                char = '\xa0';
-
-                const spaces = document.querySelectorAll('.space');
-
-                spaces.forEach((space) => {
-                    space.classList.add('highlighted');
-                    setTimeout(() => {
-                        space.classList.remove('highlighted');
-                    }, 300);
-                });
-
-            } else if (event.keyCode === 8) {
-                handleEvent('backspace');
-                const backspaces = document.querySelectorAll('.backspace');
-                backspaces.forEach((backspace) => {
-                    backspace.classList.add('highlighted');
-                    setTimeout(() => {
-                        backspace.classList.remove('highlighted');
-                    }, 300);
-                });
+    function handleCopy() {
+        const text = stack[stack.length - 1].map((item) => item.char).join("");
+        console.log(text)
+        navigator.clipboard.writeText(text).then(() => {
+        });
+    }
+    const handleEvent = (event) => {
+        switch (event) {
+            case "deleteAll":
+                deleteAll();
+                break;
+            case "undo":
+                undoPrev();
+                break;
+            case "redo":
+                redo();
+                break;
+            case "backspace":
+                deleteLastChar();
+                break;
+            case "copy":
+                handleCopy();
+                break;
+            case "paste":
+                paste();
+                break;
+            default:
+                break;
+        }
+    };
 
 
-            } else if (event.keyCode === 13) {
-                char = '\n'; // enter
 
-                const enters = document.querySelectorAll('.enter');
+    useEffect(() => {
+        const handleKeyDown = (event) => {
 
-                enters.forEach((enter) => {
-                    enter.classList.add('highlighted');
-                    setTimeout(() => {
-                        enter.classList.remove('highlighted');
-                    }, 300);
-                });
+            const isAlphanumeric =
+                (event.keyCode >= 48 && event.keyCode <= 90) ||
+                (event.keyCode >= 96 && event.keyCode <= 105) ||
+                event.keyCode === 32 || // space
+                event.keyCode === 13 ||// enter
+                event.keyCode === 8; // backspace
 
-            } else {
-                char = String.fromCharCode(event.keyCode).toLowerCase();
+            if (isAlphanumeric) {
+                let char;
+                if (event.keyCode === 32) {
+                    char = '\xa0';
+
+                    const spaces = document.querySelectorAll('.space');
+
+                    spaces.forEach((space) => {
+                        space.classList.add('highlighted');
+                        setTimeout(() => {
+                            space.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+                } else if (event.keyCode === 8) {
+                    handleEvent('backspace');
+                    const backspaces = document.querySelectorAll('.backspace');
+                    backspaces.forEach((backspace) => {
+                        backspace.classList.add('highlighted');
+                        setTimeout(() => {
+                            backspace.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+
+                } else if (event.keyCode === 13) {
+                    char = '\n'; // enter
+
+                    const enters = document.querySelectorAll('.enter');
+
+                    enters.forEach((enter) => {
+                        enter.classList.add('highlighted');
+                        setTimeout(() => {
+                            enter.classList.remove('highlighted');
+                        }, 300);
+                    });
+
+                } else {
+                    char = String.fromCharCode(event.keyCode).toLowerCase();
+                }
+
+                handleInputButtonClick(char);
+                highlightClickedButtons(char);
             }
 
-            handleInputButtonClick(char);
-            highlightClickedButtons(char);
-        }
+        };
 
-    };
+        window.addEventListener("keydown", handleKeyDown);
 
-    window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [handleEvent]);
 
-    return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-    };
-}, [handleEvent]);
+    return (
+        <div className="virtual_keyBoard">
+            <div className="screenDiv">
+                <div className="change_layout">
+                    <KeyBoardLanguage
+                        setLanguage={changeLanguage}
+                        changeState={toggleEmojiActive}
+                        isEmojiActive={emojiActive}
+                    />
+                </div>
+                <Screen
+                    text={
+                        stack.length && stack[stack.length - 1].length
+                            ? stack[stack.length - 1]
+                            : placeholder
+                    }
+                />
 
-return (
-    <div className="virtual_keyBoard">
-        <div className="screenDiv">
-            <div className="change_layout">
-                <KeyBoardLanguage
-                    setLanguage={changeLanguage}
-                    changeState={toggleEmojiActive}
-                    isEmojiActive={isEmojiActive}
+                <SpecialButtons
+                    handleEvent={handleEvent}
+                    isUndo={isUndo}
+                    isRedo={isRedo}
                 />
             </div>
-            <Screen
-                text={
-                    stack.length && stack[stack.length - 1].length
-                        ? stack[stack.length - 1]
-                        : placeholder
-                }
-            />
-
-            <SpecialButtons
-                handleEvent={handleEvent}
-                isUndo={isUndo}
-                isRedo={isRedo}
-            />
-        </div>
-        <div className="keyboard-container">
-            {isEmojiActive ? (
-                <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
-            ) : (
-                <KeyBoard
-                    charactersArr={isShift ? shiftCharacters : characters}
-                    setisShift={setisShift}
-                    language={language}
-                    handleButtonClick={handleInputButtonClick}
-                    handleEvent={handleEvent}
-                    isShift={isShift}
+            <div className="keyboard-container">
+                {emojiActive ? (
+                    <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
+                ) : (
+                    <KeyBoard
+                        charactersArr={isShift ? shiftCharacters : characters}
+                        setisShift={setisShift}
+                        language={language}
+                        handleButtonClick={handleInputButtonClick}
+                        handleEvent={handleEvent}
+                        isShift={isShift}
+                    />
+                )}
+            </div>
+            <div className="style-selector-container">
+                <StyleSelector
+                    changeAllTextStyle={changeAllTextStyle}
+                    onSelectStyle={setCurrentStyle}
+                    currentStyle={currentStyle}
+                    upperAll={upperAll}
+                    lowerAll={lowerAll}
                 />
-            )}
+            </div>
         </div>
-        <div className="style-selector-container">
-            <StyleSelector
-                changeAllTextStyle={changeAllTextStyle}
-                onSelectStyle={setCurrentStyle}
-                currentStyle={currentStyle}
-                upperAll={upperAll}
-                lowerAll={lowerAll}
-            />
-        </div>
-    </div>
-);
+    );
 }
 export default VirtualKeyBoard;

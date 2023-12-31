@@ -3,44 +3,13 @@ import "./KeyBoardStylee.css";
 import languagesData from "../LanguegesData";
 function KeyBoardLanguage(props) {
   const setLanguage = props.setLanguage;
-  const handleChange = (event) => {
-    const selectedLanguage = event.target.value;
-    console.Consolelog(languegesData)
-    switch (selectedLanguage) {
-      case "hebrew":
-        setLanguage("hebrew");
-        break;
-      case "arabic":
-        setLanguage("arabic");
-        break;
-      case "english":
-        setLanguage("english");
-        break;
-      case "russian":
-        setLanguage("russian");
-        break;
-      case "ukranian":
-        setLanguage("ukranian");
-        break;
-      case "portuguese":
-        setLanguage("portuguese");
-        break;
-      case "spanish":
-        setLanguage("spanish");
-        break;
-      case "macedonian":
-        setLanguage("macedonian");
-        break;
-      default:
-        setLanguage([]);
-    }
-  };
+  const handleChange = (event) =>  setLanguage(event.target.value);
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
         {
-          languagesData.map((languege)=>
-          <option value={languege.languageName}>{languege.translatedName}</option>
+          languagesData.map((languege,index)=>
+          <option key ={index}value={languege.languageName}>{languege.translatedName}</option>
           )
         }
       </select>
