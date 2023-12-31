@@ -99,62 +99,33 @@ const languagesData =   [
             ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
         ],
         placeholder: "пишувајте овде"
-    },{
-        languageName: "Arabic",
-        translatedName:"عربيه<",
-        characters: [
-            'ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح',
-            'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م',
-            'ك', 'ط', 'ئ', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و'
-        ],
-        shiftCharacters: [
-            ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
-        ],
-        placeholder: "أكتب هنا"
-    },{
-        languageName: "Arabic",
-        translatedName:"عربيه<",
-        characters: [
-            'ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح',
-            'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م',
-            'ك', 'ط', 'ئ', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و'
-        ],
-        shiftCharacters: [
-            ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
-        ],
-        placeholder: "أكتب هنا"
-    },
-    {
-        languageName: "Arabic",
-        translatedName:"عربيه<",
-        characters: [
-            'ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح',
-            'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م',
-            'ك', 'ط', 'ئ', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و'
-        ],
-        shiftCharacters: [
-            ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
-        ],
-        placeholder: "أكتب هنا"
-    },
-    {
-        languageName: "Arabic",
-        translatedName:"عربيه<",
-        characters: [
-            'ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح',
-            'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م',
-            'ك', 'ط', 'ئ', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و'
-        ],
-        shiftCharacters: [
-            ...Array.from({ length: 28 }, (_, i) => String.fromCharCode('A'.charCodeAt(0) + i))
-        ],
-        placeholder: "أكتب هنا"
-    },
+    }
 ];
 
 export default languagesData;
 const getLanguage = (languageName) => {
-  return languagesData.find((language) => language.languageName === languageName);
-}
+    const lowercasedLanguageName = languageName.toLowerCase();
+    return languagesData.find((language) => language.languageName.toLowerCase() === lowercasedLanguageName);
+  };
+  export { getLanguage };
+  const findCharInLanguage = (language, char) => {
+    const lowercasedChar = char.toLowerCase();
+    const charIndex = language.characters.findIndex((c) => c === lowercasedChar);
+    if (charIndex !== -1) {
+        return charIndex;
+    }
+    const shiftCharIndex = language.shiftCharacters.findIndex((c) => c === lowercasedChar);
+    return shiftCharIndex;
+};
 
-export { getLanguage };
+const findCharIndex = (char) => {
+    for (let i = 0; i < languagesData.length; i++) {
+        const language = languagesData[i];
+        const indexInLanguage = findCharInLanguage(language, char);
+        if (indexInLanguage !== -1) {
+            return indexInLanguage;
+        }
+    }
+    return -1; // Character not found in any language
+};
+export {findCharIndex}

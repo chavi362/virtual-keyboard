@@ -6,48 +6,13 @@ import { addBtnColor } from '../redux/reducer';
 function KeyBoard(props) {
     const dispatch = useDispatch();
     const buttonColors = useSelector(state => state.buttonColors);
-    let keyboardArr=props.language.characters;
-    const capslockArr =props.language.shiftCharacters;
-
-    // switch (props.language) {
-    //     case "hebrew":
-    //         keyboardArr = [...numbersArr, ...hebrewArr];
-    //         break;
-    //     case "english":
-    //         keyboardArr = [...numbersArr, ...englishArr];
-    //         break;
-    //     case "arabic":
-    //         keyboardArr = [...numbersArr, ...arabicArr];
-    //         break;
-    //     case "ukranian":
-    //         keyboardArr = [...numbersArr, ...ukranianArr];
-    //         break;
-    //     case "russian":
-    //         keyboardArr = [...numbersArr, ...russianArr];
-    //         break;
-    //     case "portuguese":
-    //         keyboardArr = [...numbersArr, ...portugueseArr];
-    //         break;
-    //     case "spanish":
-    //         keyboardArr = [...numbersArr, ...spanishArr];
-    //         break;
-    //     case "macedonian":
-    //         keyboardArr = [...numbersArr, ...macedonianArr];
-    //         break;
-    //     default:
-    //         keyboardArr = [];
-    // }
-
-    keyboardArr = (isCapslock ? capslockArr : keyboardArr);
-    function toggleCapsLock() {
-        props.setIsCapslock(!isCapslock);
+    let keyboardArr = props.charactersArr;
+    function toggleShift() {
+        props.setisShift(!isShift);
     }
-
-
     useEffect(() => {
         dispatch(addBtnColor(Array(keyboardArr.length).fill('')));
     }, []);
-
     return (
         <div id="keyBoardK">
             <div id="letters-row" className="letters-row">
@@ -71,8 +36,8 @@ function KeyBoard(props) {
                 <button onClick={() => props.handleEvent('backspace')} className="backspace">
                     backspace
                 </button>
-                <button onClick={toggleCapsLock} className={`capslock ${isCapslock ? 'active' : ''}`}>
-                    caps lock
+                <button onClick={toggleShift} className={`capslock ${props.isShift ? 'active' : ''}`}>
+                    shift
                 </button>
             </div>
         </div>
