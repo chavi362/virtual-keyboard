@@ -7,6 +7,7 @@ import LetterStyle from "../letterStyle";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
+import ConvertToPdf from "./ConvertToPdf";
 
 function VirtualKeyBoard() {
 
@@ -337,6 +338,14 @@ function VirtualKeyBoard() {
                     upperAll={upperAll}
                     lowerAll={lowerAll}
                 />
+            </div>
+            <div className="convert-to-pdf">
+                <ConvertToPdf     text={
+                        stack.length && stack[stack.length - 1].length
+                            ? stack[stack.length - 1]
+                            : placeholder
+                    }
+                ></ConvertToPdf>
             </div>
         </div>
     );
