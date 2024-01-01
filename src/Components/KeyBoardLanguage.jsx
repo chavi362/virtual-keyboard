@@ -1,51 +1,18 @@
 import { FaKeyboard } from "react-icons/fa";
 import "./KeyBoardStylee.css";
+import languagesData from "../LanguegesData";
 import emojiButton from "../assets/images/emojiButton.webp";
-
 function KeyBoardLanguage(props) {
   const setLanguage = props.setLanguage;
-  const handleChange = (event) => {
-    const selectedLanguage = event.target.value;
-    switch (selectedLanguage) {
-      case "hebrew":
-        setLanguage("hebrew");
-        break;
-      case "arabic":
-        setLanguage("arabic");
-        break;
-      case "english":
-        setLanguage("english");
-        break;
-      case "russian":
-        setLanguage("russian");
-        break;
-      case "ukranian":
-        setLanguage("ukranian");
-        break;
-      case "portuguese":
-        setLanguage("portuguese");
-        break;
-      case "spanish":
-        setLanguage("spanish");
-        break;
-      case "macedonian":
-        setLanguage("macedonian");
-        break;
-      default:
-        setLanguage([]);
-    }
-  };
+  const handleChange = (event) =>  setLanguage(event.target.value);
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
-        <option value="english">English</option>
-        <option value="hebrew">עברית</option>
-        <option value="arabic">عربيه</option>
-        <option value="ukranian">українська</option>
-        <option value="russian">русский</option>
-        <option value="portuguese">Português</option>
-        <option value="spanish">Español</option>
-        <option value="macedonian">Македонски</option>
+        {
+          languagesData.map((languege,index)=>
+          <option key ={index}value={languege.languageName}>{languege.translatedName}</option>
+          )
+        }
       </select>
       {props.isEmojiActive ? (
         <FaKeyboard

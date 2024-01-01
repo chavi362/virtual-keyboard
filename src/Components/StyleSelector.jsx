@@ -7,7 +7,7 @@ import { useRef } from 'react';
 const FontOption = styled.option`
         font-family: ${(props) => props.fontFamily};
     `;
-
+    
 function StyleSelector(props) {
     const changeAllStyleRef = useRef(false)
     const { changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
