@@ -37,7 +37,7 @@ const reducer = (state, action) => {
     let newStack = [...state.stack];
     switch (action.type) {
         case "changeLanguage":
-            const newLanguage = getLanguage(action.language)||intialLanguage;
+            const newLanguage = getLanguage(action.language) || intialLanguage;
             return {
                 ...state,
                 languageName: newLanguage.languageName,
@@ -98,22 +98,13 @@ const reducer = (state, action) => {
                 isRedo: true,
             };
         case "paste":
-            navigator.clipboard.readText().then((text) => {
-                if (text) {
-                    console.log(text);
-                    const lastState = [...newStack[newStack.length - 1]];
-                    console.log(lastState);
-                    text.split("").forEach((item) => lastState.push({ char: item, style: { ...state.currentStyle } }));
-                    console.log(lastState);
-                    newStack.push(lastState);
-                    return {
-                        ...state,
-                        stack: newStack,
-                        isUndo: true,
-                    }
-                }
-            })
-            return state;
+            console.log(action.text);
+            newStack.push(action.text);
+            return {
+                ...state,
+                stack: newStack,
+                isUndo: true,
+            }
         case "deleteAll":
             if (newStack.length) {
                 let lastState = [{ char: "", style: { ...state.currentStyle } }];
@@ -130,8 +121,8 @@ const reducer = (state, action) => {
                 ...state,
                 isRedo: state.redoStack.length !== 0,
                 stack: newStack,
-                redoStack:state.redoStack
-                
+                redoStack: state.redoStack
+
             }
         case "updateCurrentStyle":
             return {
@@ -157,11 +148,17 @@ function VirtualKeyBoard() {
     const deleteAll = () => {
         dispatch({ type: "deleteAll" });
     };
-
     const paste = () => {
-        dispatch({ type: "paste" })
-    }
-
+        navigator.clipboard.readText().then((text) => {
+            if (text) {
+                console.log(text);
+                const lastState = stack[stack.length-1];
+                text.split("").forEach((item) => lastState.push({ char: item, style: { ...state.currentStyle } }));
+                console.log(lastState);
+                dispatch({ type: "paste", text: lastState }); // Pass text as a property
+            }
+        });
+    };
     const toggleEmojiActive = () => {
         dispatch({ type: "toggleEmojiActive" });
     };
