@@ -49,7 +49,9 @@ virtual-keyboard/
 │
 ├── src/                    # Source code directory
 │   ├── assets/             # Static assets like images, icons, etc.
-│   │   └── react.svg       # React icon
+│   │   ├── images/         # Image files
+│   │   │   ├── emojiButton.webp       # Image of emoji
+│   │   │   └── backgroundImage.jpg    # Image of background
 │   ├── components/         # React components
 │   │   ├── VirtualKeyboard.jsx     # Main virtual keyboard component
 │   │   ├── SpecialButtons.jsx      # Component for special buttons such as:redo, undo and clear all the text
@@ -60,7 +62,6 @@ virtual-keyboard/
 |   |   ├── KeyBoardStylee.css
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
 │   │   └── ...             # Other files
-│   ├── images/             # Image files
 │   ├── redux/              # 
 |   |   ├── reducer.js      # 
 |   |   └── store.js        # 
@@ -115,8 +116,14 @@ git push origin feature/NewFeature.
 ```
 Fixes #10
 ```
+## Contact
+
+If you have any questions, suggestions, or issues regarding the Icy Tower Game, 
+please feel free to reach out to us through the [Issues](https://github.com/chavi362/virtual-keyboard/issues) section of this repository.
+you can also contact me via my [email](chavideveloper@gmail.com)
 
 ## License
+
 
 This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
 

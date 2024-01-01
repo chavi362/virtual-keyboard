@@ -1,6 +1,7 @@
 import { FaKeyboard } from "react-icons/fa";
 import "./KeyBoardStylee.css";
 import languagesData from "../LanguegesData";
+import emojiButton from "../assets/images/emojiButton.webp";
 function KeyBoardLanguage(props) {
   const setLanguage = props.setLanguage;
   const handleChange = (event) =>  setLanguage(event.target.value);
@@ -21,7 +22,7 @@ function KeyBoardLanguage(props) {
         />
       ) : (
         <button className="icon" onClick={props.changeState}>
-          <img src="\src\images\emoji_button_tiny.webp" alt="Emoji Keyboard" />
+          <img src={emojiButton} alt="Emoji Keyboard" />
         </button>
       )}
     </div>
