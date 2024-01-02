@@ -9,7 +9,7 @@ function KeyBoard(props) {
     const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
     let keyboardArr = [...numbersArr,...props.charactersArr];
     function toggleShift() {
-        props.setisShift(!isShift);
+        props.setisShift(!props.isShift);
     }
     useEffect(() => {
         dispatch(addBtnColor(Array(keyboardArr.length).fill('')));
