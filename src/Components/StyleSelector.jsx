@@ -72,20 +72,21 @@ function StyleSelector(props) {
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
   <div style={{ marginRight: '20px' }}>
     <label>Font Size:</label>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <button onClick={() => handleFontSizeChange(-1)} style={{ width: '25px' }}>-</button>
+    <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+      <button onClick={() => handleFontSizeChange(-1)} style={{ width: '22px', marginBottom: '0px' }}>-</button>
       <input
         type="text"
         value={currentStyle.fontSize}
         onChange={() => {}}
-        style={{ marginLeft: '5px', marginRight: '5px', width: '50px' }}
+        style={{ marginLeft: '5px', marginRight: '5px', width: '40px' }}
       />
-      <button onClick={() => handleFontSizeChange(+1)} style={{ width: '25px' }}>+</button>
+      <button onClick={() => handleFontSizeChange(+1)} style={{ width: '22px', marginBottom: '0px'}}>+</button>
     </div>
   </div>
 
   <div>
-          <label>Font Family:</label>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <label style={{ marginBottom: '5px' }}>Font Family:</label>
           <select value={currentStyle.fontFamily} onChange={(e) => handleFontFamilyChange(e.target.value)}>
             <FontOption fontFamily="Arial">Arial</FontOption>
             <FontOption fontFamily="Times New Roman">Times New Roman</FontOption>
@@ -98,6 +99,7 @@ function StyleSelector(props) {
             <FontOption fontFamily="Palatino Linotype">Palatino Linotype</FontOption>
             <FontOption fontFamily="Lucida Console">Lucida Console</FontOption>
           </select>
+          </div>         
         </div>
 </div>
         <div>
