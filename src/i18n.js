@@ -1,19 +1,39 @@
 import i18n from 'i18next';
 import { initReactI18next } from "react-i18next";
-import englishTranslations from "./locales/english.json";
-import spanishTranslations from "./locales/spanish.json";
-import portugueseTranslations from "./locales/portuguese.json";
+import {
+    englishTranslations,
+    spanishTranslations,
+    portugueseTranslations,
+    hebrewTranslations,
+    arabicTranslations,
+    russianTranslations,
+    ukranianTranslations,
+    macedonianTranslations
+} from "./locales";
 
 const resources = {
     english: { translation: englishTranslations },
     spanish: { translation: spanishTranslations },
     portuguese: { translation: portugueseTranslations },
-    // others languages
+    hebrew: { translation: hebrewTranslations },
+    arabic: { translation: arabicTranslations },
+    russian: { translation: russianTranslations },
+    ukranian: { translation: ukranianTranslations },
+    macedonian: { translation: macedonianTranslations }
 }
 
 let userLanguage = navigator.language.split("-")[0];
 
-if (!["english", "spanish", "portuguese"].includes(userLanguage)) {
+if (![
+    "english",
+    "spanish",
+    "portuguese",
+    "hebrew",
+    "arabic",
+    "russian",
+    "ukranian",
+    "macedonian"
+].includes(userLanguage)) {
     userLanguage = "english";
 }
 

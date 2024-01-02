@@ -1,7 +1,7 @@
 {
-    "deleteAll": "",
-    "undo": "",
-    "redo": "",
-    "copy": "",
-    "paste": ""
+    "deleteAll": "حذف الكل",
+    "undo": "الغاء التحميل",
+    "redo": "إعادة",
+    "copy": "ينسخ",
+    "paste": "معجون"
 }

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 function KeyBoardLanguage(props) {
   const { i18n } = useTranslation();
   const setLanguage = props.setLanguage;
-
+  
   const handleChange = (event) => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);

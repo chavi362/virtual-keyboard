@@ -1,7 +1,7 @@
 {
-    "deleteAll": "",
-    "undo": "",
-    "redo": "",
-    "copy": "",
-    "paste": ""
+    "deleteAll": "מחק הכל",
+    "undo": "לבטל",
+    "redo": "לַעֲשׂוֹת שׁוּב",
+    "copy": "עותק",
+    "paste": "לְהַדבִּיק"
 }
