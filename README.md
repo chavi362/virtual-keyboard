@@ -118,9 +118,9 @@ Fixes #10
 ```
 ## Contact
 
-If you have any questions, suggestions, or issues regarding the Icy Tower Game, 
+If you have any questions, suggestions, or issues regarding the virtual-keyboard, 
 please feel free to reach out to us through the [Issues](https://github.com/chavi362/virtual-keyboard/issues) section of this repository.
-you can also contact me via my [email](chavideveloper@gmail.com)
+You can also contact me via my [email](mailto:chavideveloper@gmail.com).
 
 ## License
 
