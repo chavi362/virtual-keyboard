@@ -69,16 +69,22 @@ function StyleSelector(props) {
           </button>
         </div>
 
-        <div>
-          <label>Font Size:</label>
-          <div>
-          <button onClick={() => handleFontSizeChange(1)}>+</button>            
-          <input type="text" value={currentStyle.fontSize} onChange={() => {}} />
-            <button onClick={() => handleFontSizeChange(-1)}>-</button>
-          </div>
-        </div>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+  <div style={{ marginRight: '20px' }}>
+    <label>Font Size:</label>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <button onClick={() => handleFontSizeChange(-1)} style={{ width: '25px' }}>-</button>
+      <input
+        type="text"
+        value={currentStyle.fontSize}
+        onChange={() => {}}
+        style={{ marginLeft: '5px', marginRight: '5px', width: '50px' }}
+      />
+      <button onClick={() => handleFontSizeChange(+1)} style={{ width: '25px' }}>+</button>
+    </div>
+  </div>
 
-        <div>
+  <div>
           <label>Font Family:</label>
           <select value={currentStyle.fontFamily} onChange={(e) => handleFontFamilyChange(e.target.value)}>
             <FontOption fontFamily="Arial">Arial</FontOption>
@@ -93,7 +99,7 @@ function StyleSelector(props) {
             <FontOption fontFamily="Lucida Console">Lucida Console</FontOption>
           </select>
         </div>
-
+</div>
         <div>
           <label>Color:</label>
           <input type="color" id="colorInput" value="#000000" onChange={(e) => handleColorChange(e.target.value)} />
