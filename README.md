@@ -63,10 +63,15 @@ virtual-keyboard/
 │   │   ├── keyboardStyles.css    # Styles for the virtual keyboard
 │   │   └── ...             # Other files
 │   ├── locales             # Store translation files
-│   │   └── arabic.json 
-│   │   └── english.json
-│   │   └── hebrew.json
-│   │   └── ...             # Other translation files
+│   │   └── arabic.json     # Arabic Translation Files
+│   │   └── english.json    # English Translation Files
+│   │   └── hebrew.json     # Hebrew Translation Files
+│   │   └── macedonian.json # Macedonian Translation Files
+│   │   └── portuguese.json # Portuguese Translation Files
+│   │   └── russian.json    # Russian Translation Files
+│   │   └── spanish.json    # Spanish Translation Files
+│   │   └── ukranian.json   # Ukranian Translation Files
+│   │   └── index.js        # Import all translation files
 │   ├── redux/              # 
 |   |   ├── reducer.js      # 
 |   |   └── store.js        # 
