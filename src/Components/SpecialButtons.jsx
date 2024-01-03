@@ -5,6 +5,7 @@ import "reactjs-popup/dist/index.css";
 import "./KeyBoardStylee.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Tooltip } from 'react-tooltip';
 
 function SpecialButtons({ handleEvent, isUndo, isRedo }) {
   const notify = () => {
@@ -16,7 +17,17 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
     <div id="spacial_buttons" className="spacial_buttons">
       <Popup
         trigger={
-          <button className="button">
+          <button className="button" data-tooltip-id="delete-tooltip" data-tooltip-content="Delete All" >
+             <style>{`
+        .spacial_buttons button {
+          cursor: pointer;
+          padding: 5px;
+        }
+        .common-tooltip {
+          max-width: 150px;
+          padding: 5px;
+        }
+      `}</style>
             {" "}
             <FaTrashAlt />{" "}
           </button>
@@ -59,6 +70,8 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
       <span className="MuiIconButton-label">
         <button
           id="undo"
+          data-tooltip-id="undo-tooltip"
+          data-tooltip-content="Undo"
           onClick={() => handleEvent("undo")}
           disabled={!isUndo}
         >
@@ -69,6 +82,8 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
       <span className="MuiIconButton-label">
         <button
           id="redo"
+          data-tooltip-id="redo-tooltip"
+          data-tooltip-content="Redo"
           onClick={() => handleEvent("redo")}
           disabled={!isRedo}
         >
@@ -77,17 +92,22 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
       </span>
 
       <div>
-        <button onClick={notify}>
+        <button onClick={notify} data-tooltip-id="copy-tooltip" data-tooltip-content="Copy">
           <FaCopy />
         </button>
         <ToastContainer />
       </div>
 
       <span className="MuiIconButton-label">
-        <button id="paste" onClick={() => handleEvent("paste")}>
+        <button id="paste" data-tooltip-id="paste-tooltip" data-tooltip-content="Paste" onClick={() => handleEvent("paste")}>
           <FaPaste />
         </button>
       </span>
+      <Tooltip id="delete-tooltip" className= 'common-tooltip' />
+      <Tooltip id="undo-tooltip" className= 'common-tooltip' />
+      <Tooltip id="redo-tooltip" className= 'common-tooltip' />
+      <Tooltip id="copy-tooltip" className= 'common-tooltip' />
+      <Tooltip id="paste-tooltip" className= 'common-tooltip' />
     </div>
   );
 }
