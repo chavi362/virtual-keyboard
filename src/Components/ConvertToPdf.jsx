@@ -1,4 +1,5 @@
 import html2pdf from 'html2pdf.js';
+import { HiOutlineDownload } from 'react-icons/hi';
 
 function ConvertToPdf(props) {
   const text = props.text;
@@ -41,8 +42,8 @@ function ConvertToPdf(props) {
   }
 
   return (
-    <div className="Convert_To_Pdf">
-      <button onClick={convertPdf}>Convert To Pdf</button>
+    <div className="Convert_To_Pdf" id="Convert_To_Pdf" >
+      <button onClick={convertPdf}><HiOutlineDownload></HiOutlineDownload></button>
     </div>
   );
 }

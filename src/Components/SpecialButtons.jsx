@@ -5,8 +5,9 @@ import "reactjs-popup/dist/index.css";
 import "./KeyBoardStylee.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConvertToPdf from "./ConvertToPdf";
 
-function SpecialButtons({ handleEvent, isUndo, isRedo }) {
+function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
   const notify = () => {
     toast("Text is copied to clipboard!");
     handleEvent("copy");
@@ -14,6 +15,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
 
   return (
     <div id="spacial_buttons" className="spacial_buttons">
+      <ConvertToPdf text={text}></ConvertToPdf>
       <Popup
         trigger={
           <button className="button">
@@ -88,7 +90,8 @@ function SpecialButtons({ handleEvent, isUndo, isRedo }) {
           <FaPaste />
         </button>
       </span>
-    </div>
+     
+    </div>  
   );
 }
 

@@ -314,6 +314,9 @@ function VirtualKeyBoard() {
                     handleEvent={handleEvent}
                     isUndo={isUndo}
                     isRedo={isRedo}
+                    text={ stack.length && stack[stack.length - 1].length
+                        ? stack[stack.length - 1]
+                        : placeholder}
                 />
             </div>
 
@@ -340,12 +343,6 @@ function VirtualKeyBoard() {
                 />
             </div>
             <div className="convert-to-pdf">
-                <ConvertToPdf     text={
-                        stack.length && stack[stack.length - 1].length
-                            ? stack[stack.length - 1]
-                            : placeholder
-                    }
-                ></ConvertToPdf>
             </div>
         </div>
     );
