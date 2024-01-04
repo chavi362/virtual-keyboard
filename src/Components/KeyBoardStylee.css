@@ -22,13 +22,13 @@ button:hover {
   font-weight: bold;
 }
 
-.special-buttons {
+.special-buttons .Convert_To_Pdf {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
 }
 
-.special-buttons button {
+.special-buttons button .Convert_To_Pdf{
   width: 70px;
 }
 
@@ -72,11 +72,11 @@ select {
   justify-content: center;
   right: 5px;
   bottom: 5px;
-  display: flex;
+   display: flex; 
   overflow: auto;
   position: absolute;
   white-space: nowrap;
-  justify-content: center;
+  justify-content: center; 
 }
 
 .change_layout {
