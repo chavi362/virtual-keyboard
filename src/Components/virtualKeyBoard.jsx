@@ -1,97 +1,210 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useReducer } from "react";
 import KeyBoardLanguage from "./KeyBoardLanguage";
 import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
 import KeyBoard from "./KeyBoard";
 import LetterStyle from "../letterStyle";
+import { getLanguage } from "../LanguegesData";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
+
 import ConvertToPdf from "./ConvertToPdf";
 
-function VirtualKeyBoard() {
-
-    const [isEmojiActive, setIsEmojiActive] = useState(false);
-    const placeholders = [
-        "הקלד כאן",
-        "type here",
-        "أكتب هنا",
-        "друкуйте тут",
-        "напечатайте здесь",
-        "digite aqui",
-        "escriba aquí",
-        "пишувајте овде"
-    ];
-    const [placeholder, setPlaceHolder] = useState("type here");
-    const [language, setLanguage] = useState("english");
-    const [currentStyle, setCurrentStyle] = useState(new LetterStyle());
-    const [stack, setStack] = useState([[]]);
-    const [isUndo, setIsUndo] = useState(stack.length === 0);
-    const [isRedo, setIsRedo] = useState(stack.length === 0);
-    const [isCapslock, setIsCapslock] = useState(false);
-    const redoStackRef = useRef([]);
-    const redoStack = redoStackRef.current;
-
-    const changeState = () => {
-        setIsEmojiActive(!isEmojiActive);
-    };
-    function changeLanguage(language) {
-        setLanguage(language);
-        switch (language) {
-            case "hebrew":
-                setPlaceHolder(placeholders[0]);
-                break;
-            case "english":
-                setPlaceHolder(placeholders[1]);
-                break;
-            case "arabic":
-                setPlaceHolder(placeholders[2]);
-                break;
-            case "ukranian":
-                setPlaceHolder(placeholders[3]);
-                break;
-            case "russian":
-                setPlaceHolder(placeholders[4]);
-                break;
-            case "portuguese":
-                setPlaceHolder(placeholders[5]);
-                break;
-            case "spanish":
-                setPlaceHolder(placeholders[6]);
-                break;
-            case "macedonian":
-                setPlaceHolder(placeholders[7]);
-                break;
-            default:
-                setPlaceHolder(placeholders[0]);
-                break;
+const intialLanguage = getLanguage("english");
+const initialState = {
+    languageName: intialLanguage.languageName,
+    translatedName: intialLanguage.translatedName,
+    characters: intialLanguage.characters,
+    shiftCharacters: intialLanguage.shiftCharacters,
+    placeholder: intialLanguage.placeholder,
+    currentStyle: new LetterStyle(),
+    stack: [[]],
+    emojiActive: false,
+    isUndo: false,
+    isRedo: false,
+    redoStack: [],
+};
+const highlightClickedButtons = (char) => {
+    const buttons = document.querySelectorAll('.k_b button');
+    buttons.forEach((button) => {
+        if (button.textContent.toLowerCase() === char) {
+            button.classList.add('highlighted');
+            setTimeout(() => {
+                button.classList.remove('highlighted');
+            }, 250);
         }
-    }
-    function deleteLastChar() {
-        setStack((prevStack) => {
-            if (prevStack.length !== 0) {
-                let newStack = [...prevStack];
-                let lastState = newStack[newStack.length - 1];
-                lastState.pop();
-                setIsUndo(true);
-                return newStack;
-            } else {
-
-                return prevStack;
+    });
+};
+const reducer = (state, action) => {
+    let newStack = [...state.stack];
+    switch (action.type) {
+        case "changeLanguage":
+            const newLanguage = getLanguage(action.language) || intialLanguage;
+            return {
+                ...state,
+                languageName: newLanguage.languageName,
+                translatedName: newLanguage.translatedName,
+                characters: newLanguage.characters,
+                shiftCharacters: newLanguage.shiftCharacters,
+                placeholder: newLanguage.placeholder,
+            };
+        case "deleteLastChar":
+            newStack[newStack.length - 1].pop();
+            return {
+                ...state,
+                isUndo: true,
+                stack: newStack,
             }
-        });
-    }
-    function changeAllText(itemFunction) {
-        setStack((prevStack) => {
-            if (prevStack.length > 0) {
-                const lastItem = prevStack[prevStack.length - 1];
+        case "changeAllText":
+            const { itemFunction } = action;
+            const lastItemIndex = state.stack.length - 1;
+            if (lastItemIndex >= 0) {
+                const lastItem = state.stack[lastItemIndex];
                 const modifiedLastItem = lastItem.map((item) => ({
                     ...itemFunction(item),
                 }));
-                return [...prevStack, modifiedLastItem];
+                return {
+                    ...state,
+                    stack: [...state.stack, modifiedLastItem],
+                    isUndo: true,
+                };
             }
-            return prevStack;
+            return state;
+        case "inputButtonClick":
+            const char = action.char;
+            if (newStack.length !== 0) {
+                const lastState = [...newStack[newStack.length - 1]];
+                lastState.push({ char: char, style: { ...state.currentStyle } });
+                newStack.push(lastState);
+            } else {
+                newStack.push([{ char: char, style: { ...state.currentStyle } }]);
+            }
+            highlightClickedButtons(char);
+            return {
+                ...state,
+                stack: newStack,
+                isUndo: true,
+            };
+        case "toggleEmojiActive":
+            return {
+                ...state,
+                emojiActive: !state.emojiActive
+            }
+
+
+        case "undoPrev":
+            state.redoStack.push(newStack.pop());
+            return {
+                ...state,
+                stack: newStack,
+                isUndo: newStack.length >= 1,
+                isRedo: true,
+            };
+        case "paste":
+            console.log(action.text);
+            newStack.push(action.text);
+            return {
+                ...state,
+                stack: newStack,
+                isUndo: true,
+            }
+        case "deleteAll":
+            if (newStack.length) {
+                let lastState = [{ char: "", style: { ...state.currentStyle } }];
+                newStack.push(lastState);
+            }
+            return {
+                ...state,
+                stack: newStack
+            }
+        case "redo":
+            let lastItem = state.redoStack.pop();
+            newStack.push(lastItem);
+            return {
+                ...state,
+                isRedo: state.redoStack.length !== 0,
+                stack: newStack,
+                redoStack: state.redoStack
+
+            }
+        case "updateCurrentStyle":
+            return {
+                ...state,
+                currentStyle: action.newStyle,
+            }
+
+        default:
+            return state;
+    }
+};
+function VirtualKeyBoard() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { language, characters, shiftCharacters, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
+    const [isShift, setisShift] = useState(false);
+    const setCurrentStyle = (newStyle) => {
+        dispatch({
+            type: "updateCurrentStyle",
+            newStyle: newStyle,
         });
+    };
+
+    const deleteAll = () => {
+        dispatch({ type: "deleteAll" });
+    };
+    const paste = () => {
+        navigator.clipboard.readText().then((text) => {
+            if (text) {
+                console.log(text);
+                const lastState = stack[stack.length-1];
+                text.split("").forEach((item) => lastState.push({ char: item, style: { ...state.currentStyle } }));
+                console.log(lastState);
+                dispatch({ type: "paste", text: lastState }); // Pass text as a property
+            }
+        });
+    };
+    const toggleEmojiActive = () => {
+        dispatch({ type: "toggleEmojiActive" });
+    };
+
+    const deleteLastChar = () => {
+        dispatch({ type: "deleteLastChar" });
+    };
+    const changeAllText = (itemFunction) => {
+        dispatch({
+            type: "changeAllText",
+            itemFunction: itemFunction,
+        });
+    };
+    function undoPrev() {
+        dispatch(
+            {
+                type: "undoPrev"
+            }
+        )
+    }
+    function redo() {
+        dispatch(
+            {
+                type: "redo"
+            }
+        )
+    }
+    function changeLanguage(language) {
+        dispatch(
+            {
+                type: "changeLanguage",
+                language: language
+            }
+        )
+    }
+    function handleInputButtonClick(char) {
+        dispatch(
+            {
+                type: "inputButtonClick",
+                char: char
+            }
+        )
     }
     const upperChar = (item) => ({
         char: item.char.toUpperCase(),
@@ -101,7 +214,6 @@ function VirtualKeyBoard() {
         char: item.char.toLowerCase(),
         style: { ...item.style },
     });
-
     const upperAll = () => changeAllText(upperChar);
     const lowerAll = () => changeAllText(lowerChar);
     function changeAllTextStyle(styleToChange) {
@@ -112,84 +224,16 @@ function VirtualKeyBoard() {
         changeAllText(setOneStyle);
     }
 
-    function handleInputButtonClick(char) {
-        setStack((prevStack) => {
-            let newStack = [...prevStack];
-            if (newStack.length !== 0) {
-                let lastState = [...newStack[newStack.length - 1]];
-                lastState.push({ char: char, style: { ...currentStyle } });
-                newStack.push(lastState);
-            } else {
-                newStack.push([{ char: char, style: { ...currentStyle } }]);
-            }
-            setIsUndo(true);
-
-            highlightRelatedButtons(char);
-
-            return newStack;
-        });
-    }
-
-    function undoPrev() {
-        setStack((prevStack) => {
-            const newStack = [...prevStack];
-            redoStack.push(newStack.pop());
-            setIsRedo(true);
-            if (stack.length <= 2) setIsUndo(false);
-            return newStack;
-        });
-    }
-    function redo() {
-        console.log(redoStack);
-        setStack((prevStack) => {
-            const newStack = [...prevStack];
-            let lastItem = redoStack.pop();
-            setIsRedo(redoStack.length !== 0);
-            newStack.push(lastItem);
-            setIsUndo(true);
-            return newStack;
-        });
-    }
-    function deleteAllClicked() {
-        deleteAll();
-    }
-    function deleteAll() {
-        setStack((prevStack) => {
-            let newStack = [...prevStack];
-            if (newStack.length !== 0) {
-                let lastState = [{ char: "", style: { ...currentStyle } }];
-                newStack.push(lastState);
-            }
-            setIsUndo(stack.length);
-            return newStack;
-        });
-    }
-
-    function copy() {
+    function handleCopy() {
         const text = stack[stack.length - 1].map((item) => item.char).join("");
         console.log(text)
         navigator.clipboard.writeText(text).then(() => {
-            
         });
     }
-
-    function paste() {
-        navigator.clipboard.readText().then((text) => {
-            if (!text) return false;
-            setStack((prevStack) => {
-                const newStack = [...prevStack];
-                const lastState = [...newStack[newStack.length - 1]];
-                text.split("").forEach((item) => lastState.push({ char: item, style: { ...currentStyle } }));
-                newStack.push(lastState);
-                return newStack;
-            })
-        });
-    }
-
     const handleEvent = (event) => {
         switch (event) {
             case "deleteAll":
-                deleteAllClicked();
+                deleteAll();
                 break;
             case "undo":
                 undoPrev();
@@ -201,7 +245,7 @@ function VirtualKeyBoard() {
                 deleteLastChar();
                 break;
             case "copy":
-                copy();
+                handleCopy();
                 break;
             case "paste":
                 paste();
@@ -211,17 +255,6 @@ function VirtualKeyBoard() {
         }
     };
 
-    const highlightRelatedButtons = (char) => {
-        const buttons = document.querySelectorAll('.k_b button');
-        buttons.forEach((button, index) => {
-            if (button.textContent.toLowerCase() === char) {
-                button.classList.add('highlighted');
-                setTimeout(() => {
-                    button.classList.remove('highlighted');
-                }, 300);
-            }
-        });
-    };
 
 
     useEffect(() => {
@@ -250,11 +283,8 @@ function VirtualKeyBoard() {
 
                 } else if (event.keyCode === 8) {
                     handleEvent('backspace');
-
                     const backspaces = document.querySelectorAll('.backspace');
-
                     backspaces.forEach((backspace) => {
-
                         backspace.classList.add('highlighted');
                         setTimeout(() => {
                             backspace.classList.remove('highlighted');
@@ -279,7 +309,7 @@ function VirtualKeyBoard() {
                 }
 
                 handleInputButtonClick(char);
-                highlightRelatedButtons(char);
+                highlightClickedButtons(char);
             }
 
         };
@@ -291,15 +321,14 @@ function VirtualKeyBoard() {
         };
     }, [handleEvent]);
 
-
     return (
         <div className="virtual_keyBoard">
             <div className="screenDiv">
                 <div className="change_layout">
                     <KeyBoardLanguage
                         setLanguage={changeLanguage}
-                        changeState={changeState}
-                        isEmojiActive={isEmojiActive}
+                        changeState={toggleEmojiActive}
+                        isEmojiActive={emojiActive}
                     />
                 </div>
                 <Screen
@@ -319,17 +348,17 @@ function VirtualKeyBoard() {
                         : placeholder}
                 />
             </div>
-
             <div className="keyboard-container">
-                {isEmojiActive ? (
+                {emojiActive ? (
                     <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
                 ) : (
                     <KeyBoard
-                        isCapslock={isCapslock}
-                        setIsCapslock={setIsCapslock}
+                        charactersArr={isShift ? shiftCharacters : characters}
+                        setisShift={setisShift}
                         language={language}
                         handleButtonClick={handleInputButtonClick}
                         handleEvent={handleEvent}
+                        isShift={isShift}
                     />
                 )}
             </div>

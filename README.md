@@ -21,7 +21,7 @@ This is a React-based virtual keyboard app with support for multiple languages a
 
 ## Demo
 
-![image](https://github.com/chavi362/virtual-keyboard/assets/140444217/1826a4d9-f853-43a3-a7fd-53f36ad57e1d)
+![image](./src/assets/images/demo-image-new.JPG)
 
 ## Installation
 
@@ -118,9 +118,9 @@ Fixes #10
 ```
 ## Contact
 
-If you have any questions, suggestions, or issues regarding the Icy Tower Game, 
+If you have any questions, suggestions, or issues regarding the virtual-keyboard, 
 please feel free to reach out to us through the [Issues](https://github.com/chavi362/virtual-keyboard/issues) section of this repository.
-you can also contact me via my [email](chavideveloper@gmail.com)
+You can also contact me via my [email](mailto:chavideveloper@gmail.com).
 
 ## License
 
