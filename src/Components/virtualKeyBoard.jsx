@@ -8,6 +8,9 @@ import { getLanguage } from "../LanguegesData";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
+
+import ConvertToPdf from "./ConvertToPdf";
+
 const intialLanguage = getLanguage("english");
 const initialState = {
     languageName: intialLanguage.languageName,
@@ -88,6 +91,7 @@ const reducer = (state, action) => {
                 ...state,
                 emojiActive: !state.emojiActive
             }
+
 
         case "undoPrev":
             state.redoStack.push(newStack.pop());
@@ -339,6 +343,9 @@ function VirtualKeyBoard() {
                     handleEvent={handleEvent}
                     isUndo={isUndo}
                     isRedo={isRedo}
+                    text={ stack.length && stack[stack.length - 1].length
+                        ? stack[stack.length - 1]
+                        : placeholder}
                 />
             </div>
             <div className="keyboard-container">
@@ -363,6 +370,8 @@ function VirtualKeyBoard() {
                     upperAll={upperAll}
                     lowerAll={lowerAll}
                 />
+            </div>
+            <div className="convert-to-pdf">
             </div>
         </div>
     );
