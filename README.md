@@ -19,7 +19,7 @@ This is a React-based virtual keyboard app with support for multiple languages a
 -   Stylish and customizable interface.
 -   Undo and redo functionality.
 
-## Demogi
+## Demo
 
 ![image](./src/assets/images/demo-image-new.JPG)
 
