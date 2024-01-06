@@ -12,6 +12,19 @@ function StyleSelector(props) {
   const changeAllStyleRef = useRef(false);
   const { changeAllTextStyle, currentStyle, onSelectStyle, upperAll, lowerAll } = props;
 
+
+  const handleTextAlignmentChange = (newAlignment) => {
+    const styleToChange = {
+      ...currentStyle,
+      textAlign: newAlignment,
+    };
+    changeStyle(styleToChange);
+
+    const textArea = document.querySelector('.DivTextArea');
+    if (textArea) {
+      textArea.style.textAlign = newAlignment;
+    }
+  };
   const handleToggleChangeAllStyle = () => {
     changeAllStyleRef.current = !changeAllStyleRef.current;
   };
@@ -69,7 +82,7 @@ function StyleSelector(props) {
           </button>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'end'}}>
   <div style={{ marginRight: '20px' }}>
     <label>Font Size:</label>
     <div style={{ display: 'flex', alignItems: 'flex-end' }}>
@@ -85,7 +98,7 @@ function StyleSelector(props) {
   </div>
 
   <div>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight:'15px' }}>
   <label style={{ marginBottom: '5px' }}>Font Family:</label>
           <select value={currentStyle.fontFamily} onChange={(e) => handleFontFamilyChange(e.target.value)}>
             <FontOption fontFamily="Arial">Arial</FontOption>
@@ -101,13 +114,20 @@ function StyleSelector(props) {
           </select>
           </div>         
         </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label style={{whiteSpace:'nowrap' }}>Text-Align:</label>
+        <select value={currentStyle.textAlign} onChange={(e) => handleTextAlignmentChange(e.target.value)}>
+          <option value="left">Left</option>
+          <option value="center">Center</option>
+          <option value="right">Right</option>
+        </select>
+      </div>
 </div>
         <div>
           <label>Color:</label>
           <input type="color" id="colorInput" value="#000000" onChange={(e) => handleColorChange(e.target.value)} />
         </div>
       </div>
-
       <button onClick={handleToggleChangeAllStyle} className={`${changeAllStyleRef.current ? 'active' : ''}`}>
         change all text's style
       </button>

@@ -59,7 +59,13 @@ select {
   cursor: text;
   margin-left: 80px;
 }
+.DivTextArea.center {
+  text-align: center;
+}
 
+.DivTextArea.right {
+  text-align: right;
+}
 
 
 .screenDiv {
