@@ -1,6 +1,6 @@
 import html2pdf from 'html2pdf.js';
 import { HiOutlineDownload } from 'react-icons/hi';
-
+import { Tooltip } from 'react-tooltip';
 function ConvertToPdf(props) {
   const text = props.text;
 
@@ -42,8 +42,9 @@ function ConvertToPdf(props) {
   }
 
   return (
-    <div className="Convert_To_Pdf" id="Convert_To_Pdf" >
+    <div className="Convert_To_Pdf" id="Convert_To_Pdf" data-tooltip-id="Convert-to-PDF" data-tooltip-content="Convert to PDF">
       <button onClick={convertPdf}><HiOutlineDownload></HiOutlineDownload></button>
+      <Tooltip id="Convert-to-PDF" className= 'common-tooltip' />
     </div>
   );
 }
