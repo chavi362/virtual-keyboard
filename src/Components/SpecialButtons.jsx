@@ -107,10 +107,6 @@ function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
           <FaPaste />
         </button>
       </span>
-
-     
-    </div>  
-
       <Tooltip id="delete-tooltip" className= 'common-tooltip' />
       <Tooltip id="undo-tooltip" className= 'common-tooltip' />
       <Tooltip id="redo-tooltip" className= 'common-tooltip' />
