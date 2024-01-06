@@ -20,6 +20,7 @@ button {
 button:hover {
   background-color: #7cdfd1;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .special-buttons {
@@ -159,6 +160,7 @@ select {
 
 .backspace {
   grid-column: span 1;
+  width: 95px;
   /* span 1 column for the backspace button */
 }
 
@@ -192,8 +194,6 @@ select {
   gap: 5px;
   margin-top: 20px;
   margin-left: 27%;
-
-
 }
 
 .style-selector-container>div {
