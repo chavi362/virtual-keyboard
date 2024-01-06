@@ -2,9 +2,15 @@ import { FaKeyboard } from "react-icons/fa";
 import "./KeyBoardStylee.css";
 import languagesData from "../LanguegesData";
 import emojiButton from "../assets/images/emojiButton.webp";
+
+import React, { useState } from 'react';
+
 function KeyBoardLanguage(props) {
-  const setLanguage = props.setLanguage;
-  const handleChange = (event) =>  setLanguage(event.target.value);
+  const [selectedLanguage, setSelectedLanguage] = useState(props.initialLanguage);
+  // const setLanguage = props.setLanguage;
+  const handleChange = (event) =>   setSelectedLanguage(event.target.value);
+  
+  // setLanguage(event.target.value);
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
