@@ -6,11 +6,8 @@ import emojiButton from "../assets/images/emojiButton.webp";
 import React, { useState } from 'react';
 
 function KeyBoardLanguage(props) {
-  const [selectedLanguage, setSelectedLanguage] = useState(props.initialLanguage);
-  // const setLanguage = props.setLanguage;
-  const handleChange = (event) =>   setSelectedLanguage(event.target.value);
-  
-  // setLanguage(event.target.value);
+  const setLanguage = props.setLanguage;
+  const handleChange = (event) =>  setLanguage(event.target.value);
   return (
     <div className="language-and-icons">
       <select className="chooseLanguage" onChange={handleChange}>
