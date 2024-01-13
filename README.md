@@ -14,7 +14,7 @@ This is a React-based virtual keyboard app with support for multiple languages a
 
 ## Features
 
--   Virtual keyboard with support for Hebrew, English, Arabic, Ukranian, Russian, Portuguese, Spanish, Macedonian and Persian languages.
+-   Virtual keyboard with support for Hebrew, English, Arabic, Ukranian, Russian, Portuguese, Spanish, Macedonian, Hindi and Persian languages.
 -   Emoji keyboard for expressive input.
 -   Stylish and customizable interface.
 -   Undo and redo functionality.
