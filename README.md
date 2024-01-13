@@ -96,19 +96,19 @@ We welcome contributions from the community to help improve the Virtual Keyboard
 git checkout -b feature/NewFeature.
 ```
 
-4. Commit your changes:
+3. Commit your changes:
 
 ```bash
 git commit -m 'Add a new feature'.
 ```
 
-6. Push to the branch:
+4. Push to the branch:
 
 ```bash
 git push origin feature/NewFeature.
 ```
 
-7. Open a pull request on the main repository, describing your changes and explaining why they are valuable.
+5. Open a pull request on the main repository, describing your changes and explaining why they are valuable.
 
    Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
    For example, if your pull request fixes issue #10, then please add the following to its description:
