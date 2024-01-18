@@ -17,6 +17,11 @@ button {
   background-color: #ffffff;
 }
 
+button.size-xl {
+  width: 120px;
+  height: 36px;
+}
+
 button:hover {
   background-color: #7cdfd1;
   font-weight: bold;
@@ -35,7 +40,9 @@ button:hover {
 
 label {
   color: #ffffff;
+  display: block;
   font-weight: bold;
+  height: 24px;
 }
 
 input,
@@ -45,20 +52,18 @@ select {
 
 #letters-row button {
   width: 50px;
-
 }
 
 .DivTextArea {
-  user-select: text;
-  display: inline-block;
-  width: 700px;
-  padding: 10px 10px 50px;
-  line-height: 1.15;
   background: rgb(255, 255, 255);
-  z-index: 3;
-  outline: none;
   cursor: text;
-  margin-left: 80px;
+  display: inline-block;
+  line-height: 1.15;
+  outline: none;
+  padding: 10px 10px 50px;
+  user-select: text;
+  width: 100%;
+  z-index: 3;
 }
 .DivTextArea.center {
   text-align: center;
@@ -71,7 +76,8 @@ select {
 
 .screenDiv {
   position: relative;
-
+  width: 100%;
+  max-width: 920px;
 }
 
 #spacial_buttons {
@@ -89,21 +95,20 @@ select {
 .change_layout {
   background: rgb(101, 216, 201);
   border-radius: 14px 14px 0px 0px;
-  padding-bottom: 2px;
-  max-width: 920px;
-  width: 720px;
   margin: auto;
-  margin-left: 80px;
+  /* max-width: 920px; */
+  padding-bottom: 2px;
+  /* width: 720px; */
 }
 
 .chooseLanguage {
-  margin: 4px;
-  padding: 6px 9px 6px 12px;
-  direction: ltr;
-  word-wrap: normal;
-  font-weight: bold;
   background-color: rgb(20, 122, 139) !important;
   color: rgb(255, 255, 255);
+  direction: ltr;
+  font-weight: bold;
+  margin: 4px;
+  padding: 6px 9px 6px 12px;
+  word-wrap: normal;
 }
 
 .language-and-icons {
@@ -126,7 +131,6 @@ select {
 #letters-row {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  max-width: 700px;
   justify-content: center;
 }
 
@@ -178,38 +182,17 @@ select {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* Align items to the top */
-  margin-left: 100px;
-  /* Adjust margin as needed */
-  margin-left: 100px;
-  /* Adjust margin as needed */
-
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
-.style-selector-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  /* Two rows: one for inputs and one for buttons */
-  gap: 5px;
-  margin-top: 20px;
-  margin-left: 27%;
+.row.style-selector {
+  margin-top: 16px;
 }
 
-.style-selector-container>div {
-  margin: 5px;
-  grid-column: span 1;
-}
-
-.style-selector-container label {
+.row.style-selector > * {
   margin-right: 5px;
-  grid-column: span 1;
-}
-
-.style-selector-container button {
-  margin-top: 5px;
-  grid-column: span 1;
-
+  margin-left: 5px;
 }
 
 .active {
@@ -220,9 +203,7 @@ select {
   padding: 0px;
   background-color: transparent;
   border: none;
-  height: 70%;
   width: 100%;
-
 }
 
 .highlighted {
@@ -230,10 +211,10 @@ select {
   color: white;
 }
 
-
 .modal {
   font-size: 12px;
 }
+
 .modal > .header {
   background-color: rgb(101, 216, 201);
   width: 100%;

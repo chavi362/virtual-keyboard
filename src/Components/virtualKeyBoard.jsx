@@ -362,17 +362,14 @@ function VirtualKeyBoard() {
                     />
                 )}
             </div>
-            <div className="style-selector-container">
-                <StyleSelector
-                    changeAllTextStyle={changeAllTextStyle}
-                    onSelectStyle={setCurrentStyle}
-                    currentStyle={currentStyle}
-                    upperAll={upperAll}
-                    lowerAll={lowerAll}
-                />
-            </div>
-            <div className="convert-to-pdf">
-            </div>
+            <StyleSelector
+                changeAllTextStyle={changeAllTextStyle}
+                onSelectStyle={setCurrentStyle}
+                currentStyle={currentStyle}
+                upperAll={upperAll}
+                lowerAll={lowerAll}
+            />
+            <div className="convert-to-pdf"></div>
         </div>
     );
 }
