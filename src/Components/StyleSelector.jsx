@@ -180,6 +180,7 @@ function StyleSelector(props) {
           <input
             type="color"
             id="colorInput"
+            value={currentStyle.color}
             onChange={(e) => handleColorChange(e.target.value)}
           />
         </div>
