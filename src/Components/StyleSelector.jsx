@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FaUnderline } from "react-icons/fa";
 import "./KeyBoardStylee.css";
-import { useRef } from "react";
+
 
 const FontOption = styled.option`
   font-family: ${(props) => props.fontFamily};
 `;
-
 function StyleSelector(props) {
-  const changeAllStyleRef = useRef(false);
+  const [changeAllStyle, setChangeAllStyle] = useState(false);
   const {
     changeAllTextStyle,
     currentStyle,
@@ -17,39 +16,42 @@ function StyleSelector(props) {
     upperAll,
     lowerAll,
   } = props;
-
+  const handleChangeStyle = (e) => {
+    const styleToChange = {
+      ...currentStyle,
+      [e.target.name]: e.target.value,
+    };
+    changeStyle(styleToChange);
+  };
+  const handleTextDecorationChange = () => {
+    const styleToChange = {
+      ...currentStyle,
+      textDecoration:
+        currentStyle.textDecoration === "none" ? "underline" : "none",
+    };
+    changeStyle(styleToChange);
+  };
+  const changeStyle = (styleToChange) => {
+    if (changeAllStyle) {
+      changeAllTextStyle(styleToChange);
+    } else {
+      onSelectStyle(styleToChange);
+    }
+  };
   const handleTextAlignmentChange = (newAlignment) => {
     const styleToChange = {
       ...currentStyle,
       textAlign: newAlignment,
     };
     changeStyle(styleToChange);
-
     const textArea = document.querySelector(".DivTextArea");
     if (textArea) {
       textArea.style.textAlign = newAlignment;
     }
   };
   const handleToggleChangeAllStyle = () => {
-    changeAllStyleRef.current = !changeAllStyleRef.current;
+    setChangeAllStyle(prevValue => !prevValue);
   };
-
-  const handleColorChange = (newColor) => {
-    const styleToChange = {
-      ...currentStyle,
-      color: newColor,
-    };
-    changeStyle(styleToChange);
-  };
-
-  const changeStyle = (styleToChange) => {
-    if (changeAllStyleRef.current) {
-      changeAllTextStyle(styleToChange);
-    } else {
-      onSelectStyle(styleToChange);
-    }
-  };
-
   const handleFontSizeChange = (increment) => {
     const newFontSize = Math.max(
       1,
@@ -61,24 +63,6 @@ function StyleSelector(props) {
     };
     changeStyle(styleToChange);
   };
-
-  const handleFontFamilyChange = (newFontFamily) => {
-    const styleToChange = {
-      ...currentStyle,
-      fontFamily: newFontFamily,
-    };
-    changeStyle(styleToChange);
-  };
-
-  const handleTextDecorationChange = () => {
-    const styleToChange = {
-      ...currentStyle,
-      textDecoration:
-        currentStyle.textDecoration === "none" ? "underline" : "none",
-    };
-    changeStyle(styleToChange);
-  };
-
   return (
     <>
       <div className="style-selector-container">
@@ -87,9 +71,8 @@ function StyleSelector(props) {
         <div>
           <button
             onClick={handleTextDecorationChange}
-            className={`${
-              currentStyle.textDecoration === "underline" ? "active" : ""
-            }`}
+            className={`${currentStyle.textDecoration === "underline" ? "active" : ""
+              }`}
           >
             <FaUnderline />
           </button>
@@ -103,6 +86,7 @@ function StyleSelector(props) {
             <div style={{ display: "flex", alignItems: "flex-end" }}>
               <button
                 onClick={() => handleFontSizeChange(-1)}
+
                 style={{ width: "22px", marginBottom: "0px" }}
               >
                 -
@@ -110,7 +94,7 @@ function StyleSelector(props) {
               <input
                 type="text"
                 value={currentStyle.fontSize}
-                onChange={() => {}}
+                onChange={() => { }}
                 style={{ marginLeft: "5px", marginRight: "5px", width: "40px" }}
               />
               <button
@@ -121,7 +105,6 @@ function StyleSelector(props) {
               </button>
             </div>
           </div>
-
           <div>
             <div
               style={{
@@ -134,7 +117,8 @@ function StyleSelector(props) {
               <label style={{ marginBottom: "5px" }}>Font Family:</label>
               <select
                 value={currentStyle.fontFamily}
-                onChange={(e) => handleFontFamilyChange(e.target.value)}
+                name="fontFamily"
+                onChange={handleChangeStyle}
               >
                 <FontOption fontFamily="Arial">Arial</FontOption>
                 <FontOption fontFamily="Times New Roman">
@@ -181,13 +165,14 @@ function StyleSelector(props) {
             type="color"
             id="colorInput"
             value="#000000"
-            onChange={(e) => handleColorChange(e.target.value)}
+            name="color"
+            onChange={handleChangeStyle}
           />
         </div>
       </div>
       <button
         onClick={handleToggleChangeAllStyle}
-        className={`${changeAllStyleRef.current ? "active" : ""}`}
+        className={`${changeAllStyle ? "active" : ""}`}
       >
         change all text's style
       </button>

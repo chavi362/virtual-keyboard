@@ -9,7 +9,6 @@ import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
 
-import ConvertToPdf from "./ConvertToPdf";
 
 const intialLanguage = getLanguage("english");
 const initialState = {
