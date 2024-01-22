@@ -120,6 +120,7 @@ Fixes #10
 
 If you have any questions, suggestions, or issues regarding the virtual-keyboard, 
 please feel free to reach out to us through the [Issues](https://github.com/chavi362/virtual-keyboard/issues) section of this repository.
+You can also discuss with as in the discussion template there are there meaningfull discussion
 You can also contact me via my [email](mailto:chavideveloper@gmail.com).
 
 ## License
