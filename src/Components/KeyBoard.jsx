@@ -1,47 +1,32 @@
-import { useEffect } from 'react';
 import './KeyBoardStylee.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { addBtnColor } from '../redux/reducer';
 
-function KeyBoard(props) {
-    const dispatch = useDispatch();
-    const buttonColors = useSelector(state => state.buttonColors);
-    const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-    let keyboardArr = [...numbersArr,...props.charactersArr];
-    function toggleShift() {
-        props.setisShift(!props.isShift);
-    }
-    useEffect(() => {
-        dispatch(addBtnColor(Array(keyboardArr.length).fill('')));
-    }, []);
+function KeyBoard(props) {  
     return (
-        <div id="keyBoardK">
-            <div id="letters-row" className="letters-row">
-                {keyboardArr.map((char, index) => (
-                    <div className={`k_b`} key={index}>
-                        <button
-                            className={`${buttonColors[index]}`}
-                            onClick={() => props.handleButtonClick(char, index)}>
-                            {char}
-                        </button>
-                    </div>
-                ))}
-            </div>
-            <div id="additional-buttons" className="keyboard-row">
-                <button onClick={() => props.handleButtonClick('\n')} className="enter">
-                    enter
-                </button>
-                <button onClick={() => props.handleButtonClick('\xa0')} className="space">
-                    space
-                </button>
-                <button onClick={() => props.handleEvent('backspace')} className="backspace">
-                    backspace
-                </button>
-                <button onClick={toggleShift} className={`capslock ${props.isShift ? 'active' : ''}`}>
-                    shift
-                </button>
-            </div>
+        <>
+        <div id='vk-board' className={`lang-${props.langCode}`}>
+          {props.keyList && props.keyList.map((row, rowIndex)=>{
+            return (
+              <div key={rowIndex} className='d-flex justify-center'>
+                {row.map((item, index)=>{
+                  const displayText = props.isShift ? item[2] || item[1] : item[1]
+                  const nonLiterals = ['key-bspc', 'key-caps', 'key-tab', 'key-return', 'key-lshift', 'key-rshift', 'key-lcmd', 'key-rcmd', 'key-lopt', 'key-ropt', 'key-lctrl', 'key-rctrl', 'key-spc']
+                  if(nonLiterals.includes(item[0])){
+                    switch(item[0]){
+                      case 'key-bspc': return <div key={index} className={`key ${item[0]}`} onClick={() => props.handleEvent('backspace')}>{displayText}</div>;
+                      case 'key-caps': case 'key-lshift': case 'key-rshift': return <div key={index} className={`key ${item[0]}`} onClick={() => props.setisShift(!props.isShift)}>{displayText}</div>;
+                      case 'key-return': return <div key={index} className={`key ${item[0]}`} onClick={() => props.handleButtonClick('\n')}>{displayText}</div>;
+                      case 'key-spc': return <div key={index} className={`key ${item[0]}`} onClick={() => props.handleButtonClick('\xa0')}>{displayText}</div>;
+                      default: return <div key={index} className={`key ${item[0]}`}>{displayText}</div>;
+                    }
+                  } else {
+                    return <div key={index} className={`key ${item[0]}`} onClick={() => props.handleButtonClick(displayText)}>{displayText}</div>
+                  }
+                })}
+              </div>
+            )
+          })}
         </div>
+        </>
     );
 }
 export default KeyBoard;

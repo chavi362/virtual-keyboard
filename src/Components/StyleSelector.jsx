@@ -80,8 +80,8 @@ function StyleSelector(props) {
   };
 
   return (
-    <div className="d-flex flex-column">
-      <div className="d-flex align-items-center justify-center row style-selector">
+    <div className="d-flex flex-column style-selector-container">
+      <div className="d-flex align-items-center justify-center row style-selector" style={{marginTop: 0}}>
         <button onClick={lowerAll} className="size-xl">LOWER ALL</button>
         <button onClick={upperAll} className="size-xl">UPPER ALL</button>
         <button
@@ -92,7 +92,7 @@ function StyleSelector(props) {
         </button>
       </div>
 
-      <div className="row style-selector d-flex flex-row" style={{ alignItems: "end" }}>
+      <div className="row style-selector d-flex flex-row justify-center" style={{ alignItems: "end" }}>
         <div>
           <label>Font Size:</label>
           <div className="d-flex" style={{ alignItems: "flex-end" }}>
@@ -158,6 +158,7 @@ function StyleSelector(props) {
         <button
           onClick={handleToggleChangeAllStyle}
           className={`${changeAllStyleRef.current ? "active" : ""}`}
+          style={{padding: "8px 16px"}}
         >
           change all text's style
         </button>

@@ -3,12 +3,14 @@
 }
 
 html, body, #root {
+  height: fit-content;
   margin: 0;
   width: 100%;
 }
 
 div { box-sizing: border-box; }
 
+.d-none { display: none; visibility: hidden;}
 .d-flex { display: flex; }
 .d-block { display: flex; }
 .flex-column { flex-direction: column; }
