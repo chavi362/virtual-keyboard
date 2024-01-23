@@ -1,34 +1,39 @@
 :root{
-  --vk-max-width: 880px
+  --vk-max-width: 880px;
+  --vk-color-board: rgb(230, 230, 230);
+  --vk-color-key: rgb(255, 255, 255);
+  --vk-color-key-hover: rgb(220, 220, 220);
+  --vk-color-key-active: rgb(200, 200, 200);
 }
 
 #vk-board {
-  background-color: rgb(230, 230, 230);
+  background-color: var(--vk-color-board);
+  border-radius: 4px;
   padding: 12px;
   user-select: none;
-  border-radius: 4px;
 }
 
 #vk-board .key {
-  height: 50px;
-  width: 50px;
-  background-color: rgb(255, 255, 255);
-  display: flex;
   align-items: center;
+  background-color: var(--vk-color-key);
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  height: 50px;
   justify-content: center;
   margin: 4px;
-  border: none;
   transition: .3s;
+  width: 50px;
 }
 
 #vk-board .key:hover {
+  background-color: var(--vk-color-key-hover);
   cursor: pointer;
-  background-color: rgb(220, 220, 220);
 }
 
 #vk-board .key.highlighted,
 #vk-board .key:active {
-  background-color: rgb(200, 200, 200);
+  background-color: var(--vk-color-key-active);
 }
 
 #vk-board .key.key-bspc { width: 94px; }
@@ -48,20 +53,15 @@
 #vk-board .key.key-lctrl,
 #vk-board .key.key-rctrl { width: 79px; }
 
-#vk-board .key.kw-1half { width: calc(50px + 25px + 4px); }
-#vk-board .key.kw-2 { width: calc(50px * 2 + 8px); }
-#vk-board .key.kw-2half { width: calc(50px * 2 + 25px + 12px); }
-#vk-board .key.kw-5 { width: calc(50px * 5 + 8px); }
-
 #vk-board.lang-mkd .key.key-caps { width: 62px; }
 #vk-board.lang-mkd .key.key-return { width: 82px; }
 
 button {
   border-radius: 7px;
-  padding: 4px;
-  margin: 2px;
-  font-size: 16px;
   background-color: #ffffff;
+  font-size: 16px;
+  margin: 2px;
+  padding: 4px;
 }
 
 button.size-xl {
@@ -187,17 +187,17 @@ select {
 }
 
 .keyboard-container {
+  align-items: flex-start;
   align-self: center;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 16px;
   margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .style-selector-container {
   border-top: 1px solid rgb(180, 180, 180);
-  background-color: rgb(230, 230, 230);
+  background-color: var(--vk-color-board);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   margin-bottom: 16px;
@@ -211,12 +211,12 @@ select {
 }
 
 .style-selector-container button:hover {
+  background-color: var(--vk-color-key-hover);
   cursor: pointer;
-  background-color: rgb(220, 220, 220);
 }
 
 .style-selector-container button:active {
-  background-color: rgb(200, 200, 200);
+  background-color: var(--vk-color-key-active);
 }
 
 .row.style-selector {
