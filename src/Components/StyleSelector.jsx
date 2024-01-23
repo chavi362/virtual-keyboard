@@ -164,7 +164,7 @@ function StyleSelector(props) {
           <input
             type="color"
             id="colorInput"
-            value="#000000"
+            value={currentStyle.color}
             name="color"
             onChange={handleChangeStyle}
           />
