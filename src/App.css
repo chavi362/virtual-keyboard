@@ -1,7 +1,19 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
+html, body, #root {
+  height: fit-content;
+  margin: 0;
+  width: 100%;
+}
+
+div { box-sizing: border-box; }
+
+.d-none { display: none; visibility: hidden;}
+.d-flex { display: flex; }
+.d-block { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.align-items-center { align-items: center; }
+.justify-center { justify-content: center; }

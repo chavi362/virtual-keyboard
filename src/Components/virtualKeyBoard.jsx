@@ -4,7 +4,7 @@ import Screen from "./Screen";
 import SpecialButtons from "./SpecialButtons";
 import KeyBoard from "./KeyBoard";
 import LetterStyle from "../letterStyle";
-import { getLanguage } from "../LanguegesData";
+import { getLanguage } from "../LanguagesData";
 import StyleSelector from "./StyleSelector";
 import "./KeyBoardStylee.css";
 import EmojiKeyBoard from "./EmojiKeyBoard";
@@ -12,10 +12,10 @@ import EmojiKeyBoard from "./EmojiKeyBoard";
 
 const intialLanguage = getLanguage("english");
 const initialState = {
+    iso_639_2: intialLanguage.iso_639_2,
     languageName: intialLanguage.languageName,
     translatedName: intialLanguage.translatedName,
-    characters: intialLanguage.characters,
-    shiftCharacters: intialLanguage.shiftCharacters,
+    keyList: intialLanguage.keyList,
     placeholder: intialLanguage.placeholder,
     currentStyle: new LetterStyle(),
     stack: [[]],
@@ -24,6 +24,7 @@ const initialState = {
     isRedo: false,
     redoStack: [],
 };
+
 const highlightClickedButtons = (char) => {
     const buttons = document.querySelectorAll('.k_b button');
     buttons.forEach((button) => {
@@ -42,10 +43,10 @@ const reducer = (state, action) => {
             const newLanguage = getLanguage(action.language) || intialLanguage;
             return {
                 ...state,
+                iso_639_2: newLanguage.iso_639_2,
                 languageName: newLanguage.languageName,
                 translatedName: newLanguage.translatedName,
-                characters: newLanguage.characters,
-                shiftCharacters: newLanguage.shiftCharacters,
+                keyList: newLanguage.keyList,
                 placeholder: newLanguage.placeholder,
             };
         case "deleteLastChar":
@@ -139,7 +140,7 @@ const reducer = (state, action) => {
 };
 function VirtualKeyBoard() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { language, characters, shiftCharacters, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
+    const { iso_639_2, language, keyList, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
     const [isShift, setisShift] = useState(false);
     const setCurrentStyle = (newStyle) => {
         dispatch({
@@ -271,7 +272,7 @@ function VirtualKeyBoard() {
                 if (event.keyCode === 32) {
                     char = '\xa0';
 
-                    const spaces = document.querySelectorAll('.space');
+                    const spaces = document.querySelectorAll('.key-spc');
 
                     spaces.forEach((space) => {
                         space.classList.add('highlighted');
@@ -282,7 +283,7 @@ function VirtualKeyBoard() {
 
                 } else if (event.keyCode === 8) {
                     handleEvent('backspace');
-                    const backspaces = document.querySelectorAll('.backspace');
+                    const backspaces = document.querySelectorAll('.key-bspc');
                     backspaces.forEach((backspace) => {
                         backspace.classList.add('highlighted');
                         setTimeout(() => {
@@ -294,7 +295,7 @@ function VirtualKeyBoard() {
                 } else if (event.keyCode === 13) {
                     char = '\n'; // enter
 
-                    const enters = document.querySelectorAll('.enter');
+                    const enters = document.querySelectorAll('.key-return');
 
                     enters.forEach((enter) => {
                         enter.classList.add('highlighted');
@@ -319,9 +320,9 @@ function VirtualKeyBoard() {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handleEvent]);
-
+    
     return (
-        <div className="virtual_keyBoard">
+        <div className="main-container">
             <div className="screenDiv">
                 <div className="change_layout">
                     <KeyBoardLanguage
@@ -347,31 +348,27 @@ function VirtualKeyBoard() {
                         : placeholder}
                 />
             </div>
-            <div className="keyboard-container">
-                {emojiActive ? (
-                    <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
-                ) : (
-                    <KeyBoard
-                        charactersArr={isShift ? shiftCharacters : characters}
-                        setisShift={setisShift}
-                        language={language}
-                        handleButtonClick={handleInputButtonClick}
-                        handleEvent={handleEvent}
-                        isShift={isShift}
-                    />
-                )}
-            </div>
-            <div className="style-selector-container">
-                <StyleSelector
-                    changeAllTextStyle={changeAllTextStyle}
-                    onSelectStyle={setCurrentStyle}
-                    currentStyle={currentStyle}
-                    upperAll={upperAll}
-                    lowerAll={lowerAll}
+            {emojiActive ? (
+                <EmojiKeyBoard handleInputButtonClick={handleInputButtonClick} />
+            ) : (
+                <KeyBoard
+                    langCode={iso_639_2}
+                    language={language}
+                    keyList={keyList}
+                    setisShift={setisShift}
+                    isShift={isShift}
+                    handleButtonClick={handleInputButtonClick}
+                    handleEvent={handleEvent}
                 />
-            </div>
-            <div className="convert-to-pdf">
-            </div>
+            )}
+            <StyleSelector
+                changeAllTextStyle={changeAllTextStyle}
+                onSelectStyle={setCurrentStyle}
+                currentStyle={currentStyle}
+                upperAll={upperAll}
+                lowerAll={lowerAll}
+            />
+            <div className="convert-to-pdf"></div>
         </div>
     );
 }

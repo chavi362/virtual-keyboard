@@ -1,8 +1,6 @@
 body{
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
-    overflow-x: hidden;
     font-family:  'Arial Narrow Bold', sans-serif;
     background-image: url(./assets/images/backgroundImage.jpg);
 }

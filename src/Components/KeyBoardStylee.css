@@ -1,20 +1,72 @@
-#numbers-row {
-  margin-left: 310px;
+:root{
+  --vk-max-width: 880px;
+  --vk-color-board: rgb(230, 230, 230);
+  --vk-color-key: rgb(255, 255, 255);
+  --vk-color-key-hover: rgb(220, 220, 220);
+  --vk-color-key-active: rgb(200, 200, 200);
 }
 
-#keyboard-row {
-  display: flex;
-  margin-left: 300px;
-  padding-left: 0px;
-  margin-right: 0px;
+#vk-board {
+  background-color: var(--vk-color-board);
+  border-radius: 4px;
+  padding: 12px;
+  user-select: none;
 }
+
+#vk-board .key {
+  align-items: center;
+  background-color: var(--vk-color-key);
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 4px;
+  transition: .3s;
+  width: 50px;
+}
+
+#vk-board .key:hover {
+  background-color: var(--vk-color-key-hover);
+  cursor: pointer;
+}
+
+#vk-board .key.highlighted,
+#vk-board .key:active {
+  background-color: var(--vk-color-key-active);
+}
+
+#vk-board .key.key-bspc { width: 94px; }
+#vk-board .key.key-tab { width: 74px; }
+#vk-board .key.key-fwslash { width: 70px; }
+
+#vk-board .key.key-caps { width: 82px; }
+#vk-board .key.key-return { width: 120px; font-size: 1.5rem; }
+#vk-board .key.key-lshift { width: 110px; }
+#vk-board .key.key-rshift { width: 150px; }
+#vk-board .key.key-spc { width: 326px; }
+
+#vk-board .key.key-lcmd,
+#vk-board .key.key-rcmd,
+#vk-board .key.key-lopt,
+#vk-board .key.key-ropt,
+#vk-board .key.key-lctrl,
+#vk-board .key.key-rctrl { width: 79px; }
+
+#vk-board.lang-mkd .key.key-caps { width: 62px; }
+#vk-board.lang-mkd .key.key-return { width: 82px; }
 
 button {
   border-radius: 7px;
-  padding: 4px;
-  margin: 2px;
-  font-size: 16px;
   background-color: #ffffff;
+  font-size: 16px;
+  margin: 2px;
+  padding: 4px;
+}
+
+button.size-xl {
+  width: 120px;
+  height: 36px;
 }
 
 button:hover {
@@ -34,8 +86,10 @@ button:hover {
 }
 
 label {
-  color: #ffffff;
+  /* color: #ffffff; */
+  display: block;
   font-weight: bold;
+  height: 24px;
 }
 
 input,
@@ -43,22 +97,16 @@ select {
   padding: 5px;
 }
 
-#letters-row button {
-  width: 50px;
-
-}
-
 .DivTextArea {
-  user-select: text;
-  display: inline-block;
-  width: 700px;
-  padding: 10px 10px 50px;
-  line-height: 1.15;
   background: rgb(255, 255, 255);
-  z-index: 3;
-  outline: none;
   cursor: text;
-  margin-left: 80px;
+  display: inline-block;
+  line-height: 1.15;
+  outline: none;
+  padding: 10px 10px 50px;
+  user-select: text;
+  width: 100%;
+  z-index: 3;
 }
 .DivTextArea.center {
   text-align: center;
@@ -68,10 +116,10 @@ select {
   text-align: right;
 }
 
-
 .screenDiv {
   position: relative;
-
+  width: 100%;
+  max-width: var(--vk-max-width);
 }
 
 #spacial_buttons {
@@ -89,21 +137,20 @@ select {
 .change_layout {
   background: rgb(101, 216, 201);
   border-radius: 14px 14px 0px 0px;
-  padding-bottom: 2px;
-  max-width: 920px;
-  width: 720px;
   margin: auto;
-  margin-left: 80px;
+  /* max-width: 920px; */
+  padding-bottom: 2px;
+  /* width: 720px; */
 }
 
 .chooseLanguage {
-  margin: 4px;
-  padding: 6px 9px 6px 12px;
-  direction: ltr;
-  word-wrap: normal;
-  font-weight: bold;
   background-color: rgb(20, 122, 139) !important;
   color: rgb(255, 255, 255);
+  direction: ltr;
+  font-weight: bold;
+  margin: 4px;
+  padding: 6px 9px 6px 12px;
+  word-wrap: normal;
 }
 
 .language-and-icons {
@@ -123,93 +170,62 @@ select {
   margin-left: 8px;
 }
 
-#letters-row {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  max-width: 700px;
-  justify-content: center;
-}
-
-
 .emoji-keyboard {
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  /* 10 columns */
   gap: 2px;
+  grid-template-columns: repeat(20, 1fr); /* 10 columns */
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
-#additional-buttons {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  /* 3 columns for the additional buttons grid */
-  gap: 5px;
-  margin-top: 10px;
-  /* Adjust margin as needed */
-}
-
-.space {
-  grid-column: span 4;
-  /* span 2 columns for the space button */
-}
-
-.enter {
-  grid-column: span 1;
-  /* span 1 column for the enter button */
-
-}
-
-.backspace {
-  grid-column: span 1;
-  width: 95px;
-  /* span 1 column for the backspace button */
-}
-
-.virtual_keyBoard {
+.main-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   margin-top: 50px;
-
+  text-align: center;
 }
 
 .keyboard-container {
+  align-items: flex-start;
   align-self: center;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  /* Align items to the top */
-  margin-left: 100px;
-  /* Adjust margin as needed */
-  margin-left: 100px;
-  /* Adjust margin as needed */
-
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .style-selector-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  /* Two rows: one for inputs and one for buttons */
-  gap: 5px;
-  margin-top: 20px;
-  margin-left: 27%;
-}
-
-.style-selector-container>div {
-  margin: 5px;
-  grid-column: span 1;
-}
-
-.style-selector-container label {
-  margin-right: 5px;
-  grid-column: span 1;
+  border-top: 1px solid rgb(180, 180, 180);
+  background-color: var(--vk-color-board);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin-bottom: 16px;
+  max-width: var(--vk-max-width);
+  padding: 16px;
+  width: 100%;
 }
 
 .style-selector-container button {
-  margin-top: 5px;
-  grid-column: span 1;
+  border: none;
+}
 
+.style-selector-container button:hover {
+  background-color: var(--vk-color-key-hover);
+  cursor: pointer;
+}
+
+.style-selector-container button:active {
+  background-color: var(--vk-color-key-active);
+}
+
+.row.style-selector {
+  margin-top: 16px;
+}
+
+.row.style-selector > * {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .active {
@@ -220,20 +236,13 @@ select {
   padding: 0px;
   background-color: transparent;
   border: none;
-  height: 70%;
   width: 100%;
-
 }
-
-.highlighted {
-  background-color: #7cdfd1;
-  color: white;
-}
-
 
 .modal {
   font-size: 12px;
 }
+
 .modal > .header {
   background-color: rgb(101, 216, 201);
   width: 100%;
