@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FaUnderline } from "react-icons/fa";
 import "./KeyBoardStylee.css";
-import { useRef } from "react";
+
 
 const FontOption = styled.option`
   font-family: ${(props) => props.fontFamily};
 `;
-
 function StyleSelector(props) {
-  const changeAllStyleRef = useRef(false);
+  const [changeAllStyle, setChangeAllStyle] = useState(false);
   const {
     changeAllTextStyle,
     currentStyle,
@@ -17,39 +16,42 @@ function StyleSelector(props) {
     upperAll,
     lowerAll,
   } = props;
-
+  const handleChangeStyle = (e) => {
+    const styleToChange = {
+      ...currentStyle,
+      [e.target.name]: e.target.value,
+    };
+    changeStyle(styleToChange);
+  };
+  const handleTextDecorationChange = () => {
+    const styleToChange = {
+      ...currentStyle,
+      textDecoration:
+        currentStyle.textDecoration === "none" ? "underline" : "none",
+    };
+    changeStyle(styleToChange);
+  };
+  const changeStyle = (styleToChange) => {
+    if (changeAllStyle) {
+      changeAllTextStyle(styleToChange);
+    } else {
+      onSelectStyle(styleToChange);
+    }
+  };
   const handleTextAlignmentChange = (newAlignment) => {
     const styleToChange = {
       ...currentStyle,
       textAlign: newAlignment,
     };
     changeStyle(styleToChange);
-
     const textArea = document.querySelector(".DivTextArea");
     if (textArea) {
       textArea.style.textAlign = newAlignment;
     }
   };
   const handleToggleChangeAllStyle = () => {
-    changeAllStyleRef.current = !changeAllStyleRef.current;
+    setChangeAllStyle(prevValue => !prevValue);
   };
-
-  const handleColorChange = (newColor) => {
-    const styleToChange = {
-      ...currentStyle,
-      color: newColor,
-    };
-    changeStyle(styleToChange);
-  };
-
-  const changeStyle = (styleToChange) => {
-    if (changeAllStyleRef.current) {
-      changeAllTextStyle(styleToChange);
-    } else {
-      onSelectStyle(styleToChange);
-    }
-  };
-
   const handleFontSizeChange = (increment) => {
     const newFontSize = Math.max(
       1,
@@ -61,24 +63,6 @@ function StyleSelector(props) {
     };
     changeStyle(styleToChange);
   };
-
-  const handleFontFamilyChange = (newFontFamily) => {
-    const styleToChange = {
-      ...currentStyle,
-      fontFamily: newFontFamily,
-    };
-    changeStyle(styleToChange);
-  };
-
-  const handleTextDecorationChange = () => {
-    const styleToChange = {
-      ...currentStyle,
-      textDecoration:
-        currentStyle.textDecoration === "none" ? "underline" : "none",
-    };
-    changeStyle(styleToChange);
-  };
-
   return (
     <div className="d-flex flex-column style-selector-container">
       <div className="d-flex align-items-center justify-center row style-selector" style={{marginTop: 0}}>
@@ -105,7 +89,7 @@ function StyleSelector(props) {
             <input
               type="text"
               value={currentStyle.fontSize}
-              onChange={() => {}}
+              onChange={() => { }}
               style={{ marginLeft: "5px", marginRight: "5px", width: "40px" }}
             />
             <button
@@ -121,7 +105,8 @@ function StyleSelector(props) {
           <label>Font Family:</label>
           <select
             value={currentStyle.fontFamily}
-            onChange={(e) => handleFontFamilyChange(e.target.value)}
+            name="fontFamily"
+            onChange={handleChangeStyle}
           >
             <FontOption fontFamily="Arial">Arial</FontOption>
             <FontOption fontFamily="Times New Roman">Times New Roman</FontOption>
@@ -150,14 +135,14 @@ function StyleSelector(props) {
         
         <div>
           <label>Color:</label>
-          <input type="color" id="colorInput" value="#000000" onChange={(e) => handleColorChange(e.target.value)}/>
+          <input type="color" id="colorInput" value={currentStyle.color} name="color" onChange={handleChangeStyle} />
         </div>
       </div>
 
       <div className="row style-selector">
         <button
           onClick={handleToggleChangeAllStyle}
-          className={`${changeAllStyleRef.current ? "active" : ""}`}
+          className={`${changeAllStyle ? "active" : ""}`}
           style={{padding: "8px 16px"}}
         >
           change all text's style
