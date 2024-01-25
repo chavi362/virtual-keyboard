@@ -76,11 +76,7 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
-                            onClick={() =>
-                              props.handleButtonClick(
-                                '\u00A0\u00A0\u00A0\u00A0'
-                              )
-                            }
+                            onClick={() => props.handleButtonClick('\t')}
                           >
                             {displayText}
                           </div>
