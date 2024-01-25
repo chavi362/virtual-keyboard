@@ -3,7 +3,7 @@
   --vk-max-height: 320px;
   --vk-color-board: rgb(230, 230, 230);
   --vk-color-key: rgb(255, 255, 255);
-  --vk-color-key-hover: rgb(165, 164, 164);
+  --vk-color-key-hover: rgb(220, 220, 220);
   --vk-color-key-active: rgb(200, 200, 200);
 }
 
@@ -144,6 +144,7 @@ select {
 }
 
 .change_layout {
+  background: rgb(101, 216, 201);
   border-radius: 14px 14px 0px 0px;
   margin: auto;
   /* max-width: 920px; */
@@ -152,19 +153,21 @@ select {
 }
 
 .chooseLanguage {
-  background-color: rgb(20, 122, 139) !important;
-  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  border: none;
+  color: rgb(3, 3, 3);
+  height: 30px;
   direction: ltr;
   font-weight: bold;
-  margin: 4px;
-  padding: 6px 9px 6px 12px;
+  font-size: 16px;
+  margin: 16px;
   word-wrap: normal;
 }
 
 .language-and-icons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   white-space: nowrap;
 }
 
@@ -176,8 +179,8 @@ select {
 .icon {
   background-color: var(--vk-color-key);
   border: 1px solid rgb(180, 180, 180);
-  border-radius: 4px;
-  margin: 4px;
+  border-radius: 16px;
+  margin: 12px;
   padding: 12px;
   cursor: pointer;
   transition: .3s;
