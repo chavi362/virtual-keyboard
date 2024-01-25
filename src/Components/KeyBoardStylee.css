@@ -3,13 +3,12 @@
   --vk-max-height: 320px;
   --vk-color-board: rgb(230, 230, 230);
   --vk-color-key: rgb(255, 255, 255);
-  --vk-color-key-hover: rgb(220, 220, 220);
+  --vk-color-key-hover: rgb(165, 164, 164);
   --vk-color-key-active: rgb(200, 200, 200);
 }
 
 #vk-board {
   background-color: var(--vk-color-board);
-  border-radius: 4px;
   height: var(--vk-max-height);
   padding: 12px;
   user-select: none;
@@ -70,11 +69,6 @@ button {
 button.size-xl {
   width: 120px;
   height: 36px;
-}
-
-button:hover {
-  background-color: #7cdfd1;
-  font-weight: bold;
 }
 
 .special-buttons {
@@ -150,7 +144,6 @@ select {
 }
 
 .change_layout {
-  background: rgb(101, 216, 201);
   border-radius: 14px 14px 0px 0px;
   margin: auto;
   /* max-width: 920px; */
@@ -186,20 +179,12 @@ select {
   border-radius: 4px;
   margin: 4px;
   padding: 12px;
-  width: auto;
-  height: auto;
   cursor: pointer;
   transition: .3s;
 }
 
 .icon:hover {
   background-color: var(--vk-color-key-hover);
-}
-
-#keyboard-icon {
-  font-size: 50px; 
-  cursor: pointer;
-  margin-left: 8px;
 }
 
 .emoji-keyboard {
