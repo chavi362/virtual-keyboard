@@ -34,6 +34,7 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
+                            tabIndex="0"
                             onClick={() => props.handleEvent('backspace')}
                           >
                             {displayText}
@@ -46,6 +47,7 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
+                            tabIndex="0"
                             onClick={() => props.setisShift(!props.isShift)}
                           >
                             {displayText}
@@ -56,6 +58,7 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
+                            tabIndex="0"
                             onClick={() => props.handleButtonClick('\n')}
                           >
                             {displayText}
@@ -66,6 +69,7 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
+                            tabIndex="0"
                             onClick={() => props.handleButtonClick('\xa0')}
                           >
                             {displayText}
@@ -76,7 +80,12 @@ function KeyBoard(props) {
                           <div
                             key={index}
                             className={`key ${item[0]}`}
-                            onClick={() => props.handleButtonClick('&#9;')}
+                            tabIndex="0"
+                            onClick={() =>
+                              props.handleButtonClick(
+                                '\u00A0\u00A0\u00A0\u00A0'
+                              )
+                            }
                           >
                             {displayText}
                           </div>
@@ -93,6 +102,7 @@ function KeyBoard(props) {
                       <div
                         key={index}
                         className={`key ${item[0]}`}
+                        tabIndex="0"
                         onClick={() => props.handleButtonClick(displayText)}
                       >
                         {displayText}
