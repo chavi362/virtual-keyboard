@@ -25,11 +25,18 @@
   margin: 4px;
   transition: .3s;
   width: 50px;
+  box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
 #vk-board .key:hover {
   background-color: var(--vk-color-key-hover);
+}
+
+#vk-board .key:active {
+  background-color: var(--vk-color-key-active);
+  box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
 }
 
 #vk-board .key.highlighted,
@@ -208,11 +215,18 @@ select {
   height: 60px;
   padding: 12px;
   cursor: pointer;
+  box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
   transition: .3s;
 }
 
 .emoji-keyboard button:hover {
   background-color: var(--vk-color-key-hover);
+}
+
+.emoji-keyboard button:active {
+  background-color: var(--vk-color-key-active);
+  box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
 }
 
 .main-container {
