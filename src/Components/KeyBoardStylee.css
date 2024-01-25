@@ -1,5 +1,6 @@
 :root{
   --vk-max-width: 880px;
+  --vk-max-height: 320px;
   --vk-color-board: rgb(230, 230, 230);
   --vk-color-key: rgb(255, 255, 255);
   --vk-color-key-hover: rgb(220, 220, 220);
@@ -9,6 +10,7 @@
 #vk-board {
   background-color: var(--vk-color-board);
   border-radius: 4px;
+  height: var(--vk-max-height);
   padding: 12px;
   user-select: none;
 }
@@ -140,6 +142,7 @@ select {
   border-radius: 4px;
   padding: 12px;
   cursor: pointer;
+  transition: .3s;
 }
 
 #spacial_buttons button:hover {
@@ -186,6 +189,7 @@ select {
   width: auto;
   height: auto;
   cursor: pointer;
+  transition: .3s;
 }
 
 .icon:hover {
@@ -200,8 +204,27 @@ select {
 
 .emoji-keyboard {
   display: flex;
+  flex-direction: column;
   background-color: var(--vk-color-board);
-  width: 880px;
+  width: var(--vk-max-width);
+  height: var(--vk-max-height);
+  overflow-y: scroll;
+}
+
+.emoji-keyboard button {
+  background-color: var(--vk-color-key);
+  border: none;
+  border-radius: 4px;
+  margin: 4px;
+  width: 50px;
+  height: 60px;
+  padding: 12px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.emoji-keyboard button:hover {
+  background-color: var(--vk-color-key-hover);
 }
 
 .main-container {
