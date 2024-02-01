@@ -21,7 +21,7 @@ This is a React-based virtual keyboard app with support for multiple languages a
 
 ## Demo
 
-![image](./src/assets/images/demo-image-new.JPG)
+![image](./src/assets/images/demo-image-new.jpg)
 
 ## Installation
 
