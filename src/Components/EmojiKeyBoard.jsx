@@ -1,7 +1,7 @@
-import { useEmojiKeyBoard } from "../hooks/useEmojiKeyBoard";
+import { useEmojiData } from "../hooks/useEmojiData";
 
 function EmojiKeyBoard({ handleInputButtonClick }) {
-    const emojiCategories = useEmojiKeyBoard();
+    const emojiCategories = useEmojiData();
 
     return (
         <div className='emoji-keyboard'>
