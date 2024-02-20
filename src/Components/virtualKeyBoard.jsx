@@ -38,7 +38,6 @@ const highlightClickedButtons = (char) => {
 };
 const reducer = (state, action) => {
     let newStack = [...state.stack];
-    console.log("reducer")
     switch (action.type) {
         case "changeLanguage":
             const newLanguage = getLanguage(action.language) || intialLanguage;
@@ -80,7 +79,6 @@ const reducer = (state, action) => {
             return state;
         case "inputButtonClick":
             const char = action.char;
-            console.log("input button " + char)
             if (newStack.length !== 0) {
                 const lastState = [...newStack[newStack.length - 1]];
                 lastState.push({ char: char, style: { ...state.currentStyle } });
@@ -315,8 +313,10 @@ function VirtualKeyBoard() {
                 } else {
                     char = String.fromCharCode(event.keyCode).toLowerCase();
                 }
+                if (event.keyCode != 8) {
+                    handleInputButtonClick(char);
+                }
 
-                handleInputButtonClick(char);
                 highlightClickedButtons(char);
             }
 
