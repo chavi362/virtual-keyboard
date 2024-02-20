@@ -38,6 +38,7 @@ const highlightClickedButtons = (char) => {
 };
 const reducer = (state, action) => {
     let newStack = [...state.stack];
+    console.log("reducer")
     switch (action.type) {
         case "changeLanguage":
             const newLanguage = getLanguage(action.language) || intialLanguage;
@@ -50,13 +51,19 @@ const reducer = (state, action) => {
                 placeholder: newLanguage.placeholder,
             };
         case "deleteLastChar":
-            newStack[newStack.length - 1].pop();
+
+            let temp = structuredClone(newStack) 
+            temp[temp.length - 1].pop()
+           
+            newStack.push(temp[temp.length - 1])
+    
             return {
                 ...state,
                 isUndo: true,
                 stack: newStack,
             }
         case "changeAllText":
+ 
             const { itemFunction } = action;
             const lastItemIndex = state.stack.length - 1;
             if (lastItemIndex >= 0) {
@@ -73,6 +80,7 @@ const reducer = (state, action) => {
             return state;
         case "inputButtonClick":
             const char = action.char;
+            console.log("input button " + char)
             if (newStack.length !== 0) {
                 const lastState = [...newStack[newStack.length - 1]];
                 lastState.push({ char: char, style: { ...state.currentStyle } });
