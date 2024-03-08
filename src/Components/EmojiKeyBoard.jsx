@@ -21,7 +21,8 @@ function EmojiKeyBoard({ handleInputButtonClick }) {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)} // Updating search term state on change
             />
-            {Object.entries(emojiCategories).map(([category, emojis]) => (
+            {/* Rendering emojis based on filtered emojis */}
+            {Object.entries(filteredEmojis).map(([category, emojis]) => (
                 <div key={category}>
                     <h3>{category}</h3>
                     {emojis.map((emoji, index) => (
