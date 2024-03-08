@@ -50,13 +50,19 @@ const reducer = (state, action) => {
                 placeholder: newLanguage.placeholder,
             };
         case "deleteLastChar":
-            newStack[newStack.length - 1].pop();
+
+            let temp = structuredClone(newStack) 
+            temp[temp.length - 1].pop()
+           
+            newStack.push(temp[temp.length - 1])
+    
             return {
                 ...state,
                 isUndo: true,
                 stack: newStack,
             }
         case "changeAllText":
+ 
             const { itemFunction } = action;
             const lastItemIndex = state.stack.length - 1;
             if (lastItemIndex >= 0) {
@@ -307,8 +313,10 @@ function VirtualKeyBoard() {
                 } else {
                     char = String.fromCharCode(event.keyCode).toLowerCase();
                 }
+                if (event.keyCode != 8) {
+                    handleInputButtonClick(char);
+                }
 
-                handleInputButtonClick(char);
                 highlightClickedButtons(char);
             }
 
