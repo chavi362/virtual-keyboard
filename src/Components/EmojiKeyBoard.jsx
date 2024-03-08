@@ -3,6 +3,7 @@ import { useEmojiData } from "../hooks/useEmojiData";
 
 function EmojiKeyBoard({ handleInputButtonClick }) {
     const emojiCategories = useEmojiData();
+    const [searchTerm, setSearchTerm] = useState('');
 
     return (
         <div className='emoji-keyboard'>
