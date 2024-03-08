@@ -14,6 +14,13 @@ function EmojiKeyBoard({ handleInputButtonClick }) {
 
     return (
         <div className='emoji-keyboard'>
+            {/* Adding search input */}
+            <input 
+                type="text"
+                placeholder="Search emojis..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)} // Updating search term state on change
+            />
             {Object.entries(emojiCategories).map(([category, emojis]) => (
                 <div key={category}>
                     <h3>{category}</h3>
