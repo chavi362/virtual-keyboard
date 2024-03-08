@@ -5,6 +5,13 @@ function EmojiKeyBoard({ handleInputButtonClick }) {
     const emojiCategories = useEmojiData();
     const [searchTerm, setSearchTerm] = useState('');
 
+    // Filtering emojis based on search term
+    const filteredEmojis = Object.entries(emojiCategories)
+    .reduce((acc, [category, emojis]) => {
+        acc[category] = emojis.filter(emoji => emoji.includes(searchTerm));
+        return acc;
+    }, {});
+
     return (
         <div className='emoji-keyboard'>
             {Object.entries(emojiCategories).map(([category, emojis]) => (
