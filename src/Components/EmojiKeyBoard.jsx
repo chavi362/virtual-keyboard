@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useEmojiData } from "../hooks/useEmojiData";
 
 function EmojiKeyBoard({ handleInputButtonClick }) {
