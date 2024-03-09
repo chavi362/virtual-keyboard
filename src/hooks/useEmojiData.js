@@ -298,7 +298,32 @@ export const useEmojiData = () => {
           { emoji: '🍬', description: 'Candy' }
         ],
     
-        drink: ['🍼', '🥛', '☕', '🫖', '🍵', '🧃', '🥤', '🍶', '🍺', '🍻', '🥂', '🍷', '🥃', '🍸', '🍹', '🧉', '🍾', '🧊', '🥄', '🍴', '🍽', '🥣', '🥡', '🥢'],
+        drink: [
+          { emoji: '🍼', description: 'Baby Bottle' }, 
+          { emoji: '🥛', description: 'Glass of Milk' }, 
+          { emoji: '☕', description: 'Hot Beverage' }, 
+          { emoji: '🫖', description: 'Teapot' }, 
+          { emoji: '🍵', description: 'Teacup Without Handle' }, 
+          { emoji: '🧃', description: 'Juice Box' }, 
+          { emoji: '🥤', description: 'Cup with Straw' }, 
+          { emoji: '🍶', description: 'Sake' }, 
+          { emoji: '🍺', description: 'Beer Mug' }, 
+          { emoji: '🍻', description: 'Clinking Beer Mugs' }, 
+          { emoji: '🥂', description: 'Clinking Glasses' }, 
+          { emoji: '🍷', description: 'Wine Glass' }, 
+          { emoji: '🥃', description: 'Tumbler Glass' }, 
+          { emoji: '🍸', description: 'Cocktail Glass' }, 
+          { emoji: '🍹', description: 'Tropical Drink' }, 
+          { emoji: '🧉', description: 'Mate' }, 
+          { emoji: '🍾', description: 'Bottle with Popping Cork' }, 
+          { emoji: '🧊', description: 'Ice' }, 
+          { emoji: '🥄', description: 'Spoon' }, 
+          { emoji: '🍴', description: 'Fork and Knife' }, 
+          { emoji: '🍽', description: 'Fork and Knife with Plate' }, 
+          { emoji: '🥣', description: 'Bowl with Spoon' }, 
+          { emoji: '🥡', description: 'Takeout Box' }, 
+          { emoji: '🥢', description: 'Chopsticks' }
+        ],
     
         activities: ['⚽', '🏀', '🏈', '⚾', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓', '🏸', '🏒', '🏑', '🥍', '🏏', '🪃', '🥅', '⛳', '🪁', '🏹', '🎣', '🤿', '🥊', '🥋', '🎽', '🛹', '🛷', '⛸', '🥌', '🎿', '⛷', '🏂', '🪂', '🏋️‍♀️', '🏋️', '🏋️‍♂️', '🤼‍♀️', '🤼', '🤼‍♂️', '🤸‍♀️', '🤸', '🤸‍♂️', '⛹️‍♀️', '⛹️', '⛹️‍♂️', '🤺', '🤾‍♀️', '🤾', '🤾‍♂️', '🏌️‍♀️', '🏌️', '🏌️‍♂️', '🏇', '🧘‍♀️', '🧘', '🧘‍♂️', '🏄‍♀️', '🏄', '🏄‍♂️', '🏊‍♀️', '🏊', '🏊‍♂️', '🤽‍♀️', '🤽', '🤽‍♂️', '🚣‍♀️', '🚣', '🚣‍♂️', '🧗‍♀️', '🧗', '🧗‍♂️', '🚵‍♀️', '🚵', '🚵'],
     
