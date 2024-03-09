@@ -641,7 +641,27 @@ export const useEmojiData = () => {
           { emoji: '🚬', description: 'Cigarette' },
         ],
 
-        hearts: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝'],
+        hearts: [
+          { emoji: '❤️', description: 'Red Heart' }, 
+          { emoji: '🧡', description: 'Orange Heart' }, 
+          { emoji: '💛', description: 'Yellow Heart' }, 
+          { emoji: '💚', description: 'Green Heart' }, 
+          { emoji: '💙', description: 'Blue Heart' }, 
+          { emoji: '💜', description: 'Purple Heart' }, 
+          { emoji: '🖤', description: 'Black Heart' }, 
+          { emoji: '🤍', description: 'White Heart' }, 
+          { emoji: '🤎', description: 'Brown Heart' }, 
+          { emoji: '💔', description: 'Broken Heart' }, 
+          { emoji: '❣️', description: 'Heart Exclamation' }, 
+          { emoji: '💕', description: 'Two Hearts' }, 
+          { emoji: '💞', description: 'Revolving Hearts' }, 
+          { emoji: '💓', description: 'Beating Heart' }, 
+          { emoji: '💗', description: 'Growing Heart' }, 
+          { emoji: '💖', description: 'Sparkling Heart' }, 
+          { emoji: '💘', description: 'Heart with Arrow' }, 
+          { emoji: '💝', description: 'Heart with Ribbon' }
+        ],
+
         symbols: [
           '🔟','🔢','🔣','🔠','🔡','🔤','🅰️',
           '🆎','🅱️','🆑','🆒','🆓','ℹ️','🆔',
