@@ -8,7 +8,7 @@ function EmojiKeyBoard({ handleInputButtonClick }) {
     // Filtering emojis based on search term
     const filteredEmojis = Object.entries(emojiCategories)
     .reduce((acc, [category, emojis]) => {
-        acc[category] = emojis.filter(emoji => emoji.includes(searchTerm));
+        acc[category] = emojis.filter(emoji => typeof emoji === 'string' && emoji.includes(searchTerm));
         return acc;
     }, {});
 
