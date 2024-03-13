@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from "react-icons/fa";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import "./KeyBoardStylee.css";
+import "./VirtualKeyboard/VirtualKeyboard.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

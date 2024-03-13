@@ -1,13 +1,13 @@
 import { useState, useEffect, useReducer } from "react";
-import KeyBoardLanguage from "./KeyBoardLanguage";
-import Screen from "./Screen";
-import SpecialButtons from "./SpecialButtons";
-import KeyBoard from "./KeyBoard";
-import LetterStyle from "../letterStyle";
-import { getLanguage } from "../LanguagesData";
-import StyleSelector from "./StyleSelector";
-import "./KeyBoardStylee.css";
-import EmojiKeyBoard from "./EmojiKeyBoard";
+import KeyBoardLanguage from "../KeyBoardLanguage";
+import Screen from "../Screen";
+import SpecialButtons from "../SpecialButtons";
+import KeyBoard from "../KeyBoard";
+import LetterStyle from "../../letterStyle";
+import { getLanguage } from "../../LanguagesData";
+import StyleSelector from "../StyleSelector/StyleSelector";
+import "./VirtualKeyboard.css";
+import EmojiKeyBoard from "../EmojiKeyBoard";
 
 
 const intialLanguage = getLanguage("english");

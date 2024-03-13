@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaUnderline } from "react-icons/fa";
-import "./KeyBoardStylee.css";
-import { useStyleSelector } from "../hooks/useStyleSelector";
-
+import "../VirtualKeyboard/VirtualKeyboard.css";
+import { useStyleSelector } from "../../hooks/useStyleSelector";
+import './StyleSelector.css';
 
 const FontOption = styled.option`
   font-family: ${(props) => props.fontFamily};

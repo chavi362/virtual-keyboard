@@ -1,5 +1,5 @@
 import { FaKeyboard } from "react-icons/fa";
-import "./KeyBoardStylee.css";
+import "./VirtualKeyboard/VirtualKeyboard.css";
 import languagesData from "../LanguagesData";
 import emojiButton from "../assets/images/emojiButton.webp";
 

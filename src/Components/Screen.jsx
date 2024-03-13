@@ -1,4 +1,4 @@
-import './KeyBoardStylee.css';
+import '../Components/VirtualKeyboard/VirtualKeyboard.css';
 
 function Screen(props) {
   const text = props.text;

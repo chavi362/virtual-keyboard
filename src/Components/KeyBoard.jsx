@@ -1,4 +1,4 @@
-import './KeyBoardStylee.css';
+import './VirtualKeyboard/VirtualKeyboard.css';
 
 function KeyBoard(props) {
   return (
