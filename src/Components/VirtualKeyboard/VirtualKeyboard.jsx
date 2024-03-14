@@ -1,14 +1,13 @@
 import { useState, useEffect, useReducer } from "react";
-import KeyBoardLanguage from "../KeyBoardLanguage";
-import Screen from "../Screen";
-import SpecialButtons from "../SpecialButtons";
-import KeyBoard from "../KeyBoard";
+import KeyBoardLanguage from "../KeyBoardLanguage/KeyBoardLanguage";
+import Screen from "../Screen/Screen";
+import { SpecialButtons } from "../SpecialButtons/SpecialButtons";
+import KeyBoard from "../KeyBoard/KeyBoard";
 import LetterStyle from "../../letterStyle";
 import { getLanguage } from "../../LanguagesData";
 import StyleSelector from "../StyleSelector/StyleSelector";
 import "./VirtualKeyboard.css";
-import EmojiKeyBoard from "../EmojiKeyBoard";
-
+import EmojiKeyBoard from "../EmojiKeyBoard/EmojiKeyBoard";
 
 const intialLanguage = getLanguage("english");
 const initialState = {
@@ -51,18 +50,18 @@ const reducer = (state, action) => {
             };
         case "deleteLastChar":
 
-            let temp = structuredClone(newStack) 
+            let temp = structuredClone(newStack)
             temp[temp.length - 1].pop()
-           
+
             newStack.push(temp[temp.length - 1])
-    
+
             return {
                 ...state,
                 isUndo: true,
                 stack: newStack,
             }
         case "changeAllText":
- 
+
             const { itemFunction } = action;
             const lastItemIndex = state.stack.length - 1;
             if (lastItemIndex >= 0) {
@@ -162,7 +161,7 @@ function VirtualKeyBoard() {
         navigator.clipboard.readText().then((text) => {
             if (text) {
                 console.log(text);
-                const lastState = stack[stack.length-1];
+                const lastState = stack[stack.length - 1];
                 text.split("").forEach((item) => lastState.push({ char: item, style: { ...state.currentStyle } }));
                 console.log(lastState);
                 dispatch({ type: "paste", text: lastState }); // Pass text as a property
@@ -328,7 +327,7 @@ function VirtualKeyBoard() {
             window.removeEventListener("keydown", handleKeyDown);
         };
     }, [handleEvent]);
-    
+
     return (
         <div className="main-container">
             <div className="screenDiv">
@@ -351,7 +350,7 @@ function VirtualKeyBoard() {
                     handleEvent={handleEvent}
                     isUndo={isUndo}
                     isRedo={isRedo}
-                    text={ stack.length && stack[stack.length - 1].length
+                    text={stack.length && stack[stack.length - 1].length
                         ? stack[stack.length - 1]
                         : placeholder}
                 />

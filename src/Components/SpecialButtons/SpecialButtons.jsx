@@ -1,16 +1,13 @@
-import React from "react";
 import { FaTrashAlt, FaUndo, FaRedo, FaCopy, FaPaste } from "react-icons/fa";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import "./VirtualKeyboard/VirtualKeyboard.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import ConvertToPdf from "./ConvertToPdf";
+import ConvertToPdf from "../ConvertToPdf/ConvertToPdf";
 import { Tooltip } from 'react-tooltip';
+import './SpecialButtons.css'
 
-
-function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
+export function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
   const notify = () => {
     toast("Text is copied to clipboard!");
     handleEvent("copy");
@@ -116,5 +113,3 @@ function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
 
   );
 }
-
-export default SpecialButtons;

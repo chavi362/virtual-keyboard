@@ -1,0 +1,9 @@
+#vk-board {
+    background-color: var(--vk-color-board);
+    height: var(--vk-max-height);
+    padding: 12px;
+    user-select: none;
+}
+
+.d-flex { display: flex; }
+.justify-center { justify-content: center; }

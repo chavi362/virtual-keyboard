@@ -1,0 +1,19 @@
+.DivTextArea {
+    background: rgb(255, 255, 255);
+    cursor: text;
+    display: inline-block;
+    line-height: 1.15;
+    outline: none;
+    padding: 10px 10px 50px;
+    user-select: text;
+    width: 100%;
+    z-index: 3;
+}
+
+.DivTextArea.center {
+    text-align: center;
+}
+
+.DivTextArea.right {
+    text-align: right;
+}
