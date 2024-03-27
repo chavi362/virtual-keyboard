@@ -1,11 +1,9 @@
 import './App.css'
-import VirtualKeyBoard from './Components/virtualKeyBoard'
+import VirtualKeyBoard from './Components/VirtualKeyboard/VirtualKeyboard';
 
 function App() {
   return (
-    <>
       <VirtualKeyBoard/>
-    </>
   )
 }
 

@@ -1,0 +1,71 @@
+#spacial_buttons {
+    white-space: nowrap;
+    justify-content: center;
+    right: 5px;
+    bottom: 5px;
+    display: flex;
+    overflow: auto;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+#spacial_buttons button {
+    background-color: var(--vk-color-key);
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#spacial_buttons button:hover {
+    background-color: var(--vk-color-key-hover);
+}
+
+.modal {
+    font-size: 12px;
+  }
+  
+  .modal > .header {
+    background-color: rgb(101, 216, 201);
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 22px;
+    text-align: center;
+  }
+  .modal > .content {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 5px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }
+  
+  .popup-content {
+    padding: 0 !important;
+    max-width: 450px;
+  }
+  
+  .modal > .actions button,
+  .modal > .actions input[type="button"] {
+    width: 120px; 
+    height: 40px; 
+  }

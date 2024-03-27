@@ -100,54 +100,10 @@ select {
   padding: 5px;
 }
 
-.DivTextArea {
-  background: rgb(255, 255, 255);
-  cursor: text;
-  display: inline-block;
-  line-height: 1.15;
-  outline: none;
-  padding: 10px 10px 50px;
-  user-select: text;
-  width: 100%;
-  z-index: 3;
-}
-.DivTextArea.center {
-  text-align: center;
-}
-
-.DivTextArea.right {
-  text-align: right;
-}
-
 .screenDiv {
   position: relative;
   width: 100%;
   max-width: var(--vk-max-width);
-}
-
-#spacial_buttons {
-  white-space: nowrap;
-  justify-content: center;
-  right: 5px;
-  bottom: 5px;
-  display: flex;
-  overflow: auto;
-  position: absolute;
-  white-space: nowrap;
-  justify-content: center;
-}
-
-#spacial_buttons button {
-  background-color: var(--vk-color-key);
-  border: 1px solid rgb(180, 180, 180);
-  border-radius: 4px;
-  padding: 12px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-#spacial_buttons button:hover {
-  background-color: var(--vk-color-key-hover);
 }
 
 .change_layout {
@@ -157,44 +113,6 @@ select {
   /* max-width: 920px; */
   padding-bottom: 2px;
   /* width: 720px; */
-}
-
-.chooseLanguage {
-  background-color: rgb(255, 255, 255);
-  border: none;
-  color: rgb(3, 3, 3);
-  height: 30px;
-  direction: ltr;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 16px;
-  word-wrap: normal;
-}
-
-.language-and-icons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap;
-}
-
-.icon img {
-  width: 50px;
-  height: 50px;
-}
-
-.icon {
-  background-color: var(--vk-color-key);
-  border: 1px solid rgb(180, 180, 180);
-  border-radius: 16px;
-  margin: 12px;
-  padding: 12px;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.icon:hover {
-  background-color: var(--vk-color-key-hover);
 }
 
 .emoji-keyboard {
@@ -246,17 +164,6 @@ select {
   margin-top: 16px;
 }
 
-.style-selector-container {
-  border-top: 1px solid rgb(180, 180, 180);
-  background-color: var(--vk-color-board);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  margin-bottom: 16px;
-  max-width: var(--vk-max-width);
-  padding: 16px;
-  width: 100%;
-}
-
 .style-selector-container button {
   border: none;
 }
@@ -270,15 +177,6 @@ select {
   background-color: var(--vk-color-key-active);
 }
 
-.row.style-selector {
-  margin-top: 16px;
-}
-
-.row.style-selector > * {
-  margin-right: 5px;
-  margin-left: 5px;
-}
-
 .active {
   background-color: rgb(20, 122, 139) !important;
 }
@@ -288,51 +186,4 @@ select {
   background-color: transparent;
   border: none;
   width: 100%;
-}
-
-.modal {
-  font-size: 12px;
-}
-
-.modal > .header {
-  background-color: rgb(101, 216, 201);
-  width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 22px;
-  text-align: center;
-}
-.modal > .content {
-  width: 100%;
-  font-size: 18px;
-  padding: 10px 5px;
-}
-.modal > .actions {
-  width: 100%;
-  padding: 10px 5px;
-  margin: auto;
-  text-align: center;
-}
-.modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
-}
-
-.popup-content {
-  padding: 0 !important;
-  max-width: 450px;
-}
-
-.modal > .actions button,
-.modal > .actions input[type="button"] {
-  width: 120px; 
-  height: 40px; 
 }

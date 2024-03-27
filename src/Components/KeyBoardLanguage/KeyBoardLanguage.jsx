@@ -1,9 +1,8 @@
 import { FaKeyboard } from "react-icons/fa";
-import "./KeyBoardStylee.css";
-import languagesData from "../LanguagesData";
-import emojiButton from "../assets/images/emojiButton.webp";
-
+import languagesData from "../../LanguagesData";
+import emojiButton from '../../assets/images/emojiButton.webp';
 import React, { useState } from 'react';
+import './KeyBoardLanguage.css';
 
 function KeyBoardLanguage(props) {
   const setLanguage = props.setLanguage;

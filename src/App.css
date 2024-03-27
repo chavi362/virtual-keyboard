@@ -11,9 +11,4 @@ html, body, #root {
 div { box-sizing: border-box; }
 
 .d-none { display: none; visibility: hidden;}
-.d-flex { display: flex; }
 .d-block { display: flex; }
-.flex-column { flex-direction: column; }
-.flex-row { flex-direction: row; }
-.align-items-center { align-items: center; }
-.justify-center { justify-content: center; }

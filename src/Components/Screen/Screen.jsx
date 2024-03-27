@@ -1,4 +1,4 @@
-import './KeyBoardStylee.css';
+import './Screen.css';
 
 function Screen(props) {
   const text = props.text;
