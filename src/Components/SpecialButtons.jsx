@@ -10,7 +10,7 @@ import ConvertToPdf from "./ConvertToPdf";
 import { Tooltip } from 'react-tooltip';
 
 
-function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
+function SpecialButtons({ handleEvent, isUndo, isRedo,languege,text }) {
   const notify = () => {
     toast("Text is copied to clipboard!");
     handleEvent("copy");
@@ -18,7 +18,7 @@ function SpecialButtons({ handleEvent, isUndo, isRedo,text }) {
 
   return (
     <div id="spacial_buttons" className="spacial_buttons">
-      <ConvertToPdf text={text}></ConvertToPdf>
+      <ConvertToPdf text={text} languege={languege}></ConvertToPdf>
       <Popup
         trigger={
           <button className="button" data-tooltip-id="delete-tooltip" data-tooltip-content="Delete All" >

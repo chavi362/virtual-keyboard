@@ -146,8 +146,15 @@ const reducer = (state, action) => {
 };
 function VirtualKeyBoard() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { iso_639_2, language, keyList, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
+    const { iso_639_2, languageName, keyList, placeholder, currentStyle, stack, emojiActive, isUndo, isRedo, redoStack } = state;
     const [isShift, setisShift] = useState(false);
+
+    const [language, setLanguage] = useState(languageName);
+
+    useEffect(() => {
+        setLanguage(languageName);
+        console.log("Current language:", languageName);
+    }, [languageName]);
     const setCurrentStyle = (newStyle) => {
         dispatch({
             type: "updateCurrentStyle",
@@ -351,6 +358,7 @@ function VirtualKeyBoard() {
                     handleEvent={handleEvent}
                     isUndo={isUndo}
                     isRedo={isRedo}
+                    languege=  {language}  
                     text={ stack.length && stack[stack.length - 1].length
                         ? stack[stack.length - 1]
                         : placeholder}

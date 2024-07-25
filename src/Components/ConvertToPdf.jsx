@@ -1,13 +1,19 @@
 import html2pdf from 'html2pdf.js';
 import { HiOutlineDownload } from 'react-icons/hi';
 import { Tooltip } from 'react-tooltip';
+
 function ConvertToPdf(props) {
   const text = props.text;
-
+  const language = props.languege;
+  console.log(language);
   function convertPdf() {
     // Create a new div element to hold the text content
     const contentDiv = document.createElement('div');
-
+    console.log(language == 'Hebrew');
+    if (language == 'Hebrew')
+      {contentDiv.style.direction = 'rtl'; // Set text direction to RTL for Hebrew
+      console.log("if");  
+      }
     // Loop through the characters in the text array
     text.forEach((charInfo) => {
       const charElement = document.createElement('span');
@@ -44,7 +50,7 @@ function ConvertToPdf(props) {
   return (
     <div className="Convert_To_Pdf" id="Convert_To_Pdf" data-tooltip-id="Convert-to-PDF" data-tooltip-content="Convert to PDF">
       <button onClick={convertPdf}><HiOutlineDownload></HiOutlineDownload></button>
-      <Tooltip id="Convert-to-PDF" className= 'common-tooltip' />
+      <Tooltip id="Convert-to-PDF" className='common-tooltip' />
     </div>
   );
 }
