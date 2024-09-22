@@ -1,338 +1,383 @@
-:root{
-  --vk-max-width: 880px;
-  --vk-max-height: 320px;
-  --vk-color-board: rgb(230, 230, 230);
-  --vk-color-key: rgb(255, 255, 255);
-  --vk-color-key-hover: rgb(220, 220, 220);
-  --vk-color-key-active: rgb(200, 200, 200);
+:root {
+    --vk-max-width: 880px;
+    --vk-max-height: 320px;
+    --vk-color-board: rgb(230, 230, 230);
+    --vk-color-key: rgb(255, 255, 255);
+    --vk-color-key-hover: rgba(230, 230, 230, 0.5);
+    --vk-color-key-active: rgb(200, 200, 200);
+}
+
+input,
+select {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 7px;
+    border: 1px solid rgb(180, 180, 180);
 }
 
 #vk-board {
-  background-color: var(--vk-color-board);
-  height: var(--vk-max-height);
-  padding: 12px;
-  user-select: none;
+    background-color: var(--vk-color-board);
+    height: var(--vk-max-height);
+    padding: 12px;
+    user-select: none;
 }
 
 #vk-board .key {
-  align-items: center;
-  background-color: var(--vk-color-key);
-  border-radius: 4px;
-  border: none;
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  margin: 4px;
-  transition: .3s;
-  width: 50px;
-  box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+    align-items: center;
+    background-color: var(--vk-color-key);
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin: 4px;
+    transition: .3s;
+    width: 50px;
+    box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: 1px solid rgb(247, 247, 247);
 }
 
 #vk-board .key:hover {
-  background-color: var(--vk-color-key-hover);
+    background-color: var(--vk-color-key-hover);
+    box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
 }
 
 #vk-board .key:active {
-  background-color: var(--vk-color-key-active);
-  box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
-  transform: scale(0.95);
+    background-color: var(--vk-color-key-active);
+    box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
 }
 
 #vk-board .key.highlighted,
 #vk-board .key:active {
-  background-color: var(--vk-color-key-active);
+    background-color: var(--vk-color-key-active);
 }
 
-#vk-board .key.key-bspc { width: 94px; }
-#vk-board .key.key-tab { width: 74px; }
-#vk-board .key.key-fwslash { width: 70px; }
+#vk-board .key.key-bspc {
+    width: 94px;
+}
 
-#vk-board .key.key-caps { width: 82px; }
-#vk-board .key.key-return { width: 120px; font-size: 1.5rem; }
-#vk-board .key.key-lshift { width: 110px; }
-#vk-board .key.key-rshift { width: 150px; }
-#vk-board .key.key-spc { width: 326px; }
+#vk-board .key.key-tab {
+    width: 74px;
+}
+
+#vk-board .key.key-fwslash {
+    width: 70px;
+}
+
+#vk-board .key.key-caps {
+    width: 82px;
+}
+
+#vk-board .key.key-return {
+    width: 120px;
+    font-size: 1.5rem;
+}
+
+#vk-board .key.key-lshift {
+    width: 110px;
+}
+
+#vk-board .key.key-rshift {
+    width: 150px;
+}
+
+#vk-board .key.key-spc {
+    width: 326px;
+}
 
 #vk-board .key.key-lcmd,
 #vk-board .key.key-rcmd,
 #vk-board .key.key-lopt,
 #vk-board .key.key-ropt,
 #vk-board .key.key-lctrl,
-#vk-board .key.key-rctrl { width: 79px; }
+#vk-board .key.key-rctrl {
+    width: 79px;
+}
 
-#vk-board.lang-mkd .key.key-caps { width: 62px; }
-#vk-board.lang-mkd .key.key-return { width: 82px; }
+#vk-board.lang-mkd .key.key-caps {
+    width: 62px;
+}
+
+#vk-board.lang-mkd .key.key-return {
+    width: 82px;
+}
 
 button {
-  border-radius: 7px;
-  background-color: #ffffff;
-  font-size: 16px;
-  margin: 2px;
-  padding: 4px;
-  cursor: pointer;
+    border-radius: 7px;
+    background-color: #ffffff;
+    font-size: 16px;
+    margin: 2px;
+    padding: 4px;
+    cursor: pointer;
 }
 
 button.size-xl {
-  width: 120px;
-  height: 36px;
+    width: 120px;
+    height: 36px;
 }
 
 .special-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
 }
 
 .special-buttons button {
-  width: 70px;
+    width: 70px;
 }
 
 label {
-  /* color: #ffffff; */
-  display: block;
-  font-weight: bold;
-  height: 24px;
+    /* color: #ffffff; */
+    display: block;
+    font-weight: bold;
+    height: 24px;
 }
 
 input,
 select {
-  padding: 5px;
+    padding: 5px;
 }
 
 .DivTextArea {
-  background: rgb(255, 255, 255);
-  cursor: text;
-  display: inline-block;
-  line-height: 1.15;
-  outline: none;
-  padding: 10px 10px 50px;
-  user-select: text;
-  width: 100%;
-  z-index: 3;
+    background: rgb(255, 255, 255);
+    cursor: text;
+    display: inline-block;
+    line-height: 1.15;
+    outline: none;
+    padding: 10px 10px 50px;
+    user-select: text;
+    width: 100%;
+    z-index: 3;
 }
+
 .DivTextArea.center {
-  text-align: center;
+    text-align: center;
 }
 
 .DivTextArea.right {
-  text-align: right;
+    text-align: right;
 }
 
 .screenDiv {
-  position: relative;
-  width: 100%;
-  max-width: var(--vk-max-width);
+    position: relative;
+    width: 100%;
+    max-width: var(--vk-max-width);
 }
 
 #spacial_buttons {
-  white-space: nowrap;
-  justify-content: center;
-  right: 5px;
-  bottom: 5px;
-  display: flex;
-  overflow: auto;
-  position: absolute;
-  white-space: nowrap;
-  justify-content: center;
+    white-space: nowrap;
+    justify-content: center;
+    right: 5px;
+    bottom: 5px;
+    display: flex;
+    overflow: auto;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
 }
 
 #spacial_buttons button {
-  background-color: var(--vk-color-key);
-  border: 1px solid rgb(180, 180, 180);
-  border-radius: 4px;
-  padding: 12px;
-  cursor: pointer;
-  transition: .3s;
+    background-color: var(--vk-color-key);
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    transition: .3s;
 }
 
 #spacial_buttons button:hover {
-  background-color: var(--vk-color-key-hover);
+    background-color: var(--vk-color-key-hover);
 }
 
 .change_layout {
-  background: rgb(101, 216, 201);
-  border-radius: 14px 14px 0px 0px;
-  margin: auto;
-  /* max-width: 920px; */
-  padding-bottom: 2px;
-  /* width: 720px; */
+    background: rgb(101, 216, 201);
+    border-radius: 14px 14px 0px 0px;
+    margin: auto;
+    /* max-width: 920px; */
+    padding-bottom: 2px;
+    /* width: 720px; */
 }
 
 .chooseLanguage {
-  background-color: rgb(255, 255, 255);
-  border: none;
-  color: rgb(3, 3, 3);
-  height: 30px;
-  direction: ltr;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 16px;
-  word-wrap: normal;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    color: rgb(3, 3, 3);
+    height: 30px;
+    direction: ltr;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 16px;
+    word-wrap: normal;
 }
 
 .language-and-icons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
 }
 
 .icon img {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .icon {
-  background-color: var(--vk-color-key);
-  border: 1px solid rgb(180, 180, 180);
-  border-radius: 16px;
-  margin: 12px;
-  padding: 12px;
-  cursor: pointer;
-  transition: .3s;
+    background-color: var(--vk-color-key);
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 16px;
+    margin: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .icon:hover {
-  background-color: var(--vk-color-key-hover);
+    background-color: var(--vk-color-key-hover);
 }
 
 .emoji-keyboard {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--vk-color-board);
-  width: var(--vk-max-width);
-  height: var(--vk-max-height);
-  overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--vk-color-board);
+    width: var(--vk-max-width);
+    height: var(--vk-max-height);
+    overflow-y: scroll;
 }
 
 .emoji-keyboard button {
-  background-color: var(--vk-color-key);
-  border: none;
-  border-radius: 4px;
-  margin: 4px;
-  width: 50px;
-  height: 60px;
-  padding: 12px;
-  cursor: pointer;
-  box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
-  transition: .3s;
+    background-color: var(--vk-color-key);
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+    width: 50px;
+    height: 60px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: 12px 9px 8px -3px rgba(0, 0, 0, 0.1);
+    transition: .3s;
 }
 
 .emoji-keyboard button:hover {
-  background-color: var(--vk-color-key-hover);
+    background-color: var(--vk-color-key-hover);
 }
 
 .emoji-keyboard button:active {
-  background-color: var(--vk-color-key-active);
-  box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
-  transform: scale(0.95);
+    background-color: var(--vk-color-key-active);
+    box-shadow: 7px 5px 4px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
 }
 
 .main-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-  text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    text-align: center;
 }
 
 .keyboard-container {
-  align-items: flex-start;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-  margin-top: 16px;
+    align-items: flex-start;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 .style-selector-container {
-  border-top: 1px solid rgb(180, 180, 180);
-  background-color: var(--vk-color-board);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  margin-bottom: 16px;
-  max-width: var(--vk-max-width);
-  padding: 16px;
-  width: 100%;
+    border-top: 1px solid rgb(180, 180, 180);
+    background-color: var(--vk-color-board);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 16px;
+    max-width: var(--vk-max-width);
+    padding: 16px;
+    width: 100%;
 }
 
 .style-selector-container button {
-  border: none;
+    border: none;
 }
 
 .style-selector-container button:hover {
-  background-color: var(--vk-color-key-hover);
-  cursor: pointer;
+    background-color: var(--vk-color-key-hover);
+    cursor: pointer;
 }
 
 .style-selector-container button:active {
-  background-color: var(--vk-color-key-active);
+    background-color: var(--vk-color-key-active);
 }
 
 .row.style-selector {
-  margin-top: 16px;
+    margin-top: 16px;
 }
 
-.row.style-selector > * {
-  margin-right: 5px;
-  margin-left: 5px;
+.row.style-selector>* {
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .active {
-  background-color: rgb(20, 122, 139) !important;
+    background-color: rgb(20, 122, 139) !important;
 }
 
 #colorInput {
-  padding: 0px;
-  background-color: transparent;
-  border: none;
-  width: 100%;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    width: 100%;
 }
 
 .modal {
-  font-size: 12px;
+    font-size: 12px;
 }
 
-.modal > .header {
-  background-color: rgb(101, 216, 201);
-  width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 22px;
-  text-align: center;
+.modal>.header {
+    background-color: rgb(101, 216, 201);
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 22px;
+    text-align: center;
 }
-.modal > .content {
-  width: 100%;
-  font-size: 18px;
-  padding: 10px 5px;
+
+.modal>.content {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 5px;
 }
-.modal > .actions {
-  width: 100%;
-  padding: 10px 5px;
-  margin: auto;
-  text-align: center;
+
+.modal>.actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
 }
-.modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
+
+.modal>.close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
 }
 
 .popup-content {
-  padding: 0 !important;
-  max-width: 450px;
+    padding: 0 !important;
+    max-width: 450px;
 }
 
-.modal > .actions button,
-.modal > .actions input[type="button"] {
-  width: 120px; 
-  height: 40px; 
+.modal>.actions button,
+.modal>.actions input[type="button"] {
+    width: 120px;
+    height: 40px;
 }
