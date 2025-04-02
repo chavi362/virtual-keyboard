@@ -265,7 +265,12 @@ function VirtualKeyBoard() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
+            const isShiftKey = event.keyCode === 16;
 
+            if(isShiftKey) {
+                setisShift(true);
+            }
+            
             const isAlphanumeric =
                 (event.keyCode >= 48 && event.keyCode <= 90) ||
                 (event.keyCode >= 96 && event.keyCode <= 105) ||
@@ -310,8 +315,12 @@ function VirtualKeyBoard() {
                         }, 300);
                     });
 
-                } else {
-                    char = String.fromCharCode(event.keyCode).toLowerCase();
+                } else{
+                    if(isShift) {
+                        char = String.fromCharCode(event.keyCode).toUpperCase();
+                    }else{
+                        char = String.fromCharCode(event.keyCode).toLowerCase();
+                    }
                 }
                 if (event.keyCode != 8) {
                     handleInputButtonClick(char);
